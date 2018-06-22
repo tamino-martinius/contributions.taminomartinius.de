@@ -1,6 +1,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const vueLoaderRule = {
   test: /\.vue$/,
@@ -62,6 +63,9 @@ module.exports = {
     hints: false,
   },
   devtool: '#eval-source-map',
+  plugins: [
+    new VueLoaderPlugin(),
+  ],
 };
 
 if (process.env.NODE_ENV === 'production') {
