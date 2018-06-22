@@ -43,6 +43,22 @@ const cssLoaderRule = {
   ],
 };
 
+const vueLoaderPlugin = new VueLoaderPlugin();
+const productionEnvPlugin = new webpack.DefinePlugin({
+  'process.env': {
+    NODE_ENV: '"production"',
+  },
+});
+const uglifyPlugin = new webpack.optimize.UglifyJsPlugin({
+  sourceMap: true,
+  compress: {
+    warnings: false,
+  },
+});
+const loaderOptionsPlugin = new webpack.LoaderOptionsPlugin({
+  minimize: true,
+});
+
 module.exports = {
   entry: './src/index.ts',
   output: {
@@ -73,7 +89,7 @@ module.exports = {
   },
   devtool: '#eval-source-map',
   plugins: [
-    new VueLoaderPlugin(),
+    vueLoaderPlugin,
   ],
 };
 
@@ -81,19 +97,8 @@ if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map';
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '"production"',
-      },
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false,
-      },
-    }),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-    }),
+    productionEnvPlugin,
+    uglifyPlugin,
+    loaderOptionsPlugin,
   ]);
 }
