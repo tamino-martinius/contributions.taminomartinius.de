@@ -35,6 +35,14 @@ const fileLoaderRule = {
   },
 };
 
+const cssLoaderRule = {
+  test: /\.css$/,
+  use: [
+    'vue-style-loader',
+    'css-loader',
+  ],
+};
+
 module.exports = {
   entry: './src/index.ts',
   output: {
@@ -47,6 +55,7 @@ module.exports = {
       vueLoaderRule,
       typeScriptLoaderRule,
       fileLoaderRule,
+      cssLoaderRule,
     ],
   },
   resolve: {
