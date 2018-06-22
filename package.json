@@ -21,6 +21,7 @@
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
+    "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
     "ts-loader": "^4.4.1",
     "tslint": "^5.10.0",
