@@ -1,3 +1,4 @@
+<!-- Single file components -->
 <template>
   <div>
     <div class="greeting">Hello {{name}}{{exclamationMarks}}</div>

@@ -1,3 +1,4 @@
+// The default way to create components
 import vue from 'vue';
 
 export default vue.extend({
