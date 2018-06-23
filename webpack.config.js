@@ -2,6 +2,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const vueLoaderRule = {
   test: /\.vue$/,
@@ -43,21 +44,26 @@ const cssLoaderRule = {
   ],
 };
 
-const vueLoaderPlugin = new VueLoaderPlugin();
-const productionEnvPlugin = new webpack.DefinePlugin({
+const copyWebpackSettings = [
+  {
+    from: 'public',
+    to: '',
+  },
+];
+const envSettings = {
   'process.env': {
     NODE_ENV: '"production"',
   },
-});
-const uglifyPlugin = new webpack.optimize.UglifyJsPlugin({
+};
+const uglifySettings = {
   sourceMap: true,
   compress: {
     warnings: false,
   },
-});
-const loaderOptionsPlugin = new webpack.LoaderOptionsPlugin({
+};
+const loaderSettings = {
   minimize: true,
-});
+};
 
 module.exports = {
   entry: './src/index.ts',
@@ -89,7 +95,8 @@ module.exports = {
   },
   devtool: '#eval-source-map',
   plugins: [
-    vueLoaderPlugin,
+    new VueLoaderPlugin(),
+    new CopyWebpackPlugin(copyWebpackSettings),
   ],
 };
 
@@ -97,8 +104,8 @@ if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map';
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
-    productionEnvPlugin,
-    uglifyPlugin,
-    loaderOptionsPlugin,
+    new webpack.DefinePlugin(envSettings),
+    new webpack.optimize.UglifyJsPlugin(uglifySettings),
+    new webpack.LoaderOptionsPlugin(loaderSettings),
   ]);
 }
