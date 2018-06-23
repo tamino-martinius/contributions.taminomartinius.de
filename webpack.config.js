@@ -1,72 +1,8 @@
-
 const path = require('path');
 const webpack = require('webpack');
 const vueLoaderPlugin = require('vue-loader/lib/plugin');
 const copyWebpackPlugin = require('copy-webpack-plugin');
 const uglifyJsPlugin = require('uglifyjs-webpack-plugin');
-
-const vueLoaderRule = {
-  test: /\.vue$/,
-  loader: 'vue-loader',
-  options: {
-    loaders: {
-      // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
-      // the "scss" and "sass" values for the lang attribute to the right configs here.
-      // other preprocessors should work out of the box, no loader config like this necessary.
-      scss: 'vue-style-loader!css-loader!sass-loader',
-      sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
-    },
-    // other vue-loader options go here
-  },
-};
-
-const typeScriptLoaderRule = {
-  test: /\.tsx?$/,
-  loader: 'ts-loader',
-  exclude: /node_modules/,
-  options: {
-    appendTsSuffixTo: [/\.vue$/],
-  },
-};
-
-const fileLoaderRule = {
-  test: /\.(png|jpg|gif|svg)$/,
-  loader: 'file-loader',
-  options: {
-    name: '[name].[ext]?[hash]',
-  },
-};
-
-const cssLoaderRule = {
-  test: /\.css$/,
-  use: [
-    'vue-style-loader',
-    'css-loader',
-  ],
-};
-
-const copyWebpackSettings = [
-  {
-    from: 'public',
-    to: '',
-  },
-];
-const envSettings = {
-  'process.env': {
-    NODE_ENV: '"production"',
-  },
-};
-const uglifySettings = {
-  uglifyOptions: {
-    sourceMap: true,
-    compress: {
-      warnings: false,
-    },
-  },
-};
-const loaderSettings = {
-  minimize: true,
-};
 
 module.exports = {
   entry: './src/index.ts',
@@ -76,11 +12,42 @@ module.exports = {
     filename: 'index.js',
   },
   module: {
-    rules: [
-      vueLoaderRule,
-      typeScriptLoaderRule,
-      fileLoaderRule,
-      cssLoaderRule,
+    rules: [{
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: {
+          loaders: {
+            // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
+            // the "scss" and "sass" values for the lang attribute to the right configs here.
+            // other preprocessors should work out of the box, no loader config like this necessary.
+            scss: 'vue-style-loader!css-loader!sass-loader',
+            sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
+          },
+          // other vue-loader options go here
+        },
+      },
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/,
+        options: {
+          appendTsSuffixTo: [/\.vue$/],
+        },
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]?[hash]',
+        },
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+        ],
+      },
     ],
   },
   resolve: {
@@ -99,7 +66,10 @@ module.exports = {
   devtool: '#eval-source-map',
   plugins: [
     new vueLoaderPlugin(),
-    new copyWebpackPlugin(copyWebpackSettings),
+    new copyWebpackPlugin([{
+      from: 'public',
+      to: '',
+    }]),
   ],
 };
 
@@ -107,8 +77,21 @@ if (process.env.NODE_ENV === 'production') {
   module.exports.devtool = '#source-map';
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
-    new webpack.DefinePlugin(envSettings),
-    new uglifyJsPlugin(uglifySettings),
-    new webpack.LoaderOptionsPlugin(loaderSettings),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"',
+      },
+    }),
+    new uglifyJsPlugin({
+      uglifyOptions: {
+        sourceMap: true,
+        compress: {
+          warnings: false,
+        },
+      },
+    }),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+    }),
   ]);
 }
