@@ -115,6 +115,7 @@ if (process.env.NODE_ENV === 'production') {
     }),
   ]);
 } else {
+  module.exports.mode = 'development';
   module.exports.devServer = {
     port: 3000,
     hot: true,
