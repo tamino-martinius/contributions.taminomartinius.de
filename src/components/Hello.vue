@@ -8,13 +8,13 @@
 </template>
 
 <script lang="ts">
-import vue from 'vue';
+import vue from "vue";
 
 export default vue.extend({
-  props: ['name', 'initialEnthusiasm'],
+  props: ["name", "initialEnthusiasm"],
   data() {
     return {
-      enthusiasm: this.initialEnthusiasm,
+      enthusiasm: this.initialEnthusiasm
     };
   },
   methods: {
@@ -25,13 +25,13 @@ export default vue.extend({
       if (this.enthusiasm > 1) {
         this.enthusiasm -= 1;
       }
-    },
+    }
   },
   computed: {
     exclamationMarks(): string {
-      return Array(this.enthusiasm + 1).join('!');
-    },
-  },
+      return Array(this.enthusiasm + 1).join("!");
+    }
+  }
 });
 </script>
 

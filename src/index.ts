@@ -9,16 +9,18 @@ const v = new vue({
   template: `
     <div>
       Name: <input v-model="name" type="text">
+
       <h1>Hello TS Component</h1>
       <hello :name="name" :initialEnthusiasm="5" />
       <h1>Hello TS Decorator Component</h1>
       <hello-decorator :name="name" :initialEnthusiasm="5" />
+
       <h1>Hello Vue Component</h1>
       <hello-vue :name="name" :initialEnthusiasm="5" />
       <h1>Hello Vue Decorator Component</h1>
       <hello-decorator-vue :name="name" :initialEnthusiasm="5" />
-      </div>
-    `,
+    </div>
+  `,
   data: { name: 'World' },
   components: {
     Hello,
