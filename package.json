@@ -5,7 +5,7 @@
   "description": "A Template to generate websites based on TypeScript and VueJs",
   "main": "dist/index.js",
   "scripts": {
-    "build": "rm -rf dist && webpack",
+    "build": "webpack",
     "build:production": "npm run build --production",
     "start": "webpack-dev-server --hot --inline --open -d",
     "watch": "npm run build -- --watch",
