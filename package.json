@@ -7,6 +7,7 @@
   "scripts": {
     "build": "rm -rf dist && webpack",
     "build:production": "npm run build --production",
+    "watch": "npm run build -- --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
