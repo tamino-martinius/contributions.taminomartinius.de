@@ -7,10 +7,10 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue from 'vue';
 
 export default Vue.extend({
-  props: ["name", "initialEnthusiasm"],
+  props: ['name', 'initialEnthusiasm'],
   data() {
     return {
       enthusiasm: this.initialEnthusiasm
@@ -18,19 +18,19 @@ export default Vue.extend({
   },
   methods: {
     increment() {
-      this.enthusiasm++;
+      this.enthusiasm += 1;
     },
     decrement() {
       if (this.enthusiasm > 1) {
-        this.enthusiasm--;
+        this.enthusiasm -= 1;
       }
-    }
+    },
   },
   computed: {
     exclamationMarks(): string {
-      return Array(this.enthusiasm + 1).join("!");
-    }
-  }
+      return Array(this.enthusiasm + 1).join('!');
+    },
+  },
 });
 </script>
 

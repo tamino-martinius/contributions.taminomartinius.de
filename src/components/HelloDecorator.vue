@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop } from 'vue-property-decorator';
 
 @Component
 export default class HelloDecorator extends Vue {
@@ -19,11 +19,12 @@ export default class HelloDecorator extends Vue {
   enthusiasm = this.initialEnthusiasm;
 
   increment() {
-    this.enthusiasm++;
+    this.enthusiasm += 1;
   }
+
   decrement() {
     if (this.enthusiasm > 1) {
-      this.enthusiasm--;
+      this.enthusiasm -= 1;
     }
   }
 
