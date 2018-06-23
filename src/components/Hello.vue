@@ -7,13 +7,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import vue from 'vue';
 
-export default Vue.extend({
+export default vue.extend({
   props: ['name', 'initialEnthusiasm'],
   data() {
     return {
-      enthusiasm: this.initialEnthusiasm
+      enthusiasm: this.initialEnthusiasm,
     };
   },
   methods: {
