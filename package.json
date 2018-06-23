@@ -12,13 +12,17 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
+    "example",
+    "sample",
     "template",
     "ts",
+    "tslint",
     "tsx",
     "typescript",
     "vue",
     "vuejs",
-    "webpack"
+    "webpack",
+    "webpack4"
   ],
   "contributors": [
     {
