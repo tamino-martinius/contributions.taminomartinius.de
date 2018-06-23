@@ -3,6 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const vueLoaderPlugin = require('vue-loader/lib/plugin');
 const copyWebpackPlugin = require('copy-webpack-plugin');
+const uglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const vueLoaderRule = {
   test: /\.vue$/,
@@ -56,9 +57,11 @@ const envSettings = {
   },
 };
 const uglifySettings = {
-  sourceMap: true,
-  compress: {
-    warnings: false,
+  uglifyOptions: {
+    sourceMap: true,
+    compress: {
+      warnings: false,
+    },
   },
 };
 const loaderSettings = {
@@ -105,7 +108,7 @@ if (process.env.NODE_ENV === 'production') {
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin(envSettings),
-    new webpack.optimize.UglifyJsPlugin(uglifySettings),
+    new uglifyJsPlugin(uglifySettings),
     new webpack.LoaderOptionsPlugin(loaderSettings),
   ]);
 }
