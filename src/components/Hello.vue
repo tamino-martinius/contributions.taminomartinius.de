@@ -35,8 +35,8 @@ export default vue.extend({
 });
 </script>
 
-<style>
+<style lang="scss" scoped>
 .greeting {
-  font-size: 20px;
+  background: red;
 }
 </style>
