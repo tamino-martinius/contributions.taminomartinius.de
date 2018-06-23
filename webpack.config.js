@@ -4,6 +4,7 @@ const vueLoaderPlugin = require('vue-loader/lib/plugin');
 const copyWebpackPlugin = require('copy-webpack-plugin');
 const uglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const htmlWebpackPlugin = require('html-webpack-plugin');
+const cleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   entry: './src/index.ts',
@@ -76,6 +77,7 @@ module.exports = {
   },
   devtool: '#eval-source-map',
   plugins: [
+    new cleanWebpackPlugin('./dist'),
     new vueLoaderPlugin(),
     new copyWebpackPlugin([{
       from: 'public',
