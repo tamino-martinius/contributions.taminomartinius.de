@@ -1,41 +1,42 @@
-# TypeScript Vue Starter
+# Webpack Template for TypeScript & VueJs
 
-This quick start guide will teach you how to get TypeScript and [Vue](https://vuejs.org) working together.
-This guide is flexible enough that any steps here can be used to integrate TypeScript into an existing Vue project.
+This is a Webpack Template for generating Web Pages with [TypeScript](http://www.typescriptlang.org/) and [VueJs](https://vuejs.org).
+This readme explains how to build this Template from scratch, or how to extend an existing webpack project.
 
-# Initialize your project
+## Initialize your project
 
 Let's create a new package.
 
 ```sh
-mkdir typescript-vue-tutorial
-cd typescript-vue-tutorial
+mkdir webpack-typescript-vue
+cd webpack-typescript-vue
 ```
 
 Next, we'll scaffold our project in the following way:
 
 ```txt
-typescript-vue-tutorial/
+webpack-typescript-vue/
 ├─ dist/
+├─ public/
 └─ src/
    └─ components/
 ```
 
-TypeScript files will start out in your `src` folder, run through the TypeScript compiler, then webpack, and end up in a `bundle.js` file in `dist`.
+TypeScript files will start out in your `src` folder, run through the TypeScript compiler, then webpack, and end up in a `index.js` file in `dist`.
 Any components that we write will go in the `src/components` folder.
+
+Everything within the public folder will be copied to dist on build. The public folder may contain your fav icon or some other static assets.
 
 Let's scaffold this out:
 
 ```shell
-mkdir src
-cd src
-mkdir components
-cd ..
+mkdir -p src/components
+mkdir public
 ```
 
 Webpack will eventually generate the `dist` directory for us.
 
-# Initialize the project
+## Initialize the project
 
 Now we'll turn this folder into an npm package.
 
@@ -47,66 +48,99 @@ You'll be given a series of prompts.
 You can use the defaults except for your entry point.
 You can always go back and change these in the `package.json` file that's been generated for you.
 
-# Install our dependencies
+## Install our dependencies
 
 Ensure TypeScript, Webpack, Vue and the necessary loaders are installed.
+Additionally its recommended to also install tslint to improve your code quality.
 
-```sh
-npm install --save-dev typescript webpack ts-loader css-loader vue vue-loader vue-template-compiler
+```shell
+npm install --save-dev \
+  copy-webpack-plugin \
+  css-loader \
+  ts-loader \
+  tslint \
+  tslint-config-airbnb \
+  typescript \
+  vue-loader \
+  vue-template-compiler \
+  webpack \
+  webpack-cli
 ```
 
-Webpack is a tool that will bundle your code and optionally all of its dependencies into a single `.js` file.
-While you don't need to use a bundler like Webpack or Browserify, these tools will allow us to use `.vue` files which we'll cover in a bit.
+Webpack is a tool that will bundle your code and optionally all of its dependencies into a single `.js` file. While you don't need to use a bundler like Webpack or Browserify, these tools will allow us to use `.vue` files which we'll cover in a bit.
 
 We didn't need to [add `.d.ts` files](https://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html), but if we were using a package which didn't ship declaration files, we'd need to install the appropriate `@types/` package.
 [Read more about using definition files in our documentation](https://www.typescriptlang.org/docs/handbook/declaration-files/consumption.html).
 
-# Add a TypeScript configuration file
+You will also need some dependencies which need to be bundled with your code. This is vue
+and some suggested extensions.
+
+```shell
+npm install --save \
+  vue \
+  vue-class-component \
+  vue-property-decorator \
+  vue-router
+```
+
+## Add a TypeScript configuration file
 
 You'll want to bring your TypeScript files together - both the code you'll be writing as well as any necessary declaration files.
 
-To do this, you'll need to create a `tsconfig.json` which contains a list of your input files as well as all your compilation settings.
-Simply create a new file in your project root named `tsconfig.json` and fill it with the following contents:
+To do this, you'll need to create a `tsconfig.json` which contains a list of your input files as well as all your compilation settings. Simply create a new file in your project root named `tsconfig.json` and fill it with the following contents:
 
 ```json
 {
-    "compilerOptions": {
-        "outDir": "./built/",
-        "sourceMap": true,
-        "strict": true,
-        "noImplicitReturns": true,
-        "module": "es2015",
-        "moduleResolution": "node",
-        "target": "es5"
-    },
-    "include": [
-        "./src/**/*"
-    ]
+  "compilerOptions": {
+    "outDir": "./built/",
+    "sourceMap": true,
+    "strict": true,
+    "module": "es2015",
+    "moduleResolution": "node",
+    "target": "es5",
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.tsx"
+  ]
 }
+
 ```
 
 Notice the `strict` flag is set to true.
 At the very least, TypeScript's `noImplicitThis` flag will need to be turned on to leverage Vue's declaration files, but `strict` gives us that and more (like `noImplicitAny` and `strictNullChecks`).
 We strongly recommend using TypeScript's stricter options for a better experience.
 
-# Adding Webpack
+## Adding Webpack
 
 We'll need to add a `webpack.config.js` to bundle our app.
 
 ```js
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path');
+const webpack = require('webpack');
+const vueLoaderPlugin = require('vue-loader/lib/plugin');
+const copyWebpackPlugin = require('copy-webpack-plugin');
+const uglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'build.js'
+    filename: 'index.js',
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
@@ -114,11 +148,11 @@ module.exports = {
             // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
             // the "scss" and "sass" values for the lang attribute to the right configs here.
             // other preprocessors should work out of the box, no loader config like this necessary.
-            'scss': 'vue-style-loader!css-loader!sass-loader',
-            'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
-          }
+            scss: 'vue-style-loader!css-loader!sass-loader',
+            sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
+          },
           // other vue-loader options go here
-        }
+        },
       },
       {
         test: /\.tsx?$/,
@@ -126,64 +160,81 @@ module.exports = {
         exclude: /node_modules/,
         options: {
           appendTsSuffixTo: [/\.vue$/],
-        }
+        },
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {
-          name: '[name].[ext]?[hash]'
-        }
-      }
-    ]
+          name: '[name].[ext]?[hash]',
+        },
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+        ],
+      },
+    ],
   },
   resolve: {
     extensions: ['.ts', '.js', '.vue', '.json'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
-    }
+      vue$: 'vue/dist/vue.esm.js',
+    },
   },
   devServer: {
     historyApiFallback: true,
-    noInfo: true
+    noInfo: true,
   },
   performance: {
-    hints: false
+    hints: false,
   },
-  devtool: '#eval-source-map'
-}
+  devtool: '#eval-source-map',
+  plugins: [
+    new vueLoaderPlugin(),
+    new copyWebpackPlugin([{
+      from: 'public',
+      to: '',
+    }]),
+  ],
+};
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports.devtool = '#source-map'
+  module.exports.devtool = '#source-map';
   // http://vue-loader.vuejs.org/en/workflow/production.html
   module.exports.plugins = (module.exports.plugins || []).concat([
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"production"'
-      }
+        NODE_ENV: '"production"',
+      },
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
-      }
+    new uglifyJsPlugin({
+      uglifyOptions: {
+        sourceMap: true,
+        compress: {
+          warnings: false,
+        },
+      },
     }),
     new webpack.LoaderOptionsPlugin({
-      minimize: true
-    })
-  ])
+      minimize: true,
+    }),
+  ]);
 }
 ```
 
-# Add a build script
+## Add a build script
 
 Open up your `package.json` and add a script named `build` to run Webpack.
 Your `"scripts"` field should look something like this:
 
 ```json
-"scripts": {
-    "build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "scripts": {
+    "build": "rm -rf dist && webpack",
+    "build:production": "npm run build --production",
+    "watch": "npm run build -- --watch"
   },
 ```
 
@@ -193,13 +244,23 @@ Once we add an entry point, we'll be able to build by running
 npm run build
 ```
 
+If you want to build the minified release version
+
+```sh
+npm run build --production
+# or
+npm run build:production
+```
+
 and have builds get triggered on changes by running
 
 ```sh
 npm run build -- --watch
+# or
+npm run watch
 ```
 
-# Create a basic project
+## Create a basic project
 
 Let's create the most bare-bones Vue & TypeScript example that we can try out.
 First, create the file `./src/index.ts`:
@@ -207,20 +268,20 @@ First, create the file `./src/index.ts`:
 ```ts
 // src/index.ts
 
-import Vue from "vue";
+import vue from 'vue';
 
-let v = new Vue({
-    el: "#app",
-    template: `
+let v = new vue({
+  el: '#app',
+  template: `
     <div>
-        <div>Hello {{name}}!</div>
-        Name: <input v-model="name" type="text">
-    </div>`,
-    data: {
-        name: "World"
-    }
+      <div>Hello {{name}}!</div>
+      Name: <input v-model="name" type="text">
+    </div>
+  `,
+  data: {
+    name: 'World'
+  },
 });
-
 ```
 
 Let's check to see if everything is wired up correctly.
@@ -229,13 +290,13 @@ Create an `index.html` with the following content at your root:
 ```html
 <!doctype html>
 <html>
-<head></head>
-
+<head>
+  <title>Webpack Template for TypeScript & VueJs</title>
+</head>
 <body>
-    <div id="app"></div>
+  <div id="app"></div>
+  <script src="./index.js"></script>
 </body>
-<script src="./dist/build.js"></script>
-
 </html>
 ```
 
@@ -248,7 +309,7 @@ If you change the content of the textbox, you'll notice how the text is synchron
 Congrats!
 You've gotten TypeScript and Vue fully hooked up!
 
-# Adding a component
+## Adding a component
 
 As you've just seen, Vue has a very simple interface for when you need to accomplish simple tasks.
 When our page only needed to communicate a bit of data between two elements, it took very little code.
@@ -262,35 +323,35 @@ A Vue component can be declared in the following manner:
 ```ts
 // src/components/Hello.ts
 
-import Vue from "vue";
+import vue from 'vue';
 
-export default Vue.extend({
-    template: `
-        <div>
-            <div>Hello {{name}}{{exclamationMarks}}</div>
-            <button @click="decrement">-</button>
-            <button @click="increment">+</button>
-        </div>
-    `,
-    props: ['name', 'initialEnthusiasm'],
-    data() {
-        return {
-            enthusiasm: this.initialEnthusiasm,
-        }
+export default vue.extend({
+  template: `
+    <div>
+      <div>Hello {{name}}{{exclamationMarks}}</div>
+      <button @click="decrement">-</button>
+      <button @click="increment">+</button>
+    </div>
+  `,
+  props: ['name', 'initialEnthusiasm'],
+  data() {
+    return {
+      enthusiasm: this.initialEnthusiasm,
+    };
+  },
+  methods: {
+    increment() { this.enthusiasm += 1; },
+    decrement() {
+      if (this.enthusiasm > 1) {
+        this.enthusiasm -= 1;
+      }
     },
-    methods: {
-        increment() { this.enthusiasm++; },
-        decrement() {
-            if (this.enthusiasm > 1) {
-                this.enthusiasm--;
-            }
-        },
+  },
+  computed: {
+    exclamationMarks(): string {
+      return Array(this.enthusiasm + 1).join('!');
     },
-    computed: {
-        exclamationMarks(): string {
-            return Array(this.enthusiasm + 1).join('!');
-        }
-    }
+  },
 });
 ```
 
@@ -304,20 +365,20 @@ Our root Vue instance can consume it as follows:
 ```ts
 // src/index.ts
 
-import Vue from "vue";
-import HelloComponent from "./components/Hello";
+import vue from 'vue';
+import Hello from './components/Hello';
 
-let v = new Vue({
-    el: "#app",
+let v = new vue({
+    el: '#app',
     template: `
-    <div>
+      <div>
         Name: <input v-model="name" type="text">
-        <hello-component :name="name" :initialEnthusiasm="5" />
-    </div>
+        <hello :name="name" :initialEnthusiasm="5" />
+      </div>
     `,
-    data: { name: "World" },
+    data: { name: 'World' },
     components: {
-        HelloComponent
+        Hello
     }
 });
 ```
@@ -325,7 +386,7 @@ let v = new Vue({
 However, we'll note that it is fairly popular to use [Vue's *single file components*](https://vuejs.org/v2/guide/single-file-components.html).
 Let's try writing the above as an SFC.
 
-# Single File Components
+## Single File Components
 
 When using Webpack or Browserify, Vue has plugins like [vue-loader](https://github.com/vuejs/vue-loader) and [vueify](https://www.npmjs.com/package/vueify) which allow you to author your components in HTML-like files.
 These files, which end in a `.vue` extension, are single file components.
@@ -338,11 +399,11 @@ One extra thing we'll have to do is tell TypeScript what `.vue` files will look 
 We'll do this with a `vue-shims.d.ts` file:
 
 ```ts
-// src/vue-shims.d.ts
+// src/vue.d.ts
 
-declare module "*.vue" {
-    import Vue from "vue";
-    export default Vue;
+declare module '*.vue' {
+  import Vue from 'vue';
+  export default Vue;
 }
 ```
 
@@ -360,42 +421,44 @@ Now, let's write an SFC!
 <!-- src/components/Hello.vue -->
 
 <template>
-    <div>
-        <div class="greeting">Hello {{name}}{{exclamationMarks}}</div>
-        <button @click="decrement">-</button>
-        <button @click="increment">+</button>
-    </div>
+  <div>
+    <div class="greeting">Hello {{name}}{{exclamationMarks}}</div>
+    <button @click="decrement">-</button>
+    <button @click="increment">+</button>
+  </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import vue from 'vue';
 
-export default Vue.extend({
-    props: ['name', 'initialEnthusiasm'],
-    data() {
-        return {
-            enthusiasm: this.initialEnthusiasm,
-        }
+export default vue.extend({
+  props: ['name', 'initialEnthusiasm'],
+  data() {
+    return {
+      enthusiasm: this.initialEnthusiasm,
+    };
+  },
+  methods: {
+    increment() {
+      this.enthusiasm += 1;
     },
-    methods: {
-        increment() { this.enthusiasm++; },
-        decrement() {
-            if (this.enthusiasm > 1) {
-                this.enthusiasm--;
-            }
-        },
+    decrement() {
+      if (this.enthusiasm > 1) {
+        this.enthusiasm -= 1;
+      }
     },
-    computed: {
-        exclamationMarks(): string {
-            return Array(this.enthusiasm + 1).join('!');
-        }
-    }
+  },
+  computed: {
+    exclamationMarks(): string {
+      return Array(this.enthusiasm + 1).join('!');
+    },
+  },
 });
 </script>
 
 <style>
 .greeting {
-    font-size: 20px;
+  font-size: 20px;
 }
 </style>
 ```
@@ -405,21 +468,21 @@ and let's import it for our root instance:
 ```ts
 // src/index.ts
 
-import Vue from "vue";
-import HelloComponent from "./components/Hello.vue";
+import vue from 'vue';
+import HelloVue from './components/Hello.vue';
 
-let v = new Vue({
-    el: "#app",
-    template: `
+let v = new vue({
+  el: '#app',
+  template: `
     <div>
-        Name: <input v-model="name" type="text">
-        <hello-component :name="name" :initialEnthusiasm="5" />
+      Name: <input v-model="name" type="text">
+      <hello-vue :name="name" :initialEnthusiasm="5" />
     </div>
-    `,
-    data: { name: "World" },
-    components: {
-        HelloComponent
-    }
+  `,
+  data: { name: 'World' },
+  components: {
+    HelloVue,
+  },
 });
 ```
 
@@ -433,33 +496,43 @@ Notice a few things about our single-file component:
 
 Try running `npm run build` and open up `index.html` to see the result!
 
-# Using decorators to define a component
+## Using decorators to define a component
 
 Components can also be defined using [decorators](https://www.typescriptlang.org/docs/handbook/decorators.html).
 With the help of two additional packages, ([vue-class-component](https://github.com/vuejs/vue-class-component) and [vue-property-decorator](https://github.com/kaorun343/vue-property-decorator)), our components can be rewritten in the following manner:
 
 ```ts
-import { Vue, Component, Prop } from "vue-property-decorator";
+// src/components/HelloDecorator.ts
 
-@Component
+import { Vue, Component, Prop } from 'vue-property-decorator';
+
+@Component({
+  template: `
+    <div>
+      <div>Hello {{name}}{{exclamationMarks}}</div>
+      <button @click="decrement">-</button>
+      <button @click="increment">+</button>
+    </div>
+  `,
+})
 export default class HelloDecorator extends Vue {
-    @Prop() name!: string;
-    @Prop() initialEnthusiasm!: number;
+  @Prop() name!: string;
+  @Prop() initialEnthusiasm!: number;
 
-    enthusiasm = this.initialEnthusiasm;
+  enthusiasm = this.initialEnthusiasm;
 
-    increment() {
-        this.enthusiasm++;
+  increment() {
+    this.enthusiasm += 1;
+  }
+  decrement() {
+    if (this.enthusiasm > 1) {
+      this.enthusiasm -= 1;
     }
-    decrement() {
-        if (this.enthusiasm > 1) {
-            this.enthusiasm--;
-        }
-    }
+  }
 
-    get exclamationMarks(): string {
-        return Array(this.enthusiasm + 1).join('!');
-    }
+  get exclamationMarks(): string {
+    return Array(this.enthusiasm + 1).join('!');
+  }
 }
 ```
 
@@ -476,7 +549,7 @@ Similarly, methods such as `increment` are treated as if they had been written i
 
 Finally, computed properties like `exclamationMarks` are simply written as `get` accessors.
 
-# What next?
+## What next
 
 You can [try out this application by cloning it from GitHub](https://github.com/DanielRosenwasser/typescript-vue-tutorial).
 
