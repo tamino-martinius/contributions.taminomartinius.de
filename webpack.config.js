@@ -3,12 +3,12 @@ const webpack = require('webpack');
 const vueLoaderPlugin = require('vue-loader/lib/plugin');
 const copyWebpackPlugin = require('copy-webpack-plugin');
 const uglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
     filename: 'index.js',
   },
   module: {
@@ -81,6 +81,15 @@ module.exports = {
       from: 'public',
       to: '',
     }]),
+    new htmlWebpackPlugin({
+      template: './src/index.html',
+      minify: process.env.NODE_ENV === 'production' ? {
+        minifyJS: true,
+        minifyCSS: true,
+        collapseWhitespace: true,
+        collapseInlineTagWhitespace: true,
+      } : false,
+    }),
   ],
 };
 
