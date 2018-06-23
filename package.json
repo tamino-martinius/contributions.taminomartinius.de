@@ -1,5 +1,5 @@
 {
-  "name": "webpack-typescript-vue",
+  "name": "template-webpack-typescript-vue",
   "version": "1.0.0",
   "private": true,
   "description": "A Template to generate websites based on TypeScript and VueJs",
