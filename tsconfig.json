@@ -14,9 +14,11 @@
       ]
     }
   },
+  "exclude": [
+    "node_modules"
+  ],
   "include": [
     "./src/**/*.ts",
-    "./src/**/*.tsx",
-    "./src/**/*.vue"
+    "./src/**/*.tsx"
   ]
 }
