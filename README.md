@@ -653,6 +653,44 @@ Our `index.html` file is still in the public folder. This file can now be moved 
 </html>
 ```
 
+## Local Dev Server
+
+The `watch` mode is nice to have the code compiled on every change, but the browser still needs to be refreshed. This can be improved with the webpack dev server. This runs your code on a local url which makes the usage of relative paths and cors headers easier.
+
+Install the dev server:
+
+```shell
+npm install --save-dev webpack-dev-server
+```
+
+Add the dev server to your webpack config:
+
+```js
+// webpack.config.js
+
+//...
+module.exports.devServer = {
+  port: 3000,
+  hot: true,
+  host: 'localhost',
+  historyApiFallback: true,
+  noInfo: false,
+  contentBase: './dist',
+};
+//...
+```
+
+Add a start script to the package json:
+
+```json
+  "scripts": {
+    "build": "rm -rf dist && webpack",
+    "build:production": "npm run build --production",
+    "start": "webpack-dev-server --hot --inline --open -d",
+    "watch": "npm run build -- --watch",
+  },
+```
+
 ## What next
 
 You can [try out this application by cloning it from GitHub](https://github.com/tamino-martinius/template-webpack-typescript-vue).
