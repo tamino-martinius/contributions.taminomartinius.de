@@ -114,4 +114,13 @@ if (process.env.NODE_ENV === 'production') {
       minimize: true,
     }),
   ]);
+} else {
+  module.exports.devServer = {
+    port: 3000,
+    hot: true,
+    host: 'localhost',
+    historyApiFallback: true,
+    noInfo: false,
+    contentBase: './dist',
+  };
 }
