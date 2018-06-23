@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "build": "rm -rf dist && webpack",
+    "build:production": "npm run build --production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
