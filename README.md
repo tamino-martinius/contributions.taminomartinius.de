@@ -140,7 +140,8 @@ module.exports = {
     filename: 'index.js',
   },
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
       },
@@ -158,13 +159,6 @@ module.exports = {
         options: {
           name: '[name].[ext]?[hash]',
         },
-      },
-      {
-        test: /\.css$/,
-        use: [
-          'vue-style-loader',
-          'css-loader',
-        ],
       },
     ],
   },
@@ -445,12 +439,6 @@ export default vue.extend({
   },
 });
 </script>
-
-<style>
-.greeting {
-  font-size: 20px;
-}
-</style>
 ```
 
 and let's import it for our root instance:
@@ -485,6 +473,87 @@ Notice a few things about our single-file component:
   If you don't write `Vue.extend`, Vetur will make it look like things are working correctly, but you'll get an error when you build your project.
 
 Try running `npm run build` and open up `index.html` to see the result!
+
+## Style loaders
+
+To use style within the vue templates its needed to add the `vue-style-loader` to each of the style loader configs.
+
+```js
+// webpack.config.js
+
+//...
+rules: [
+  //...
+  {
+    test: /\.css$/,
+    use: [
+      'vue-style-loader',
+      'css-loader',
+    ],
+  },
+  {
+    test: /\.scss$/,
+    use: [
+      'vue-style-loader',
+      'css-loader',
+      'sass-loader',
+    ],
+  },
+  {
+    test: /\.sass$/,
+    use: [
+      'vue-style-loader',
+      'css-loader',
+      {
+        loader: 'sass-loader',
+        options: {
+          indentedSyntax: true,
+        },
+      },
+    ],
+  },
+],
+//...
+```
+
+Now you can use style tags within the .vue single file components:
+
+```html
+<style>
+  .greeting {
+    background: green;
+  }
+</style>
+```
+
+Scoped css:
+
+```html
+<style scoped>
+  .greeting {
+    background: green;
+  }
+</style>
+```
+
+Scss:
+
+```html
+<style lang="scss">
+  .greeting {
+    background: green;
+  }
+</style>
+```
+
+Sass:
+
+```html
+<style lang="sass">
+  .greeting
+    background: green;
+</style>
+```
 
 ## Using decorators to define a component
 
