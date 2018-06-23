@@ -551,9 +551,12 @@ Finally, computed properties like `exclamationMarks` are simply written as `get`
 
 ## What next
 
-You can [try out this application by cloning it from GitHub](https://github.com/DanielRosenwasser/typescript-vue-tutorial).
+You can [try out this application by cloning it from GitHub](https://github.com/tamino-martinius/template-webpack-typescript-vue).
 
-Once you feel like you've got a handle on that, you can try out a sample [TodoMVC-style app written in TypeScript and Vue](https://github.com/DanielRosenwasser/typescript-vue-todomvc).
-This TodoMVC-style sample features routing through [vue-router](https://github.com/vuejs/vue-router) so that your application can show different views depending on the current URL.
+Check out [vue-router](https://github.com/vuejs/vue-router) if you want that your application can show different views depending on the current URL.
 
 You may also want to look into [Vuex](https://github.com/vuejs/vuex) if you're looking for [Redux](http://redux.js.org/)-style state management.
+
+## Contributions
+
+This template is based on [TypeScript-Vue-Starter](https://github.com/Microsoft/TypeScript-Vue-Starter/) by [Daniel Rosenwasser](https://github.com/DanielRosenwasser).
