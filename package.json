@@ -1,20 +1,34 @@
 {
-  "name": "typescript-vue-starter",
+  "name": "webpack-typescript-vue",
   "version": "1.0.0",
   "private": true,
-  "description": "",
-  "main": "index.js",
+  "description": "A Template to generate websites based on TypeScript and VueJs",
+  "main": "dist/index.js",
   "scripts": {
     "build": "rm -rf dist && webpack",
     "build:production": "npm run build --production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "template",
+    "ts",
+    "tsx",
+    "typescript",
+    "vue",
+    "vuejs",
+    "webpack"
+  ],
+  "contributors": [
+    {
+      "name": "Daniel Rosenwasser",
+      "url": "https://github.com/DanielRosenwasser"
+    }
+  ],
   "author": {
-    "name": "Daniel Rosenwasser",
-    "url": "https://github.com/DanielRosenwasser"
+    "name": "Tamino Martinius",
+    "url": "https://github.com/tamino-martinius/"
   },
-  "license": "Apache-2.0",
+  "license": "MIT",
   "dependencies": {
     "vue": "^2.5.16",
     "vue-class-component": "^6.2.0",
