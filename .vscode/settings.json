@@ -3,5 +3,6 @@
   "files.associations": {
     "*.vue": "vue"
   },
-  "tslint.autoFixOnSave": true
+  "tslint.autoFixOnSave": true,
+  "markdown.extension.toc.githubCompatibility": true
 }

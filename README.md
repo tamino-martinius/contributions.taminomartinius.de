@@ -3,6 +3,25 @@
 This is a Webpack Template for generating Web Pages with [TypeScript](http://www.typescriptlang.org/) and [VueJs](https://vuejs.org).
 This readme explains how to build this Template from scratch, or how to extend an existing webpack project.
 
+## TOC
+- [Webpack Template for TypeScript & VueJs](#webpack-template-for-typescript--vuejs)
+  - [TOC](#toc)
+  - [Initialize your project](#initialize-your-project)
+  - [Initialize the project](#initialize-the-project)
+  - [Install our dependencies](#install-our-dependencies)
+  - [Add a TypeScript configuration file](#add-a-typescript-configuration-file)
+  - [Adding Webpack](#adding-webpack)
+  - [Add a build script](#add-a-build-script)
+  - [Create a basic project](#create-a-basic-project)
+  - [Adding a component](#adding-a-component)
+  - [Single File Components](#single-file-components)
+  - [Style loaders](#style-loaders)
+  - [Using decorators to define a component](#using-decorators-to-define-a-component)
+  - [HtmlWebpackPlugin](#htmlwebpackplugin)
+  - [Local Dev Server](#local-dev-server)
+  - [What next](#what-next)
+  - [Contributions](#contributions)
+
 ## Initialize your project
 
 Let's create a new package.
