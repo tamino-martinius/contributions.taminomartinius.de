@@ -1,8 +1,8 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const vueLoaderPlugin = require('vue-loader/lib/plugin');
+const copyWebpackPlugin = require('copy-webpack-plugin');
 
 const vueLoaderRule = {
   test: /\.vue$/,
@@ -95,8 +95,8 @@ module.exports = {
   },
   devtool: '#eval-source-map',
   plugins: [
-    new VueLoaderPlugin(),
-    new CopyWebpackPlugin(copyWebpackSettings),
+    new vueLoaderPlugin(),
+    new copyWebpackPlugin(copyWebpackSettings),
   ],
 };
 
