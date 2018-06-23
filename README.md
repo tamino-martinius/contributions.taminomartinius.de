@@ -607,6 +607,52 @@ Similarly, methods such as `increment` are treated as if they had been written i
 
 Finally, computed properties like `exclamationMarks` are simply written as `get` accessors.
 
+## HtmlWebpackPlugin
+
+To improve our setup we can now add the `HtmlWebpackPlugin` by installing `html-webpack-plugin` as dev dependency:
+
+```shell
+npm install --save-dev html-webpack-plugin
+```
+
+This enables us to auto include the compiled js file and also the complete markup will be minified for production releases.
+
+Add the following snippet to the list of plugins of the webpack config:
+
+```js
+// webpack.config.js
+
+//...
+plugins: [
+  //...
+  new htmlWebpackPlugin({
+    template: './src/index.html',
+    minify: process.env.NODE_ENV === 'production' ? {
+      minifyJS: true,
+      minifyCSS: true,
+      collapseWhitespace: true,
+      collapseInlineTagWhitespace: true,
+    } : false,
+  }),
+],
+//...
+```
+
+Our `index.html` file is still in the public folder. This file can now be moved to the `src` folder:
+
+```html
+<!-- src/index.html -->
+<!doctype html>
+<html>
+<head>
+  <title>Webpack Template for TypeScript & VueJs</title>
+</head>
+<body>
+  <div id="app"></div>
+</body>
+</html>
+```
+
 ## What next
 
 You can [try out this application by cloning it from GitHub](https://github.com/tamino-martinius/template-webpack-typescript-vue).
