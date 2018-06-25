@@ -24,7 +24,7 @@ export default class HelloDecorator extends Vue {
   render() {
     return (
       <div>
-        <div>Hello {name}{this.exclamationMarks}</div>
+        <div>Hello {this.name}{this.exclamationMarks}</div>
         <button onClick={this.decrement}>-</button>
         <button onClick={this.increment}>+</button>
       </div>
