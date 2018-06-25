@@ -1,10 +1,10 @@
 import vue from 'vue';
 import Hello from './components/Hello';
 import HelloDecorator from './components/HelloDecorator';
-// import HelloTsx from './components/HelloTsx';
+import HelloTsx from './components/HelloTsx';
 import HelloDecoratorTsx from './components/HelloDecoratorTsx';
-// import HelloVue from './components/Hello.vue';
-// import HelloDecoratorVue from './components/HelloDecorator.vue';
+import HelloVue from './components/Hello.vue';
+import HelloDecoratorVue from './components/HelloDecorator.vue';
 
 const v = new vue({
   el: '#app',
@@ -32,9 +32,9 @@ const v = new vue({
   components: {
     Hello,
     HelloDecorator,
-    // HelloVue,
-    // HelloDecoratorVue,
-    // HelloTsx,
+    HelloVue,
+    HelloDecoratorVue,
+    HelloTsx,
     HelloDecoratorTsx,
   },
 });
