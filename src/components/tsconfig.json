@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "noEmit": false
+  },
+  "include": [
+    "**/*.tsx",
+    "../**/*.d.ts"
+  ]
+}
