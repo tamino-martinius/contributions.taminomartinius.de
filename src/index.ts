@@ -22,9 +22,9 @@ const v = new vue({
       <h1>Hello Vue Decorator Component</h1>
       <hello-decorator-vue :name="name" :initialEnthusiasm="5" />
 
-      <h1>Hello Vue Component</h1>
+      <h1>Hello TSX Component</h1>
       <hello-tsx :name="name" :initialEnthusiasm="5" />
-      <h1>Hello Vue Decorator Component</h1>
+      <h1>Hello TSX Decorator Component</h1>
       <hello-decorator-tsx :name="name" :initialEnthusiasm="5" />
     </div>
   `,
