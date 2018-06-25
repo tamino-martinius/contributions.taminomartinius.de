@@ -19,11 +19,18 @@ module.exports = {
       },
       {
         test: /\.tsx?$/,
-        use: ['babel-loader', 'ts-loader'],
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+          {
+            loader: 'ts-loader',
+            options: {
+              appendTsSuffixTo: [/\.vue$/],
+            },
+          }
+        ],
         exclude: /node_modules/,
-        // options: {
-        //   appendTsSuffixTo: [/\.vue$/],
-        // },
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
