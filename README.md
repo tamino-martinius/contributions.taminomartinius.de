@@ -76,6 +76,7 @@ Additionally its recommended to also install tslint to improve your code quality
 npm install --save-dev \
   copy-webpack-plugin \
   css-loader \
+  file-loader \
   ts-loader \
   tslint \
   tslint-config-airbnb \
