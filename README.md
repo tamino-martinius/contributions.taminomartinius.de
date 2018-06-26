@@ -1,10 +1,13 @@
-# Webpack Template for TypeScript & VueJs
+# Webpack Template for TSX & VueJs
 
-This is a Webpack Template for generating Web Pages with [TypeScript](http://www.typescriptlang.org/) and [VueJs](https://vuejs.org).
+This is a Webpack Template for generating Web Pages with [TSX](http://www.typescriptlang.org/) and [VueJs](https://vuejs.org).
 This readme explains how to build this Template from scratch, or how to extend an existing webpack project.
 
+*Please note:*
+The simpler Template without TSX support is available at  [tamino-martinius/template-webpack-typescript-vue](https://github.com/tamino-martinius/template-webpack-typescript-vue).
+
 ## TOC
-- [Webpack Template for TypeScript & VueJs](#webpack-template-for-typescript--vuejs)
+- [Webpack Template for TSX & VueJs](#webpack-template-for-tsx--vuejs)
   - [TOC](#toc)
   - [Initialize your project](#initialize-your-project)
   - [Initialize the project](#initialize-the-project)
