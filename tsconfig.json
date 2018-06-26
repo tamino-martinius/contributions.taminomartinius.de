@@ -3,7 +3,7 @@
     "outDir": "./built/",
     "sourceMap": true,
     "strict": true,
-    "module": "es2015",
+    "module": "es6",
     "moduleResolution": "node",
     "target": "esnext",
     "jsx": "preserve",
