@@ -17,6 +17,7 @@ This readme explains how to build this Template from scratch, or how to extend a
   - [Single File Components](#single-file-components)
   - [Style loaders](#style-loaders)
   - [Using decorators to define a component](#using-decorators-to-define-a-component)
+  - [React like templates with TSX](#react-like-templates-with-tsx)
   - [HtmlWebpackPlugin](#htmlwebpackplugin)
   - [Local Dev Server](#local-dev-server)
   - [What next](#what-next)
@@ -626,6 +627,19 @@ Note that all variables must be set to a value other than `undefined` for the bi
 Similarly, methods such as `increment` are treated as if they had been written in the `methods` field, and are automatically made available for the template.
 
 Finally, computed properties like `exclamationMarks` are simply written as `get` accessors.
+
+## React like templates with TSX
+
+Its possible to use react like templates also with VueJs and TypeScript. To enable this option we need to add some babel packages as dependencies, a babel config and the webpack and TypeScript config needs to be changed.
+
+See this [Diff](https://github.com/tamino-martinius/template-webpack-tsx-vue/compare/286d272f890ae13813e9e08f5f27b7759a75032d...2ada699a5197d1c82dc9d47afca6e8aad2c54436) for a detailed look in the changes needed.
+
+A ready to fork Template is available at [tamino-martinius/template-webpack-tsx-vue](https://github.com/tamino-martinius/template-webpack-tsx-vue).
+
+This solution currently has some downsides:
+- All HTML-Elements used need to be listed in the `jsx.d.ts` file as done in this example with `div` and `button`.
+- You can not use the VueJs attributes like v-model, everything in the render function need to be done the jsx or react way
+- The types of the data attributes can't be inferred, so its highly recommended to use tsx with the decorator notation.
 
 ## HtmlWebpackPlugin
 
