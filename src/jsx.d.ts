@@ -10,6 +10,9 @@ declare global {
 
     interface IntrinsicElements {
       div: any
+      img: any
+      a: any
+      h1: any
       button: any
     }
   }
