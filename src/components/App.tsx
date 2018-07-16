@@ -19,13 +19,6 @@ export default class extends Vue {
     data.getRepoStats().then(stats => this.repoStats = stats);
   }
 
-  // data() {
-  //   return {
-  //     stats: undefined,
-  //     repoStats: undefined,
-  //   };
-  // }
-
   render() {
     return (
       <div>
