@@ -1,3 +1,4 @@
-class Data {
 
+export class Data {
 }
+export default Data;
