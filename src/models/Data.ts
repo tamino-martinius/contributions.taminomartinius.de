@@ -10,8 +10,10 @@ export class Data {
 
   }
 
-  async create() {
-    console.log(fetch(`/${ GITHUB_USER_LOGIN }`));
+  async getStats(): Promise<TimeStats> {
+    const response = await fetch(`/${ GITHUB_USER_LOGIN }.json`);
+    const data: TimeStats = await response.json();
+    return data;
   }
 }
 
