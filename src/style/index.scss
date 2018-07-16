@@ -19,3 +19,14 @@ img {
   display: none;
 }
 
+.total {
+  --size: calc(var(--value) / var(--max-value));
+}
+
+.weekday {
+  .total {
+    width: calc(10vw * var(--size));
+    height: calc(10vw * var(--size));
+    background: green;
+  }
+}
