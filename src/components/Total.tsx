@@ -6,16 +6,17 @@ import {
 } from 'vue-property-decorator';
 import {
   Totals,
-} from '../types';
+} from '@/types';
 
 @Component
 export default class extends Vue {
-  @Prop() stats!: Totals;
+  @Prop() stats!: Totals | undefined;
 
   render() {
+    const count = this.stats ? this.stats.commitCount : 0;
     return (
-      <div style={`--value=${this.stats.commitCount}`}>
-        {this.stats.commitCount}
+      <div class="total" style={`--value=${count}`}>
+        {count}
       </div>
     );
   }
