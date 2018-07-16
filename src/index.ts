@@ -6,7 +6,6 @@ const v = new vue({
   template: `
     <app/>
   `,
-  data: { name: 'World' },
   components: {
     App,
   },
