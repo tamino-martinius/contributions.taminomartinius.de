@@ -2,9 +2,9 @@
 import { Vue, Component, Prop } from 'vue-property-decorator';
 
 @Component
-export default class HelloDecorator extends Vue {
-  @Prop() name!: string;
-  @Prop() initialEnthusiasm!: number;
+export default class App extends Vue {
+  @Prop() name: string = 'test';
+  @Prop() initialEnthusiasm: number = 10;
 
   enthusiasm = this.initialEnthusiasm;
 
