@@ -2,6 +2,7 @@
 import { Vue, Component } from 'vue-property-decorator';
 import Data from '../models/Data';
 import WeekDays from '../components/WeekDays';
+import Header from '../components/Header';
 import {
   Dict,
   TimeStats,
@@ -22,6 +23,7 @@ export default class extends Vue {
   render() {
     return (
       <div>
+        <Header/>
         {this.stats ? (
           <WeekDays stats={this.stats.weekDays} />
         ) : (
