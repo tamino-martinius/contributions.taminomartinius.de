@@ -3,6 +3,39 @@
   --foreground-color: #f1f2f3;
 }
 
+@font-face {
+  font-family: 'Nutanix Soft';
+  src: url('/NutanixSoft-Thin.otf') format('opentype');
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: 'Nutanix Soft';
+  src: url('/NutanixSoft-Medium.otf') format('opentype');
+  font-weight: 400;
+}
+
+// TODO: maybe can be removed
+@font-face {
+  font-family: 'Nutanix Soft';
+  src: url('/NutanixSoft-Regular.otf') format('opentype');
+  font-weight: 500;
+}
+
+// TODO: maybe can be removed
+@font-face {
+  font-family: 'Nutanix Soft';
+  src: url('/NutanixSoft-Semibold.otf') format('opentype');
+  font-weight: 600;
+}
+
+// TODO: maybe can be removed
+@font-face {
+  font-family: 'Nutanix Soft';
+  src: url('/NutanixSoft-Bold.otf') format('opentype');
+  font-weight: 700;
+}
+
 html, body {
   margin: 0;
   padding: 0;
@@ -10,13 +43,18 @@ html, body {
   height: 100%;
   text-align: center;
   font-size: 2vw;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: "Nutanix Soft",-apple-system,BlinkMacSystemFont,sans-serif;
   background-color: var(--background-color);
   color: var(--foreground-color);
+  font-weight: 200;
 }
 
 img {
   display: none;
+}
+
+h1 {
+  font-weight: 400;
 }
 
 .total {
