@@ -84,6 +84,9 @@ module.exports = {
   },
   devtool: '#eval-source-map',
   plugins: [
+    new webpack.ProvidePlugin({
+      'regeneratorRuntime': 'regenerator-runtime/runtime'
+    }),
     new cleanWebpackPlugin('./dist'),
     new vueLoaderPlugin(),
     new copyWebpackPlugin([{
