@@ -7,6 +7,7 @@ import {
   Dict,
   TimeStats,
 } from '../types';
+import '../style/index.scss';
 
 const data = new Data();
 
