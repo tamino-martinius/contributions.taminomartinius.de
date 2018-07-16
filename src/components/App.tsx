@@ -22,7 +22,7 @@ export default class extends Vue {
 
   render() {
     return (
-      <div>
+      <div class="app">
         <Header/>
         {this.stats ? (
           <WeekDays stats={this.stats.weekDays} />
