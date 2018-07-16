@@ -28,7 +28,10 @@ export default class extends Vue {
       days.push(<WeekDay stats={this.stats[weekDayNumber.toString()]} />);
     }
     return (
-      <div style={`--max-value=${this.getMaxHourValue()}`}>
+      <div
+        class="weekdays"
+        style={`--max-value=${this.getMaxHourValue()}`}
+      >
         {days}
       </div>
     );
