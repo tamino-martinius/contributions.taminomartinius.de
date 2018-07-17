@@ -24,7 +24,7 @@ export default class extends Vue {
   render() {
     return (
       <div class="app">
-        <Header/>
+        {/* <Header/> */}
         {this.stats ? (
           <WeekDays stats={this.stats.weekDays} />
         ) : (
