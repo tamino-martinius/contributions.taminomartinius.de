@@ -59,6 +59,10 @@ h1 {
   font-weight: 400;
 }
 
+a {
+  color: var(--color-primary);
+}
+
 .total {
   --size: calc(var(--value) / var(--max-value));
 }
