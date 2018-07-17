@@ -74,26 +74,37 @@ a {
 
 .weekday .total {
   position: relative;
-  &:before {
+  --height: calc(var(--size) * 5vw);
+  &:before, &:after {
     content: '';
     position: absolute;
     width: 4vw;
-    height: 4vw;
-    // width: calc(4vw * var(--size));
-    // height: calc(4vw * var(--size));
-    // border-radius: 100vw;
+    height: var(--height);
+    top: 0;
+    left: 0;
+    transform-origin: 0 0 0;
     background: hsl(206, 51%, calc(var(--size) * 20% + 46%));
-    z-index: var(--value);
-    transform: translate(-2vw) translateZ(calc(var(--size) * 5vw));
-    // filter: brightness(calc(var(--size) * 50%));
-    opacity: 0.5;
   }
-  &:hover:after {
-    content: var(--title);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+}
+
+.weekday__sum .total:first-child,
+.weekday__hours .total:nth-child(-n + 24) {
+  &:before {
+    height: 4vw;
+    transform: translateZ(calc(var(--height) - 0.25px));
+  }
+  &:after {
+    display: none;
+  }
+}
+.weekday__sum .total:last-child,
+.weekday__hours .total:nth-child(n + 25) {
+  &:before {
+    transform: translateY(-4vw) rotateX(90deg) translateZ(-4vw);
+  }
+
+  &:after {
+    transform: translateY(-4vw) rotateX(90deg) rotateY(90deg) translateZ(4vw);
   }
 }
 
@@ -115,12 +126,12 @@ a {
 }
 
 .app {
-  perspective: 1000vw;
+  perspective: 100vw;
   perspective-origin: 50% 50%;
 }
 
 .weekdays {
   position: relative;
-  // transform: rotateX(45deg);
+  transform: rotateX(66deg) rotateZ(33deg);
   transform-style: preserve-3d;
 }
