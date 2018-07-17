@@ -45,6 +45,14 @@ export default class extends Vue {
         class="weekdays"
         style={`--max-value=${this.getMaxHourValue()}`}
       >
+        <div class="weekday weekday__header">
+          <div class="weekday__sum">
+            Sum
+          </div>
+          <div class="weekday__hours">
+            {hoursHeaders}
+          </div>
+        </div>
         {days}
       </div>
     );
