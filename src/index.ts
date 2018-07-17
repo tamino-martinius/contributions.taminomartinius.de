@@ -1,12 +1,11 @@
-import vue from 'vue';
 import App from './components/App';
+import { Vue, Component } from 'vue-property-decorator';
 
-const v = new vue({
-  el: '#app',
-  template: `
-    <app/>
-  `,
-  components: {
-    App,
-  },
-});
+@Component({
+  template: `<app />`,
+  components: { App },
+})
+class Main extends Vue {
+}
+
+new Main({ el: '#app' });
