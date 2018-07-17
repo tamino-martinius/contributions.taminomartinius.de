@@ -22,6 +22,15 @@ export default class extends Vue {
     return max;
   }
 
+  getMaxDayValue(): number {
+    let max = 0;
+    for (const weekDayName in this.stats) {
+      const weekDay = this.stats[weekDayName];
+      if (max < weekDay.commitCount) max = weekDay.commitCount;
+    }
+    return max;
+  }
+
   render() {
     const days = [];
     for (let weekDayNumber = 0; weekDayNumber < 7; weekDayNumber += 1) {
