@@ -67,10 +67,64 @@ a {
   --size: calc(var(--value) / var(--max-value));
 }
 
-.weekday {
-  .total {
-    width: calc(10vw * var(--size));
-    height: calc(10vw * var(--size));
-    background: green;
+.weekday__sum {
+
+  --max-value: var(--max-day-value);
+}
+
+.weekday__hours {
+  --max-value: var(--max-hour-value);
+}
+
+.weekday .total {
+  position: relative;
+  &:before {
+    content: '';
+    position: absolute;
+    width: 4vw;
+    height: 4vw;
+    // width: calc(4vw * var(--size));
+    // height: calc(4vw * var(--size));
+    // border-radius: 100vw;
+    background: hsl(206, 51%, calc(var(--size) * 20% + 46%));
+    z-index: var(--value);
+    transform: translate(-2vw) translateZ(calc(var(--size) * 5vw));
+    // filter: brightness(calc(var(--size) * 50%));
+    opacity: 0.5;
   }
+  &:hover:after {
+    content: var(--title);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.weekday {
+  display: grid;
+  grid-template-columns: 1fr 24fr;
+  grid-template-rows: 4vw;
+}
+
+.weekday__hours {
+  display: grid;
+  grid-template-columns: repeat(24, 1fr);
+  grid-template-rows: 1fr;
+}
+.weekday__sum {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.app {
+  perspective: 1000vw;
+  perspective-origin: 50% 50%;
+}
+
+.weekdays {
+  position: relative;
+  // transform: rotateX(45deg);
+  transform-style: preserve-3d;
 }
