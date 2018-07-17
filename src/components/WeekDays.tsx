@@ -36,6 +36,10 @@ export default class extends Vue {
     for (let weekDayNumber = 0; weekDayNumber < 7; weekDayNumber += 1) {
       days.push(<WeekDay stats={this.stats[weekDayNumber.toString()]} />);
     }
+    const hoursHeaders = [];
+    for (let hourNumber = 0; hourNumber < 24; hourNumber += 1) {
+      hoursHeaders.push(<div>{hourNumber}</div>);
+    }
     return (
       <div
         class="weekdays"
