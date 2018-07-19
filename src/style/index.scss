@@ -73,8 +73,9 @@ a {
 }
 
 .weekday .total {
+  --max-size: 4vw;
   position: relative;
-  --height: calc(var(--size) * 5vw);
+  --height: calc(var(--size) * var(--max-size));
   grid-column: 1;
   grid-row: 1;
   &:before,
@@ -82,7 +83,7 @@ a {
     backface-visibility: hidden;
     content: '';
     position: absolute;
-    width: 4vw;
+    width: var(--max-size);
     height: var(--height);
     top: 0;
     left: 0;
@@ -97,19 +98,19 @@ a {
     &:nth-child(3n) {
       // top
       &:before {
-        height: 4vw;
+        height: var(--max-size);
         transform: translateZ(calc(var(--height) - 0.75px));
         box-shadow: 1vw 1vw 3vw inset #0001;
       } // bottom
       &:after {
-        transform: translateY(4vw) rotateX(180deg);
-        height: 4vw;
+        transform: translateY(var(--max-size)) rotateX(180deg);
+        height: var(--max-size);
       }
     }
     &:nth-child(3n+1) {
-      background: hsl(206, 51%, 46%); // front
+      // front
       &:before {
-        transform: translateX(calc(4vw + .75px)) rotateX(90deg) rotateY(180deg) translateZ(4vw);
+        transform: translateX(calc(var(--max-size) + .75px)) rotateX(90deg) rotateY(180deg) translateZ(var(--max-size));
         box-shadow: -1vw 1vw 3vw inset #0001;
       } // back
       &:after {
@@ -119,10 +120,10 @@ a {
     &:nth-child(3n+2) {
       // left
       &:before {
-        transform: rotateZ(-90deg) rotateX(90deg) translateX(-4vw);
+        transform: rotateZ(-90deg) rotateX(90deg) translateX(-var(--max-size));
       } // right
       &:after {
-        transform: rotateZ(90deg) rotateX(90deg) translateZ(calc(4vw - .75px));
+        transform: rotateZ(90deg) rotateX(90deg) translateZ(calc(var(--max-size) - .75px));
         box-shadow: 1vw 1vw 3vw inset #0001;
       }
     }
