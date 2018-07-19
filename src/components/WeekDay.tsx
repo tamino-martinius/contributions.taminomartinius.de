@@ -8,8 +8,18 @@ import Total from './Total';
 @Component
 export default class extends Vue {
   @Prop() stats!: WeekDayStats;
+  @Prop() index!: number;
 
   render() {
+    const weekdays = [
+      'Su',
+      'Mo',
+      'Tu',
+      'We',
+      'Th',
+      'Fr',
+      'Sa',
+    ];
     const hours = [];
     for (let hourNumber = 0; hourNumber < 24; hourNumber += 1) {
       const hourStr = hourNumber.toString();
@@ -21,6 +31,9 @@ export default class extends Vue {
     }
     return (
       <div class="weekday">
+        <div class="weekday__day-of-week">
+          {weekdays[this.index]}
+        </div>
         <div class="weekday__sum">
           <Total stats={this.stats} />
           <Total stats={this.stats} />
