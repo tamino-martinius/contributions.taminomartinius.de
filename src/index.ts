@@ -29,6 +29,16 @@ class Main extends Vue {
   handleOrientation(e: DeviceOrientationEvent) {
     console.log(e);
   }
+
+  mounted() {
+    window.addEventListener('wheel', this.handleWheel);
+    window.addEventListener('deviceorientation', this.handleOrientation);
+  }
+
+  destroyed() {
+    window.removeEventListener('wheel', this.handleWheel);
+    window.removeEventListener('deviceorientation', this.handleOrientation);
+  }
 }
 
 new Main({ el: '#app' });
