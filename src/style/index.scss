@@ -98,7 +98,7 @@ a {
       // top
       &:before {
         height: 4vw;
-        transform: translateZ(calc(var(--height) - 0.25px));
+        transform: translateZ(calc(var(--height) - 0.75px));
         box-shadow: 1vw 1vw 3vw inset #0001;
       } // bottom
       &:after {
@@ -109,7 +109,7 @@ a {
     &:nth-child(3n+1) {
       // front
       &:before {
-        transform: translateX(4vw) rotateX(90deg) rotateY(180deg) translateZ(4vw);
+        transform: translateX(calc(4vw + .75px)) rotateX(90deg) rotateY(180deg) translateZ(4vw);
         box-shadow: -1vw 1vw 3vw inset #0001;
       } // back
       &:after {
@@ -122,7 +122,7 @@ a {
         transform: rotateZ(-90deg) rotateX(90deg) translateX(-4vw);
       } // right
       &:after {
-        transform: rotateZ(90deg) rotateX(90deg) translateZ(4vw);
+        transform: rotateZ(90deg) rotateX(90deg) translateZ(calc(4vw - .75px));
         box-shadow: 1vw 1vw 3vw inset #0001;
       }
     }
