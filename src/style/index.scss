@@ -79,6 +79,7 @@ a {
   grid-row: 1;
   &:before,
   &:after {
+    backface-visibility: hidden;
     content: '';
     position: absolute;
     width: 4vw;
