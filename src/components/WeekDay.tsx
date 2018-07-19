@@ -12,7 +12,12 @@ export default class extends Vue {
   render() {
     const hours = [];
     for (let hourNumber = 0; hourNumber < 24; hourNumber += 1) {
-      hours.push(<Total stats={this.stats.hours[hourNumber.toString()]} />);
+      const hourStr = hourNumber.toString();
+      const gridColumn = hourNumber + 1;
+      const total = (
+        <Total stats={this.stats.hours[hourStr]} style={{ gridColumn }} />
+      );
+      hours.push(total, total, total);
     }
     hours.push(...hours);
     return (
