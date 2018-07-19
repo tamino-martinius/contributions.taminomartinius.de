@@ -5,8 +5,8 @@ const MAX_SCROLL = 1_000;
 
 @Component({
   template: `
-      '--scroll': scroll,
     <app :class="'step-' + step" :style="{
+      '--scroll': scroll % 1,
       '--alpha': alpha,
       '--beta': beta,
       '--gamma': scroll,
