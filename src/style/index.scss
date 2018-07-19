@@ -117,8 +117,10 @@ a {
     &:nth-child(3n+2) {
       // left
       &:before {
+        transform: rotateZ(-90deg) rotateX(90deg) translateX(-4vw);
       } // right
       &:after {
+        transform: rotateZ(90deg) rotateX(90deg) translateZ(4vw);
       }
     }
   }
