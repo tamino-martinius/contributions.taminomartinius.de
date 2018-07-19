@@ -131,8 +131,9 @@ a {
 
 .weekday {
   display: grid;
-  grid-template-columns: 1fr 24fr;
+  grid-template-columns: 2fr 24fr;
   grid-template-rows: 4vw;
+  width: 104vw;
 }
 
 .weekday__hours {
@@ -143,7 +144,7 @@ a {
 
 .weekday__sum {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
 }
 
