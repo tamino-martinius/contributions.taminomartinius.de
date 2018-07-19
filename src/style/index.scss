@@ -38,14 +38,15 @@
   font-weight: 700;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
-  width: 100%;
-  height: 100%;
+  height: 100vh;
+  overflow: scroll;
   text-align: center;
   font-size: 2vw;
-  font-family: "Nutanix Soft",-apple-system,BlinkMacSystemFont,sans-serif;
+  font-family: "Nutanix Soft", -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: var(--color-background);
   color: var(--color-foreground);
   font-weight: 200;
@@ -64,7 +65,6 @@ a {
 }
 
 .weekday__sum {
-
   --max-value: var(--max-day-value);
 }
 
@@ -75,7 +75,10 @@ a {
 .weekday .total {
   position: relative;
   --height: calc(var(--size) * 5vw);
-  &:before, &:after {
+  grid-column: 1;
+  grid-row: 1;
+  &:before,
+  &:after {
     content: '';
     position: absolute;
     width: 4vw;
@@ -119,6 +122,7 @@ a {
   grid-template-columns: repeat(24, 1fr);
   grid-template-rows: 1fr;
 }
+
 .weekday__sum {
   display: grid;
   grid-template-columns: 1fr;
