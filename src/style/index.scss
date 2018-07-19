@@ -149,12 +149,18 @@ a {
 }
 
 .app {
-  perspective: calc(100vw / var(--scroll));
+  perspective: 100vw;
   perspective-origin: 50vw 50vh;
+  &.step-0 {
+    perspective: calc(100vw / var(--scroll));
+    .weekdays {
+      transform: rotateX(calc(var(--scroll) * 30deg)) rotateZ(calc(var(--scroll) * 15deg)) rotateY(calc(var(--alpha) * -90deg)) rotateX(calc(var(--beta) * -90deg));
+    }
+  }
 }
 
 .weekdays {
   position: relative;
-  transform: rotateX(calc(var(--scroll) * 66deg)) rotateZ(calc(var(--scroll) * 33deg));
+  transform: rotateX(30deg) rotateZ(15deg) rotateY(calc(var(--alpha) * -90deg)) rotateX(calc(var(--beta) * -90deg));
   transform-style: preserve-3d;
 }
