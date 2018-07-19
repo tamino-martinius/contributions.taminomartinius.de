@@ -25,6 +25,10 @@ class Main extends Vue {
     this.scroll += e.deltaY / MAX_SCROLL;
     e.preventDefault();
   }
+
+  handleOrientation(e: DeviceOrientationEvent) {
+    console.log(e);
+  }
 }
 
 new Main({ el: '#app' });
