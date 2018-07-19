@@ -16,7 +16,7 @@ const MAX_SCROLL = 1_000;
 class Main extends Vue {
   scroll = 0;
   alpha = 0;
-  beta = 1;
+  beta = 0;
   gamma = 0;
   step = 0;
 
@@ -29,7 +29,7 @@ class Main extends Vue {
 
   handleOrientation(e: DeviceOrientationEvent) {
     this.alpha = (e.alpha || 0) / 90;
-    this.beta = (e.beta || 90) / 90;
+    this.beta = ((e.beta || 90) - 90) / 90;
     this.gamma = (e.gamma || 0) / 90;
   }
 
