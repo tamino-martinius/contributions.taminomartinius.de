@@ -4,7 +4,13 @@ import { Vue, Component } from 'vue-property-decorator';
 const MAX_SCROLL = 1_000;
 
 @Component({
-  template: `<app />`,
+  template: `
+    <app :style="{
+      '--scroll': scroll,
+      '--alpha': alpha,
+      '--beta': beta,
+      '--gamma': scroll,
+    }" />`,
   components: { App },
 })
 class Main extends Vue {
