@@ -24,6 +24,7 @@ export default class extends Vue {
         <div class="weekday__sum">
           <Total stats={this.stats} />
           <Total stats={this.stats} />
+          <Total stats={this.stats} />
         </div>
         <div class="weekday__hours">
           {hours}
