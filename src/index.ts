@@ -22,6 +22,7 @@ class Main extends Vue {
 
   handleWheel(e: WheelEvent) {
     this.scroll += e.deltaY / MAX_SCROLL;
+    this.scroll = Math.max(0, this.scroll);
     this.step = ~~this.scroll;
     e.preventDefault();
   }
