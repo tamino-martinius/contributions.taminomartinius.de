@@ -137,8 +137,8 @@ a {
 }
 
 .app {
-  perspective-origin: 50% 50%;
   perspective: calc(100vw / var(--scroll));
+  perspective-origin: 50vw 50vh;
 }
 
 .weekdays {
