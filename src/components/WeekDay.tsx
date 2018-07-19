@@ -19,7 +19,6 @@ export default class extends Vue {
       );
       hours.push(total, total, total);
     }
-    hours.push(...hours);
     return (
       <div class="weekday">
         <div class="weekday__sum">
