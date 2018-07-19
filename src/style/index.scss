@@ -158,6 +158,9 @@ a {
       transform: rotateX(calc(var(--scroll) * 30deg)) rotateZ(calc(var(--scroll) * 15deg)) rotateY(calc(var(--alpha) * -90deg)) rotateX(calc(var(--beta) * -90deg));
     }
   }
+  &.step-1 {
+    transform: translateY(calc(-100vh * var(--scroll)));
+  }
 }
 
 .weekdays {
