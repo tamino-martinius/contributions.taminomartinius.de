@@ -107,7 +107,7 @@ a {
       }
     }
     &:nth-child(3n+1) {
-      // front
+      background: hsl(206, 51%, 46%); // front
       &:before {
         transform: translateX(calc(4vw + .75px)) rotateX(90deg) rotateY(180deg) translateZ(4vw);
         box-shadow: -1vw 1vw 3vw inset #0001;
