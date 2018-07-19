@@ -18,6 +18,13 @@ class Main extends Vue {
   alpha = 0;
   beta = 1;
   gamma = 0;
+
+  handleWheel(e: WheelEvent) {
+    console.log(e.deltaY);
+
+    this.scroll += e.deltaY / MAX_SCROLL;
+    e.preventDefault();
+  }
 }
 
 new Main({ el: '#app' });
