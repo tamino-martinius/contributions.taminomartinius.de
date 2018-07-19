@@ -99,7 +99,7 @@ a {
       &:before {
         height: 4vw;
         transform: translateZ(calc(var(--height) - 0.25px));
-        box-shadow: 1vw 1vw 3vw inset #0002;
+        box-shadow: 1vw 1vw 3vw inset #0001;
       } // bottom
       &:after {
         transform: translateY(4vw) rotateX(180deg);
@@ -110,7 +110,7 @@ a {
       // front
       &:before {
         transform: translateX(4vw) rotateX(90deg) rotateY(180deg) translateZ(4vw);
-        box-shadow: -1vw 1vw 3vw inset #0002;
+        box-shadow: -1vw 1vw 3vw inset #0001;
       } // back
       &:after {
         transform: rotateX(90deg);
@@ -123,7 +123,7 @@ a {
       } // right
       &:after {
         transform: rotateZ(90deg) rotateX(90deg) translateZ(4vw);
-        box-shadow: 1vw 1vw 3vw inset #0002;
+        box-shadow: 1vw 1vw 3vw inset #0001;
       }
     }
   }
