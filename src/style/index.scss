@@ -97,8 +97,12 @@ a {
     &:nth-child(3n) {
       // top
       &:before {
+        height: 4vw;
+        transform: translateZ(calc(var(--height) - 0.25px));
       } // bottom
       &:after {
+        transform: translateY(4vw) rotateX(180deg);
+        height: 4vw;
       }
     }
     &:nth-child(3n+1) {
