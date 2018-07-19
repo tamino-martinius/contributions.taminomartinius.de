@@ -20,14 +20,11 @@ class Main extends Vue {
   gamma = 0;
 
   handleWheel(e: WheelEvent) {
-    console.log(e.deltaY);
-
     this.scroll += e.deltaY / MAX_SCROLL;
     e.preventDefault();
   }
 
   handleOrientation(e: DeviceOrientationEvent) {
-    console.log(e);
   }
 
   mounted() {
