@@ -91,24 +91,30 @@ a {
   }
 }
 
-.weekday__sum .total:first-child,
-.weekday__hours .total:nth-child(-n + 24) {
-  &:before {
-    height: 4vw;
-    transform: translateZ(calc(var(--height) - 0.25px));
-  }
-  &:after {
-    display: none;
-  }
-}
-.weekday__sum .total:last-child,
-.weekday__hours .total:nth-child(n + 25) {
-  &:before {
-    transform: translateY(-4vw) rotateX(90deg) translateZ(-4vw);
-  }
-
-  &:after {
-    transform: translateY(-4vw) rotateX(90deg) rotateY(90deg) translateZ(4vw);
+.weekday__sum,
+.weekday__hours {
+  .total {
+    &:nth-child(3n) {
+      // top
+      &:before {
+      } // bottom
+      &:after {
+      }
+    }
+    &:nth-child(3n+1) {
+      // front
+      &:before {
+      } // back
+      &:after {
+      }
+    }
+    &:nth-child(3n+2) {
+      // left
+      &:before {
+      } // right
+      &:after {
+      }
+    }
   }
 }
 
