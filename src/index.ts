@@ -5,8 +5,8 @@ const MAX_SCROLL = 1_000;
 
 @Component({
   template: `
-    <app :style="{
       '--scroll': scroll,
+    <app :class="'step-' + step" :style="{
       '--alpha': alpha,
       '--beta': beta,
       '--gamma': scroll,
@@ -18,9 +18,11 @@ class Main extends Vue {
   alpha = 0;
   beta = 1;
   gamma = 0;
+  step = 0;
 
   handleWheel(e: WheelEvent) {
     this.scroll += e.deltaY / MAX_SCROLL;
+    this.step = ~~this.scroll;
     e.preventDefault();
   }
 
