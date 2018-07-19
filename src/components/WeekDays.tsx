@@ -50,6 +50,9 @@ export default class extends Vue {
       >
         {days}
         <div class="weekday weekday__header">
+          <div class="weekday__day-of-week">
+            &nbsp;
+          </div>
           <div class="weekday__sum">
             Sum
           </div>
