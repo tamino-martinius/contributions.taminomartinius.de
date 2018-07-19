@@ -25,6 +25,9 @@ class Main extends Vue {
   }
 
   handleOrientation(e: DeviceOrientationEvent) {
+    this.alpha = (e.alpha || 0) / 90;
+    this.beta = (e.beta || 90) / 90;
+    this.gamma = (e.gamma || 0) / 90;
   }
 
   mounted() {
