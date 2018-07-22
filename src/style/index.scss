@@ -214,10 +214,21 @@ a {
   &.step-1 {
     transform: translateY(calc(-100vh * var(--scroll)));
   }
+
+.card {
+  background: #fff;
+  border-radius: 4px;
 }
 
-.weekdays {
+.card__title {
+  line-height: 38px;
+  border-bottom: 1px solid #F2F3F5;
+  text-align: left;
+  padding-left: 20px;
   position: relative;
-  transform: rotateX(30deg) rotateZ(15deg) rotateY(calc(var(--alpha) * -90deg)) rotateX(calc(var(--beta) * -90deg));
-  transform-style: preserve-3d;
+}
+
+.card__content {
+  padding-left: 20px;
+}
 }
