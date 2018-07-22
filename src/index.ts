@@ -1,31 +1,19 @@
-import App from './components/App';
+import App from '@/components/App';
 import { Vue, Component } from 'vue-property-decorator';
-
-const MAX_SCROLL = 1_000;
 
 @Component({
   template: `
-    <app :class="'step-' + step" :style="{
-      '--scroll': scroll % 1,
+    <app :style="{
       '--alpha': alpha,
       '--beta': beta,
-      '--gamma': scroll,
+      '--gamma': gamma,
     }" />`,
   components: { App },
 })
 class Main extends Vue {
-  scroll = 0;
   alpha = 0;
   beta = 0;
   gamma = 0;
-  step = 0;
-
-  handleWheel(e: WheelEvent) {
-    this.scroll += e.deltaY / MAX_SCROLL;
-    this.scroll = Math.max(0, this.scroll);
-    this.step = ~~this.scroll;
-    e.preventDefault();
-  }
 
   handleOrientation(e: DeviceOrientationEvent) {
     this.alpha = (e.alpha || 0) / 90;
@@ -34,12 +22,10 @@ class Main extends Vue {
   }
 
   mounted() {
-    window.addEventListener('wheel', this.handleWheel);
     window.addEventListener('deviceorientation', this.handleOrientation);
   }
 
   destroyed() {
-    window.removeEventListener('wheel', this.handleWheel);
     window.removeEventListener('deviceorientation', this.handleOrientation);
   }
 }
