@@ -4,10 +4,12 @@ import Data from '@/models/Data';
 import WeekDays from '@/components/WeekDays';
 import Header from '@/components/Header';
 import AboutMe from '@/components/AboutMe';
+import Statistics from '@/components/Statistics';
 import Row, { RowType } from '@/components/Row';
 import {
   Dict,
   TimeStats,
+  Totals,
 } from '@/types';
 import '../style/index.scss';
 
@@ -43,30 +45,32 @@ export default class extends Vue {
   }
 
   render() {
-    return (
-      <div class="app">
-        <Header />
+    const page = (
+      <div>
         <Row type={RowType.FIRST_THIRD}>
           <AboutMe slot="first" />
-          <div class="card" slot="last">
-            About us
-          </div>
+          <Statistics slot="last" totals={this.totals()} />
         </Row>
         <Row type={RowType.LAST_THIRD}>
           <AboutMe slot="first" />
           <div class="card" slot="last">
             About us
-          </div>
+            </div>
         </Row>
         <Row type={RowType.FULL}>
           <AboutMe slot="first" />
         </Row>
-        {/* {this.stats ? (
-          <WeekDays stats={this.stats.weekDays} />
-        ) : (
-            <div>has no stats</div>
-          )} */}
-
+      </div>
+    );
+    const loading = (
+      <div>
+        loading ...
+      </div>
+    );
+    return (
+      <div class="app">
+        <Header />
+        {this.stats ? page : loading}
       </div>
     );
   }
