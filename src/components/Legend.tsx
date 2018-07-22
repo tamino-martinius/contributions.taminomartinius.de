@@ -15,7 +15,7 @@ export default class extends Vue {
           {this.data.title}
         </div>
         <div class="legend__value">
-          {this.data.value}
+          {this.data.value.toLocaleString()}
         </div>
       </div>
     );
