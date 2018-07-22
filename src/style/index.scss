@@ -126,6 +126,19 @@ h4 {
     left: 0;
     transform-origin: 0 0 0;
     background: hsl(206, 51%, calc(var(--size) * 20% + 46%));
+hr {
+  border: none;
+  border-bottom: 1px solid #D5DAE0;
+  width: 30px;
+  margin: 17px 0;
+}
+
+header {
+  line-height: 50px;
+  border-bottom: 1px solid var(--color-border-dark);
+  h1 {
+    max-width: var(--size-container);
+    margin: 0 auto;
   }
 }
 
