@@ -22,3 +22,9 @@ export interface TimeStats {
   yearly: Dict<Totals>;
   weekDays: Dict<WeekDayStats>;
 }
+
+export interface DataPoint {
+  title: string;
+  value: string;
+  color: string;
+}
