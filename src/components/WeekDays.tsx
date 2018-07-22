@@ -1,10 +1,10 @@
 // This is an alternative way to define components using decorators
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import WeekDay from './WeekDay';
+import WeekDay from '@/components/WeekDay';
 import {
   Dict,
   WeekDayStats,
-} from '../types';
+} from '@/types';
 
 @Component
 export default class extends Vue {

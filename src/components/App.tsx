@@ -1,12 +1,14 @@
 // This is an alternative way to define components using decorators
 import { Vue, Component } from 'vue-property-decorator';
-import Data from '../models/Data';
-import WeekDays from '../components/WeekDays';
-import Header from '../components/Header';
+import Data from '@/models/Data';
+import WeekDays from '@/components/WeekDays';
+import Header from '@/components/Header';
+import AboutMe from '@/components/AboutMe';
+import Row, { RowType } from '@/components/Row';
 import {
   Dict,
   TimeStats,
-} from '../types';
+} from '@/types';
 import '../style/index.scss';
 
 const data = new Data();

@@ -2,8 +2,8 @@
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import {
   WeekDayStats,
-} from '../types';
-import Total from './Total';
+} from '@/types';
+import Total from '@/components/Total';
 
 @Component
 export default class extends Vue {
