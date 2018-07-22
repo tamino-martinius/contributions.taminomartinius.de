@@ -231,4 +231,28 @@ a {
 .card__content {
   padding-left: 20px;
 }
+
+.legend {
+  @include clearfix();
+}
+
+.legend__title {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.legend__value {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-foreground-light);
+}
+
+.legend__color {
+  background-color: var(--color);
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+  float: left;
+  margin: 5px 10px 20px 0;
+}
 }
