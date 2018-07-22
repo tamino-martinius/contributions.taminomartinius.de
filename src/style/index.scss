@@ -105,27 +105,6 @@ h4 {
   color: var(--color-foreground-light);
 }
 
-.weekday__hours {
-  --max-value: var(--max-hour-value);
-}
-
-.weekday .total {
-  --max-size: 4vw;
-  position: relative;
-  --height: calc(var(--size) * var(--max-size));
-  grid-column: 1;
-  grid-row: 1;
-  &:before,
-  &:after {
-    backface-visibility: hidden;
-    content: '';
-    position: absolute;
-    width: var(--max-size);
-    height: var(--height);
-    top: 0;
-    left: 0;
-    transform-origin: 0 0 0;
-    background: hsl(206, 51%, calc(var(--size) * 20% + 46%));
 hr {
   border: none;
   border-bottom: 1px solid #D5DAE0;
@@ -142,78 +121,26 @@ header {
   }
 }
 
-.weekday__sum,
-.weekday__hours {
-  .total {
-    &:nth-child(3n) {
-      // top
-      &:before {
-        height: var(--max-size);
-        transform: translateZ(calc(var(--height) - 0.75px));
-        box-shadow: 1vw 1vw 3vw inset #0001;
-      } // bottom
-      &:after {
-        transform: translateY(var(--max-size)) rotateX(180deg);
-        height: var(--max-size);
-      }
-    }
-    &:nth-child(3n+1) {
-      // front
-      &:before {
-        transform: translateX(calc(var(--max-size) + .75px)) rotateX(90deg) rotateY(180deg) translateZ(var(--max-size));
-        box-shadow: -1vw 1vw 3vw inset #0001;
-      } // back
-      &:after {
-        transform: rotateX(90deg);
-      }
-    }
-    &:nth-child(3n+2) {
-      // left
-      &:before {
-        transform: rotateZ(-90deg) rotateX(90deg) translateX(-var(--max-size));
-      } // right
-      &:after {
-        transform: rotateZ(90deg) rotateX(90deg) translateZ(calc(var(--max-size) - .75px));
-        box-shadow: 1vw 1vw 3vw inset #0001;
-      }
-    }
-  }
 a {
   color: inherit;
   text-decoration: none;
 }
 
-.weekday {
+.row {
   display: grid;
-  grid-template-columns: 1fr 1.2fr 24fr;
-  grid-template-rows: 4vw;
-  width: 100vw;
+  grid-auto-rows: 1fr;
+  max-width: var(--size-container);
+  margin: 40px auto;
+  grid-column-gap: 35px;
 }
 
-.weekday__hours {
-  display: grid;
-  grid-template-columns: repeat(24, 1fr);
-  grid-template-rows: 1fr;
+.row--first-third {
+  grid-template-columns: 295px 550px;
 }
 
-.weekday__sum {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr;
+.row--last-third {
+  grid-template-columns: 550px 295px;
 }
-
-.app {
-  perspective: 100vw;
-  perspective-origin: 50vw 50vh;
-  &.step-0 {
-    perspective: calc(100vw / var(--scroll));
-    .weekdays {
-      transform: rotateX(calc(var(--scroll) * 30deg)) rotateZ(calc(var(--scroll) * 15deg)) rotateY(calc(var(--alpha) * -90deg)) rotateX(calc(var(--beta) * -90deg));
-    }
-  }
-  &.step-1 {
-    transform: translateY(calc(-100vh * var(--scroll)));
-  }
 
 .card {
   background: #fff;
