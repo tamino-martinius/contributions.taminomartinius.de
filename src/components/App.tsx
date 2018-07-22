@@ -26,12 +26,28 @@ export default class extends Vue {
   render() {
     return (
       <div class="app">
-        {/* <Header/> */}
-        {this.stats ? (
+        <Header />
+        <Row type={RowType.FIRST_THIRD}>
+          <AboutMe slot="first" />
+          <div class="card" slot="last">
+            About us
+          </div>
+        </Row>
+        <Row type={RowType.LAST_THIRD}>
+          <AboutMe slot="first" />
+          <div class="card" slot="last">
+            About us
+          </div>
+        </Row>
+        <Row type={RowType.FULL}>
+          <AboutMe slot="first" />
+        </Row>
+        {/* {this.stats ? (
           <WeekDays stats={this.stats.weekDays} />
         ) : (
-          <div>has no stats</div>
-        )}
+            <div>has no stats</div>
+          )} */}
+
       </div>
     );
   }
