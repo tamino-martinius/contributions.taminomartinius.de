@@ -5,15 +5,11 @@ import { Vue, Component } from 'vue-property-decorator';
 export default class extends Vue {
   render() {
     return (
-      <div class="header">
-        <img
-          src="https://avatars1.githubusercontent.com/u/3111766?s=400&v=4"
-          alt="Avatar of Tamino Martinius"
-        />
+      <header class="header">
         <h1>
-          I speak code as Head of Development <a href="https://shyftplan.com">@shyftplan</a>
+          GitHub Contributions
         </h1>
-      </div>
+      </header>
     );
   }
 }
