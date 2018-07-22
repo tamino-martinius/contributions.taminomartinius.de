@@ -20,6 +20,14 @@
   --size-container: 880px;
 }
 
+@mixin clearfix {
+  &::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+}
+
 @font-face {
   font-family: 'Nutanix Soft';
   src: url('/NutanixSoft-Thin.otf') format('opentype');
