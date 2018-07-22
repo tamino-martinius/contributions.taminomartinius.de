@@ -67,14 +67,10 @@ body {
   -webkit-font-smoothing: antialiased;
   margin: 0;
   padding: 0;
-  height: 100vh;
   overflow: scroll;
-  text-align: center;
-  font-size: 2vw;
   font-family: "Nutanix Soft", -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: var(--color-background);
   color: var(--color-foreground);
-  font-weight: 200;
 }
 
 h1 {
