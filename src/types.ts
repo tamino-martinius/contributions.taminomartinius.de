@@ -25,6 +25,6 @@ export interface TimeStats {
 
 export interface DataPoint {
   title: string;
-  value: string;
+  value: number | string;
   color: string;
 }
