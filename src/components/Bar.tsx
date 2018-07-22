@@ -10,7 +10,7 @@ export default class extends Vue {
   render() {
     const sections = this.sections.map(data => (
       <div class="bar__section" style={{ '--color': `var(--${data.color})` }}>
-        {data.value}
+        {data.value.toLocaleString()}
       </div>
     ));
 
