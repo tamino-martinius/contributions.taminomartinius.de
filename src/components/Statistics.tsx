@@ -9,15 +9,10 @@ export default class extends Vue {
   @Prop() totals!: Totals;
 
   render() {
-    const additionsStr = this.totals.additions.toLocaleString();
-    const changedFilesStr = this.totals.changedFiles.toLocaleString();
-    const commitCountStr = this.totals.commitCount.toLocaleString();
-    const deletionsStr = this.totals.deletions.toLocaleString();
-
     const sections: DataPoint[] = [
-      { color: 'color-1', title: 'Additions', value: additionsStr },
-      { color: 'color-2', title: 'Deletions', value: deletionsStr },
-      { color: 'color-3', title: 'Changed Files', value: changedFilesStr },
+      { color: 'color-1', title: 'Additions', value: this.totals.additions },
+      { color: 'color-2', title: 'Deletions', value: this.totals.deletions },
+      { color: 'color-3', title: 'Changed Files', value: this.totals.changedFiles },
     ];
 
     const legend = sections.map(data => (
@@ -27,7 +22,7 @@ export default class extends Vue {
     return (
       <Card title="Statistics" class="statistics">
         <h3>
-          {commitCountStr} Commits
+          {this.totals.commitCount.toLocaleString()} Commits
         </h3>
         <h4>
           In Total
