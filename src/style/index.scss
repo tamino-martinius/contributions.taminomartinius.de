@@ -83,19 +83,26 @@ h6 {
 }
 
 h1 {
-  font-weight: 400;
+  font-weight: 600;
+  font-size: 14px;
 }
 
-a {
-  color: var(--color-primary);
+h2 {
+  font-weight: 600;
+  font-size: 14px;
 }
 
-.total {
-  --size: calc(var(--value) / var(--max-value));
+h3 {
+  font-weight: 500;
+  font-size: 18px;
+  padding-top: 14px;
 }
 
-.weekday__sum {
-  --max-value: var(--max-day-value);
+h4 {
+  font-weight: 500;
+  font-size: 14px;
+  padding-top: 2px;
+  color: var(--color-foreground-light);
 }
 
 .weekday__hours {
