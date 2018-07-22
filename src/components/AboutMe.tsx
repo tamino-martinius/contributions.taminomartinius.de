@@ -21,10 +21,10 @@ export default class extends Vue {
         </h4>
         <hr />
         <div class="about-me__legend">
-          <Legend color="color-1" title="Ruby" value="x.xx %" />
-          <Legend color="color-2" title="JavaScript" value="x.xx %" />
-          <Legend color="color-3" title="TypeScript" value="x.xx %" />
-          <Legend color="color-4" title="All Others" value="x.xx %" />
+          <Legend data={{ color: 'color-1', title: 'Ruby', value: 'x.xx %' }} />
+          <Legend data={{ color: 'color-2', title: 'JavaScript', value: 'x.xx %' }} />
+          <Legend data={{ color: 'color-3', title: 'TypeScript', value: 'x.xx %' }} />
+          <Legend data={{ color: 'color-4', title: 'All Others', value: 'x.xx %' }} />
         </div>
       </Card>
     );
