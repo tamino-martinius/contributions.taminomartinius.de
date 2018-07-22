@@ -208,3 +208,19 @@ a {
   padding-bottom: 15px;
   width: 357px;
 }
+
+.bar {
+  display: grid;
+  grid-column-gap: 2px;
+}
+
+.bar__section {
+  color: #fff;
+  background-color: var(--color);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 5px 3px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
