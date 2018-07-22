@@ -223,4 +223,10 @@ a {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  &:first-child {
+    border-radius: 4px 0 0 4px;
+  }
+  &:last-child {
+    border-radius: 0 4px 4px 0;
+  }
 }
