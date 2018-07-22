@@ -255,4 +255,19 @@ a {
   float: left;
   margin: 5px 10px 20px 0;
 }
+
+.about-me__legend {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-row-gap: 8px;
+  padding-bottom: 15px;
+}
+
+.about-me__avatar {
+  border-radius: 999px;
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  top: 6px;
+  right: 6px;
 }
