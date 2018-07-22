@@ -109,7 +109,7 @@ hr {
   border: none;
   border-bottom: 1px solid #D5DAE0;
   width: 30px;
-  margin: 17px 0;
+  margin: 17px 0 15px 0;
 }
 
 header {
@@ -169,6 +169,7 @@ a {
 }
 
 .legend__value {
+  padding-top: 4px;
   font-size: 12px;
   font-weight: 400;
   color: var(--color-foreground-light);
@@ -180,21 +181,22 @@ a {
   height: 6px;
   border-radius: 3px;
   float: left;
-  margin: 5px 10px 20px 0;
+  margin: 7px 10px 20px 0;
 }
 
 .about-me__legend {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-row-gap: 8px;
+  grid-row-gap: 5px;
   padding-bottom: 15px;
+  width: 268px;
 }
 
 .about-me__avatar {
   border-radius: 999px;
-  width: 28px;
-  height: 28px;
+  width: 29px;
+  height: 29px;
   position: absolute;
-  top: 6px;
-  right: 6px;
+  top: 5px;
+  right: 5px;
 }
