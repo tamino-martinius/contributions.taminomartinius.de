@@ -1,5 +1,6 @@
 // This is an alternative way to define components using decorators
 import { Vue, Component, Prop } from 'vue-property-decorator';
+import Bar from '@/components/Bar';
 import Card from '@/components/Card';
 import Legend from '@/components/Legend';
 import { Totals, DataPoint } from '@/types';
@@ -31,6 +32,7 @@ export default class extends Vue {
         <div class="statistics__legend">
           {legend}
         </div>
+        <Bar sections={sections} />
       </Card>
     );
   }
