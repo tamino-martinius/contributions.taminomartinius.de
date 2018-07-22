@@ -2,7 +2,7 @@
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import Card from '@/components/Card';
 import Legend from '@/components/Legend';
-import { Totals } from '@/types';
+import { Totals, DataPoint } from '@/types';
 
 @Component
 export default class extends Vue {
@@ -14,6 +14,16 @@ export default class extends Vue {
     const commitCountStr = this.totals.commitCount.toLocaleString();
     const deletionsStr = this.totals.deletions.toLocaleString();
 
+    const sections: DataPoint[] = [
+      { color: 'color-1', title: 'Additions', value: additionsStr },
+      { color: 'color-2', title: 'Deletions', value: deletionsStr },
+      { color: 'color-3', title: 'Changed Files', value: changedFilesStr },
+    ];
+
+    const legend = sections.map(data => (
+      <Legend data={data} />
+    ));
+
     return (
       <Card title="Statistics" class="statistics">
         <h3>
@@ -24,9 +34,7 @@ export default class extends Vue {
         </h4>
         <hr />
         <div class="statistics__legend">
-          <Legend data={{ color: 'color-1', title: 'Additions', value: additionsStr }} />
-          <Legend data={{ color: 'color-2', title: 'Deletions', value: deletionsStr }} />
-          <Legend data={{ color: 'color-3', title: 'Changed Files', value: changedFilesStr }} />
+          {legend}
         </div>
       </Card>
     );
