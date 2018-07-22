@@ -23,6 +23,25 @@ export default class extends Vue {
     data.getRepoStats().then(stats => this.repoStats = stats);
   }
 
+  totals() {
+    const totals: Totals = {
+      additions: 0,
+      changedFiles: 0,
+      commitCount: 0,
+      deletions: 0,
+    };
+    if (this.stats) {
+      for (const yearName in this.stats.yearly) {
+        const yearlyTotals = this.stats.yearly[yearName];
+        totals.additions += yearlyTotals.additions;
+        totals.changedFiles += yearlyTotals.changedFiles;
+        totals.commitCount += yearlyTotals.commitCount;
+        totals.deletions += yearlyTotals.deletions;
+      }
+    }
+    return totals;
+  }
+
   render() {
     return (
       <div class="app">
