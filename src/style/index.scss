@@ -1,8 +1,23 @@
 :root {
-  --color-background: #2B2C3B;
-  --color-foreground: #7A7B80;
+  --color-background: #F8F9FA;
+  --color-foreground: #22272E;
+  --color-foreground-light: #627386;
+  --color-foreground: #22272E;
+  --color-border-dark: #F2F4F6;
   --color-primary: #C9CBCE;
-  --color-1: #5696C8;
+  --color-empty: #D4DAE1;
+  --color-0: #788DA1;
+  --color-1: #712BDE;
+  --color-2: #5653E8;
+  --color-3: #3174F1;
+  --color-4: #0095F9;
+  --color-5: #00AEF6;
+  --color-6: #18BEE5;
+  --color-7: #5CCED6;
+  --color-open-source: #00D559;
+  --color-private: #00A5FE;
+  --color-7: #5CCED6;
+  --size-container: 880px;
 }
 
 @font-face {
