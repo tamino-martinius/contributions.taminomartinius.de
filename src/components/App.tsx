@@ -45,61 +45,61 @@ export default class extends Vue {
   }
 
   render() {
-    const page = (
-      <div>
-        <Row type={RowType.FIRST_THIRD}>
-          <AboutMe slot="first" />
-          <Statistics slot="last" totals={this.totals()} />
-        </Row>
-        <Row>
-          <Chart
-            class="time-of-day"
-            title="Time of Day"
-            graphs={[]}
-          />
-        </Row>
-        <Row>
-          <Chart
-            class="daytime-comparison"
-            title="Daytime Comparison"
-            graphs={[]}
-            type={ChartType.COMPARE}
-          />
-        </Row>
-        <Row type={RowType.LAST_THIRD}>
-          <Chart
-            slot="first"
-            class="day-of-week-comparison"
-            title="Day of Week Comparison"
-            graphs={[]}
-            type={ChartType.BARS}
-          />
-          <Chart
-            slot="last"
-            class="os-private-comparison"
-            title="Open Source vs. Private"
-            graphs={[]}
-            type={ChartType.PIE}
-          />
-        </Row>
-        <Row>
-          <Chart
-            class="time-of-year"
-            title="Time of Year"
-            graphs={[]}
-          />
-        </Row>
-      </div>
-    );
-    const loading = (
-      <div>
-        loading ...
-      </div>
-    );
+    if (this.stats) {
+      return (
+        <div class="app">
+          <Header />
+          <Row type={RowType.FIRST_THIRD}>
+            <AboutMe slot="first" />
+            <Statistics slot="last" totals={this.totals()} />
+          </Row>
+          <Row>
+            <Chart
+              class="time-of-day"
+              title="Time of Day"
+              graphs={[]}
+            />
+          </Row>
+          <Row>
+            <Chart
+              class="daytime-comparison"
+              title="Daytime Comparison"
+              graphs={[]}
+              type={ChartType.COMPARE}
+            />
+          </Row>
+          <Row type={RowType.LAST_THIRD}>
+            <Chart
+              slot="first"
+              class="day-of-week-comparison"
+              title="Day of Week Comparison"
+              graphs={[]}
+              type={ChartType.BARS}
+            />
+            <Chart
+              slot="last"
+              class="os-private-comparison"
+              title="Open Source vs. Private"
+              graphs={[]}
+              type={ChartType.PIE}
+            />
+          </Row>
+          <Row>
+            <Chart
+              class="time-of-year"
+              title="Time of Year"
+              graphs={[]}
+            />
+          </Row>
+        </div>
+      );
+    }
     return (
       <div class="app">
         <Header />
-        {this.stats ? page : loading}
+        <div>
+          loading ...
+        </div>
       </div>
     );
   }
