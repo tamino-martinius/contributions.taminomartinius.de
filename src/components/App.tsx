@@ -3,6 +3,7 @@ import { Vue, Component } from 'vue-property-decorator';
 import Data from '@/models/Data';
 import WeekDays from '@/components/WeekDays';
 import Header from '@/components/Header';
+import Chart from '@/components/Chart';
 import AboutMe from '@/components/AboutMe';
 import Statistics from '@/components/Statistics';
 import Row, { RowType } from '@/components/Row';
@@ -50,6 +51,9 @@ export default class extends Vue {
         <Row type={RowType.FIRST_THIRD}>
           <AboutMe slot="first" />
           <Statistics slot="last" totals={this.totals()} />
+        </Row>
+        <Row>
+          <Chart class="time-of-day" title="Time of Day" graphs={[]} />
         </Row>
       </div>
     );
