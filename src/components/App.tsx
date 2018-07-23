@@ -83,6 +83,13 @@ export default class extends Vue {
             type={ChartType.PIE}
           />
         </Row>
+        <Row>
+          <Chart
+            class="time-of-year"
+            title="Time of Year"
+            graphs={[]}
+          />
+        </Row>
       </div>
     );
     const loading = (
