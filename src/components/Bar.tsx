@@ -15,7 +15,6 @@ export default class extends Vue {
     ));
 
     const gridTemplateColumns = this.sections.map(data => `${data.value}fr`).join(' ');
-    console.log(gridTemplateColumns);
 
     return (
       <div class="bar" style={{ gridTemplateColumns }}>
