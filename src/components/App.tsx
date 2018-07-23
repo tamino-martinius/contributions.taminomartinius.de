@@ -8,52 +8,29 @@ import AboutMe from '@/components/AboutMe';
 import Statistics from '@/components/Statistics';
 import YearlyStatistics from '@/components/YearlyStatistics';
 import Row, { RowType } from '@/components/Row';
-import {
-  Dict,
-  TimeStats,
-  Totals,
-} from '@/types';
+import { StatsData } from '@/types';
 import '../style/index.scss';
 
 const data = new Data();
 
 @Component
 export default class extends Vue {
-  stats: TimeStats | false = false;
-  repoStats: Dict<TimeStats> | false = false;
+  stats: StatsData | false = false;
 
   created() {
     data.getStats().then(stats => this.stats = stats);
-    data.getRepoStats().then(stats => this.repoStats = stats);
-  }
-
-  totals() {
-    const totals: Totals = {
-      additions: 0,
-      changedFiles: 0,
-      commitCount: 0,
-      deletions: 0,
-    };
-    if (this.stats) {
-      for (const yearName in this.stats.yearly) {
-        const yearlyTotals = this.stats.yearly[yearName];
-        totals.additions += yearlyTotals.additions;
-        totals.changedFiles += yearlyTotals.changedFiles;
-        totals.commitCount += yearlyTotals.commitCount;
-        totals.deletions += yearlyTotals.deletions;
-      }
-    }
-    return totals;
   }
 
   render() {
     if (this.stats) {
+      console.log(this.stats);
+
       return (
         <div class="app">
           <Header />
           <Row type={RowType.FIRST_THIRD}>
-            <AboutMe slot="first" />
-            <Statistics slot="last" totals={this.totals()} />
+            <AboutMe slot="first" languages={this.stats.languages} counts={this.stats.total.sum} />
+            <Statistics slot="last" counts={this.stats.total.sum} />
           </Row>
           <Row>
             <Chart
@@ -96,7 +73,7 @@ export default class extends Vue {
           <Row>
             <YearlyStatistics
               yearlyTopRepositories={{}}
-              yearlyTotals={this.stats.yearly}
+              yearlyTotals={{}}
             />
           </Row>
           <Row>
