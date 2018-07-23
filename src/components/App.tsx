@@ -54,6 +54,13 @@ export default class extends Vue {
         </Row>
         <Row>
           <Chart class="time-of-day" title="Time of Day" graphs={[]} />
+        <Row>
+          <Chart
+            class="os-private-daytime"
+            title="Open Source vs. Private - Daytime"
+            graphs={[]}
+            type={ChartType.COMPARE}
+          />
         </Row>
       </div>
     );
