@@ -75,6 +75,13 @@ export default class extends Vue {
             graphs={[]}
             type={ChartType.BARS}
           />
+          <Chart
+            slot="last"
+            class="os-private-comparison"
+            title="Open Source vs. Private"
+            graphs={[]}
+            type={ChartType.PIE}
+          />
         </Row>
       </div>
     );
