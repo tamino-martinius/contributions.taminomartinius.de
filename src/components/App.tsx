@@ -1,6 +1,7 @@
 // This is an alternative way to define components using decorators
 import { Vue, Component } from 'vue-property-decorator';
 import Data from '@/models/Data';
+import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Chart, { ChartType } from '@/components/Chart';
 import AboutMe from '@/components/AboutMe';
@@ -105,6 +106,7 @@ export default class extends Vue {
               graphs={[]}
             />
           </Row>
+          <Footer />
         </div>
       );
     }
@@ -114,6 +116,7 @@ export default class extends Vue {
         <div>
           loading ...
         </div>
+        <Footer />
       </div>
     );
   }
