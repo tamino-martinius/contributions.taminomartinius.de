@@ -28,3 +28,8 @@ export interface DataPoint {
   value: number | string;
   color: string;
 }
+
+export interface Point {
+  x: number | Date;
+  y: number;
+}
