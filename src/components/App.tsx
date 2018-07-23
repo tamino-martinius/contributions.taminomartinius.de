@@ -98,6 +98,13 @@ export default class extends Vue {
               yearlyTotals={this.stats.yearly}
             />
           </Row>
+          <Row>
+            <Chart
+              class="timeline"
+              title="timeline"
+              graphs={[]}
+            />
+          </Row>
         </div>
       );
     }
