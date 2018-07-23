@@ -3,13 +3,13 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 import Bar from '@/components/Bar';
 import Card from '@/components/Card';
 import Legend from '@/components/Legend';
-import { Totals, DataPoint, Dict } from '@/types';
+import { Counts, DataPoint, Dict } from '@/types';
 
 @Component
 export default class extends Vue {
   @Prop() yearlyTopRepositories!: Dict<DataPoint[]>;
-  @Prop() yearlyTotals!: Dict<Totals>;
-  @Prop() dailyTotals!: Dict<Totals>;
+  @Prop() yearlyTotals!: Dict<Counts>;
+  @Prop() dailyTotals!: Dict<Counts>;
   @Prop() year!: string;
 
   render() {
