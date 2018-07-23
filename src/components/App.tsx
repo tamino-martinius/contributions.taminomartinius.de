@@ -1,7 +1,6 @@
 // This is an alternative way to define components using decorators
 import { Vue, Component } from 'vue-property-decorator';
 import Data from '@/models/Data';
-import WeekDays from '@/components/WeekDays';
 import Header from '@/components/Header';
 import Chart, { ChartType } from '@/components/Chart';
 import AboutMe from '@/components/AboutMe';
