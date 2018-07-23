@@ -67,6 +67,15 @@ export default class extends Vue {
             type={ChartType.COMPARE}
           />
         </Row>
+        <Row type={RowType.LAST_THIRD}>
+          <Chart
+            slot="first"
+            class="day-of-week-comparison"
+            title="Day of Week Comparison"
+            graphs={[]}
+            type={ChartType.BARS}
+          />
+        </Row>
       </div>
     );
     const loading = (
