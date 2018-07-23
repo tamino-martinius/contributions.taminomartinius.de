@@ -51,15 +51,6 @@ export default class extends Vue {
           <AboutMe slot="first" />
           <Statistics slot="last" totals={this.totals()} />
         </Row>
-        <Row type={RowType.LAST_THIRD}>
-          <AboutMe slot="first" />
-          <div class="card" slot="last">
-            About us
-            </div>
-        </Row>
-        <Row type={RowType.FULL}>
-          <AboutMe slot="first" />
-        </Row>
       </div>
     );
     const loading = (
