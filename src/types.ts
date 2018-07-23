@@ -33,3 +33,9 @@ export interface Point {
   x: number | Date;
   y: number;
 }
+
+export interface Graph {
+  title: string;
+  values: Point[];
+  color: string;
+}
