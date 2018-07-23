@@ -101,7 +101,7 @@ export default class extends Vue {
           <Row>
             <Chart
               class="timeline"
-              title="timeline"
+              title="Timeline"
               graphs={[]}
             />
           </Row>
