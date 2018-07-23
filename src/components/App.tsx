@@ -53,7 +53,12 @@ export default class extends Vue {
           <Statistics slot="last" totals={this.totals()} />
         </Row>
         <Row>
-          <Chart class="time-of-day" title="Time of Day" graphs={[]} />
+          <Chart
+            class="time-of-day"
+            title="Time of Day"
+            graphs={[]}
+          />
+        </Row>
         <Row>
           <Chart
             class="os-private-daytime"
