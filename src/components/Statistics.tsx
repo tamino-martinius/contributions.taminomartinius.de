@@ -3,17 +3,17 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 import Bar from '@/components/Bar';
 import Card from '@/components/Card';
 import Legend from '@/components/Legend';
-import { Totals, DataPoint } from '@/types';
+import { Counts, DataPoint } from '@/types';
 
 @Component
 export default class extends Vue {
-  @Prop() totals!: Totals;
+  @Prop() counts!: Counts;
 
   render() {
     const sections: DataPoint[] = [
-      { color: 'color-1', title: 'Additions', value: this.totals.additions },
-      { color: 'color-2', title: 'Deletions', value: this.totals.deletions },
-      { color: 'color-3', title: 'Changed Files', value: this.totals.changedFiles },
+      { color: 'color-1', title: 'Additions', value: this.counts.additions },
+      { color: 'color-2', title: 'Deletions', value: this.counts.deletions },
+      { color: 'color-3', title: 'Changed Files', value: this.counts.changedFiles },
     ];
 
     const legend = sections.map(data => (
@@ -23,7 +23,7 @@ export default class extends Vue {
     return (
       <Card title="Statistics" class="statistics">
         <h3>
-          {this.totals.commitCount.toLocaleString()} Commits
+          {this.counts.commitCount.toLocaleString()} Commits
         </h3>
         <h4>
           In Total
