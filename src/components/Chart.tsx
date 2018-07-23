@@ -8,6 +8,7 @@ export enum ChartType {
   STACKED = 'chart--stacked',
   COMPARE = 'chart--compare',
   BARS = 'chart--bars',
+  PIE = 'chart--pie',
 }
 
 @Component
