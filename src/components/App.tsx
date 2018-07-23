@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import Chart, { ChartType } from '@/components/Chart';
 import AboutMe from '@/components/AboutMe';
 import Statistics from '@/components/Statistics';
+import YearlyStatistics from '@/components/YearlyStatistics';
 import Row, { RowType } from '@/components/Row';
 import {
   Dict,
@@ -89,6 +90,12 @@ export default class extends Vue {
               class="time-of-year"
               title="Time of Year"
               graphs={[]}
+            />
+          </Row>
+          <Row>
+            <YearlyStatistics
+              yearlyTopRepositories={{}}
+              yearlyTotals={this.stats.yearly}
             />
           </Row>
         </div>
