@@ -56,8 +56,8 @@ export default class extends Vue {
           </Row>
           <Row>
             <Chart
-              class="time-of-day"
-              title="Time of Day"
+              class="daytime"
+              title="Daytime"
               graphs={[]}
             />
           </Row>
@@ -72,23 +72,23 @@ export default class extends Vue {
           <Row type={RowType.LAST_THIRD}>
             <Chart
               slot="first"
-              class="day-of-week-comparison"
-              title="Day of Week Comparison"
+              class="weekday-comparison"
+              title="Weekday Comparison"
               graphs={[]}
               type={ChartType.BARS}
             />
             <Chart
               slot="last"
-              class="os-private-comparison"
-              title="Open Source vs. Private"
+              class="contribution-comparison"
+              title="Contribution Comparison"
               graphs={[]}
               type={ChartType.PIE}
             />
           </Row>
           <Row>
             <Chart
-              class="time-of-year"
-              title="Time of Year"
+              class="years"
+              title="Years"
               graphs={[]}
             />
           </Row>
