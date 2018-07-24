@@ -320,6 +320,21 @@ a {
 
 .weekday-comparison {
   height: 315px;
+  .bar {
+    margin-right: 66px;
+    width: 6px;
+    float: left;
+    bottom: 0;
+    transform: translateY(calc(-100% + 195px));
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  .chart__grid {
+    height: 200px;
+    grid-template-columns: 32px 478px;
+    grid-auto-rows: 195px 24px;
+  }
 }
 
 .contribution-comparison {
