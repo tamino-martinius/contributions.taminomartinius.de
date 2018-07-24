@@ -3,23 +3,44 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 import Bar from '@/components/Bar';
 import Card from '@/components/Card';
 import Legend from '@/components/Legend';
-import { Counts, DataPoint, Dict } from '@/types';
+import { Counts, RepositoryStats, Dict, DataPoint } from '@/types';
 
 @Component
 export default class extends Vue {
-  @Prop() yearlyTopRepositories!: Dict<DataPoint[]>;
-  @Prop() yearlyTotals!: Dict<Counts>;
-  @Prop() dailyTotals!: Dict<Counts>;
-  @Prop() year!: string;
+  year = new Date().getFullYear().toString();
+  @Prop() dates!: Dict<Counts>;
+  @Prop() repos!: Dict<RepositoryStats>;
 
   render() {
-    const year = this.year || new Date().getFullYear().toString();
-    const sections = this.yearlyTopRepositories[year] || [];
-    const totals = this.yearlyTotals[year] || { commitCount: 0 };
-
-    const legend = sections.map(data => (
-      <Legend data={data} />
-    ));
+    const year = this.year;
+    const keys = Object.keys(this.dates).filter(date => date.startsWith(year));
+    const counts = keys.map(key => this.dates[key]);
+    const sum = counts.reduce((sum, count) => sum + count.commitCount, 0);
+    const reposOfYear: Dict<Counts> = {};
+    for (const repoKey in this.repos) {
+      const repo = this.repos[repoKey];
+      if (repo.years[year]) reposOfYear[repoKey] = repo.years[year];
+    }
+    const repoKeys = Object.keys(reposOfYear);
+    repoKeys.sort((key1, key2) => reposOfYear[key2].commitCount - reposOfYear[key1].commitCount);
+    let othersSum = sum;
+    const sections: DataPoint[] = [];
+    for (let i = 0; i < repoKeys.length && i < 6; i += 1) {
+      const section = {
+        color: `color-${i + 1}`,
+        title: repoKeys[i],
+        value: reposOfYear[repoKeys[i]].commitCount,
+      };
+      othersSum -= section.value;
+      sections.push(section);
+    }
+    if (othersSum > 0) {
+      sections.push({
+        color: `color-7}`,
+        title: 'All Others',
+        value: othersSum,
+      });
+    }
 
     return (
       <Card title="Yearly Statistics" class="yearly-statistics">
@@ -27,12 +48,10 @@ export default class extends Vue {
           Year {year}
         </h3>
         <h4>
-          {totals.commitCount.toLocaleString()} Commits
+          {sum.toLocaleString()} Commits
         </h4>
         <hr />
-        <div class="statistics__legend">
-          {legend}
-        </div>
+        <Legend class="yearly-statistics__legend" sections={sections} />
         <Bar sections={sections} />
       </Card>
     );
