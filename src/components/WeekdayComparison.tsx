@@ -1,8 +1,9 @@
 // This is an alternative way to define components using decorators
 import { Vue, Component, Prop } from 'vue-property-decorator';
+import Bar, { BarType } from '@/components/Bar';
 import Card from '@/components/Card';
-import { CommitSplit, Dict, WeekDayStats } from '@/types';
 import Legend from '@/components/Legend';
+import { CommitSplit, DataPoint, Dict, WeekDayStats } from '@/types';
 
 @Component
 export default class extends Vue {
