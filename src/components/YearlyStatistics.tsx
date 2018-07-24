@@ -28,7 +28,7 @@ export default class extends Vue {
     for (let i = 0; i < repoKeys.length && i < 6; i += 1) {
       const section = {
         color: `color-${i + 1}`,
-        title: repoKeys[i],
+        title: repoKeys[i].split('/')[1],
         value: reposOfYear[repoKeys[i]].commitCount,
       };
       othersSum -= section.value;
