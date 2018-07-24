@@ -4,6 +4,7 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 @Component
 export default class extends Vue {
   @Prop() labels!: string[];
+  @Prop() values!: any[];
   active: number = this.labels.length - 1;
 
   render() {
