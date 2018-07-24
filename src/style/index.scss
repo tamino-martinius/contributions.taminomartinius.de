@@ -187,9 +187,15 @@ a {
 .legend {
   display: grid;
   padding-bottom: 15px;
+  &>* {
+    min-width: 0;
+  }
 }
 
 .legend__title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 14px;
   font-weight: 500;
 }
