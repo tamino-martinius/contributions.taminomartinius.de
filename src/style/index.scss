@@ -184,6 +184,12 @@ a {
   position: relative;
 }
 
+.card__title .button-group {
+  position: absolute;
+  top: 0;
+  right: 20px;
+}
+
 .card__content {
   position: relative;
   padding: 0 20px;
