@@ -5,18 +5,24 @@ export { DataPoint } from '@/types';
 
 @Component
 export default class extends Vue {
-  @Prop() data!: DataPoint;
+  @Prop() sections!: DataPoint[];
 
   render() {
-    return (
+    const legends = this.sections.map(data => (
       <div class="legend">
-        <div class="legend__color" style={{ '--color': `var(--${this.data.color})` }} />
+        <div class="legend__color" style={{ '--color': `var(--${data.color})` }} />
         <div class="legend__title">
-          {this.data.title}
+          {data.title}
         </div>
         <div class="legend__value">
-          {this.data.value.toLocaleString()}
+          {data.value.toLocaleString()}
         </div>
+      </div>
+    ));
+
+    return (
+      <div class="legends">
+        {legends}
       </div>
     );
   }
