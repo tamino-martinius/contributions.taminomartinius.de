@@ -6,6 +6,12 @@ export default class extends Vue {
   @Prop() title!: string;
 
   render() {
+    const footer = this.$slots.footer ? (
+      <div class="card__footer">
+        {this.$slots.footer}
+      </div>
+    ) : undefined;
+
     return (
       <div class="card">
         <div class="card__title">
@@ -17,6 +23,7 @@ export default class extends Vue {
         <div class="card__content">
           {this.$slots.default}
         </div>
+        {footer}
       </div>
     );
   }
