@@ -36,6 +36,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "d3": "^5.5.0",
     "vue": "^2.5.16",
     "vue-class-component": "^6.2.0",
     "vue-property-decorator": "^7.0.0",
