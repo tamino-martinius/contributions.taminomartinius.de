@@ -9,6 +9,15 @@ export default class extends Vue {
   @Prop() weekdays!: CommitSplit<Dict<WeekDayStats>>;
 
   render() {
+    const maxSum = Math.max(...Object.values(this.weekdays.sum).map(counts => counts.commitCount));
+
+    const xAxisLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(label => (
+      <label>{label}</label>
+    ));
+
+    const yAxisLabels = [0, ~~(maxSum / 2), maxSum].map(label => (
+      <label>{label.toLocaleString()}</label>
+    ));
 
     const sections: DataPoint[] = [
       { color: 'color-open', title: 'Open Source', value: 'nothing' },
