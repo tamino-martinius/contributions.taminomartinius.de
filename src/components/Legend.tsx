@@ -6,10 +6,13 @@ export { DataPoint } from '@/types';
 @Component
 export default class extends Vue {
   @Prop() sections!: DataPoint[];
+  @Prop() columns!: string;
 
   render() {
+    const gridTemplateColumns = this.columns || this.sections.map(() => '1fr').join(' ');
+
     const legends = this.sections.map(data => (
-      <div class="legend">
+      <div>
         <div class="legend__color" style={{ '--color': `var(--${data.color})` }} />
         <div class="legend__title">
           {data.title}
@@ -21,7 +24,7 @@ export default class extends Vue {
     ));
 
     return (
-      <div class="legends">
+      <div class="legend" style={{ gridTemplateColumns }}>
         {legends}
       </div>
     );
