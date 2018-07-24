@@ -62,13 +62,18 @@
 }
 
 html,
-body {
+body,
+button {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  font-family: "Nutanix Soft", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html,
+body {
   margin: 0;
   padding: 0;
   overflow: scroll;
-  font-family: "Nutanix Soft", -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: var(--color-background);
   color: var(--color-foreground);
 }
