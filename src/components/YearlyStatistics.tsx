@@ -12,6 +12,10 @@ export default class extends Vue {
   @Prop() dates!: Dict<Counts>;
   @Prop() repos!: Dict<RepositoryStats>;
 
+  yearChangeHandler(year: string) {
+    this.year = year;
+  }
+
   render() {
     const year = this.year;
     const years: string[] = [];
@@ -49,7 +53,7 @@ export default class extends Vue {
 
     return (
       <Card title="Yearly Statistics" class="yearly-statistics">
-        <ButtonGroup labels={years} slot="title" />
+        <ButtonGroup labels={years} slot="title" onValueChanged={this.yearChangeHandler} />
         <h3>
           Year {year}
         </h3>
