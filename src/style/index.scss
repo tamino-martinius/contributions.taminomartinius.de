@@ -341,7 +341,7 @@ a {
   border-left: 1px solid #627386;
 }
 
-.heatmap {
+.heatmap__grid {
   display: grid;
   width: 634px;
   height: 82px;
@@ -355,4 +355,27 @@ a {
 .heatmap__cell {
   background-color: var(--color);
   border-radius: 2px;
+}
+
+.heatmap__legend {
+  margin-top: 15px;
+  margin-right: 7px;
+  display: grid;
+  width: 178px;
+  height: 10px;
+  grid-template-columns: 4fr repeat(8, 1fr) 4fr;
+  grid-column-gap: 2px;
+  font-size: 12px;
+  line-height: 10px;
+  font-weight: 400;
+  float: right;
+  >div {
+    &:last-child {
+      padding-left: 7px;
+    }
+    &:first-child {
+      text-align: right;
+      padding-right: 7px;
+    }
+  }
 }
