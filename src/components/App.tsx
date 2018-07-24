@@ -6,6 +6,8 @@ import Header from '@/components/Header';
 import Chart, { ChartType } from '@/components/Chart';
 import AboutMe from '@/components/AboutMe';
 import Statistics from '@/components/Statistics';
+import ContributionComparison from '@/components/ContributionComparison';
+import WeekdayComparison from '@/components/WeekdayComparison';
 import YearlyStatistics from '@/components/YearlyStatistics';
 import Row, { RowType } from '@/components/Row';
 import { StatsData } from '@/types';
@@ -48,19 +50,13 @@ export default class extends Vue {
             />
           </Row>
           <Row type={RowType.LAST_THIRD}>
-            <Chart
+            <WeekdayComparison
               slot="first"
-              class="weekday-comparison"
-              title="Weekday Comparison"
-              graphs={[]}
-              type={ChartType.BARS}
+              weekdays={this.stats.weekDays}
             />
-            <Chart
+            <ContributionComparison
               slot="last"
-              class="contribution-comparison"
-              title="Contribution Comparison"
-              graphs={[]}
-              type={ChartType.PIE}
+              counts={this.stats.total}
             />
           </Row>
           <Row>
