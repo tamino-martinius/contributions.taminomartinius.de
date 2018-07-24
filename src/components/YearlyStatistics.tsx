@@ -51,6 +51,9 @@ export default class extends Vue {
           {sum.toLocaleString()} Commits
         </h4>
         <hr />
+        <h3 class="yearly-statistics__highlights">
+          Highlights
+        </h3>
         <Legend class="yearly-statistics__legend" sections={sections} />
         <Bar sections={sections} />
       </Card>
