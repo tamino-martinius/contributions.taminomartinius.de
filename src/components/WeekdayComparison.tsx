@@ -11,6 +11,16 @@ export default class extends Vue {
   render() {
     const maxSum = Math.max(...Object.values(this.weekdays.sum).map(counts => counts.commitCount));
 
+    const bars = [];
+    for (let i = 0; i < 7; i += 1) {
+      const key = i.toString();
+      const sections: DataPoint[] = [
+        { color: 'color-open', title: 'Open Source', value: this.weekdays.open[key].commitCount },
+        { color: 'color-closed', title: 'Private', value: this.weekdays.closed[key].commitCount },
+      ];
+      bars.push(<Bar sections={sections} type={BarType.VERTICAL} />);
+    }
+
     const xAxisLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(label => (
       <label>{label}</label>
     ));
