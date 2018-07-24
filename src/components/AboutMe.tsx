@@ -35,7 +35,7 @@ export default class extends Vue {
           Head of Development <a href="https://shyftplan.com">@shyftplan</a>
         </h4>
         <hr />
-        <Legend class="about-me__legend" sections={sections} />
+        <Legend class="about-me__legend" sections={sections} columns="1fr 1fr" />
       </Card>
     );
   }
