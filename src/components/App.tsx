@@ -72,8 +72,8 @@ export default class extends Vue {
           </Row>
           <Row>
             <YearlyStatistics
-              yearlyTopRepositories={{}}
-              yearlyTotals={{}}
+              dates={this.stats.dates.sum}
+              repos={this.stats.repositories}
             />
           </Row>
           <Row>
