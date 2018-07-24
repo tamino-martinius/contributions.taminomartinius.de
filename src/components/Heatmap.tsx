@@ -1,6 +1,6 @@
 // This is an alternative way to define components using decorators
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import { Dict, Counts } from '@/types';
+import { Dict } from '@/types';
 
 @Component
 export default class extends Vue {
@@ -36,7 +36,7 @@ export default class extends Vue {
         style={{
           '--color': `var(--${
             count === undefined ? 'color-empty' : this.colors[count.toString()]
-          })`,
+            })`,
         }}
         title={count}
       />
@@ -44,12 +44,28 @@ export default class extends Vue {
 
     const offset = new Date(this.year).getDay();
     for (let i = 0; i < offset; i += 1) {
-      cells.unshift(<div/>);
+      cells.unshift(<div />);
     }
 
-    return(
+    const colors = ['color-0'];
+    for (let i = 7; i > 0; i -= 1) {
+      colors.push(`color-${i}`);
+    }
+
+    const legendCells = colors.map(color => (
+      <div class="heatmap__cell" style={{ '--color': `var(--${color})` }} />
+    ));
+
+    return (
       <div class="heatmap">
-        {cells}
+        <div class="heatmap__grid">
+          {cells}
+        </div>
+        <div class="heatmap__legend">
+          <div>less</div>
+          {legendCells}
+          <div>more</div>
+        </div>
       </div>
     );
   }
