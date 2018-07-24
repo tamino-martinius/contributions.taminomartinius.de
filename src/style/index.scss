@@ -183,12 +183,11 @@ a {
   text-align: left;
   padding-left: 20px;
   position: relative;
-}
-
-.card__title .button-group {
-  position: absolute;
-  top: 0;
-  right: 20px;
+  .button-group {
+    position: absolute;
+    top: 0;
+    right: 20px;
+  }
 }
 
 .card__content {
