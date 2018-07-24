@@ -7,8 +7,6 @@ export default class extends Vue {
   @Prop() values!: any[];
   active: number = this.labels.length - 1;
 
-  render() {
-    const active = this.active || 0;
   buttonClickHandler(index: number) {
     this.active = index;
     this.$emit('indexChanged', index);
@@ -16,6 +14,7 @@ export default class extends Vue {
     this.$emit('valueChanged', (this.values || [])[index]);
   }
 
+  render() {
     const buttons = this.labels.map((label, i) => (
       <button
         onClick={this.buttonClickHandler.bind(this, i)}
