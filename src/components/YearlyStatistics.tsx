@@ -16,29 +16,26 @@ export default class extends Vue {
     this.year = year;
   }
 
-  render() {
-    const year = this.year;
-    const years: string[] = [];
-    for (let year = 2013; year <= new Date().getFullYear(); year += 1) {
-      years.push(year.toString());
-    }
-    const keys = Object.keys(this.dates).filter(date => date.startsWith(year));
-    const counts = keys.map(key => this.dates[key]);
-    const sum = counts.reduce((sum, count) => sum + count.commitCount, 0);
+  get reposOfYear() {
     const reposOfYear: Dict<Counts> = {};
     for (const repoKey in this.repos) {
       const repo = this.repos[repoKey];
-      if (repo.years[year]) reposOfYear[repoKey] = repo.years[year];
+      if (repo.years[this.year]) reposOfYear[repoKey] = repo.years[this.year];
     }
-    const repoKeys = Object.keys(reposOfYear);
-    repoKeys.sort((key1, key2) => reposOfYear[key2].commitCount - reposOfYear[key1].commitCount);
-    let othersSum = sum;
+    return reposOfYear;
+  }
+
+  sections(totalCommits: number) {
+    const repos = this.reposOfYear;
+    let othersSum = totalCommits;
+    const repoKeys = Object.keys(repos);
+    repoKeys.sort((key1, key2) => repos[key2].commitCount - repos[key1].commitCount);
     const sections: DataPoint[] = [];
     for (let i = 0; i < repoKeys.length && i < 6; i += 1) {
       const section = {
         color: `color-${i + 1}`,
         title: repoKeys[i].split('/')[1],
-        value: reposOfYear[repoKeys[i]].commitCount,
+        value: repos[repoKeys[i]].commitCount,
       };
       othersSum -= section.value;
       sections.push(section);
@@ -50,15 +47,27 @@ export default class extends Vue {
         value: othersSum,
       });
     }
+    return sections;
+  }
+
+  render() {
+    const years: string[] = [];
+    for (let year = 2013; year <= new Date().getFullYear(); year += 1) {
+      years.push(year.toString());
+    }
+    const keys = Object.keys(this.dates).filter(date => date.startsWith(this.year));
+    const counts = keys.map(key => this.dates[key]);
+    const totalCommits = counts.reduce((sum, count) => sum + count.commitCount, 0);
+    const sections = this.sections(totalCommits);
 
     return (
       <Card title="Yearly Statistics" class="yearly-statistics">
         <ButtonGroup labels={years} slot="title" onValueChanged={this.yearChangeHandler} />
         <h3>
-          Year {year}
+          Year {this.year}
         </h3>
         <h4>
-          {sum.toLocaleString()} Commits
+          {totalCommits.toLocaleString()} Commits
         </h4>
         <hr />
         <h3 class="yearly-statistics__highlights">
