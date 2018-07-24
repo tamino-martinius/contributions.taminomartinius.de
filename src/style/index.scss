@@ -435,3 +435,40 @@ a {
     }
   }
 }
+
+.chart__grid {
+  display: grid;
+  grid-template-areas: "yAxis canvas" "xAxis xAxis";
+}
+
+.chart__axis {
+  font-size: 12px;
+  font-weight: 400;
+  color: #9AA5B5;
+}
+
+.chart__axis--x {
+  grid-area: xAxis;
+  padding-top: 5px;
+  border-top: 1px solid #F2F4F6;
+  label {
+    text-align: center;
+    width: 72px;
+    display: inline-block;
+  }
+}
+
+.chart__axis--y {
+  grid-area: yAxis;
+  padding-top: 24px;
+  label {
+    display: block;
+    padding-top: 33px;
+    text-align: center;
+    padding-right: 15px;
+  }
+}
+
+.chart__canvas {
+  grid-area: canvas;
+}
