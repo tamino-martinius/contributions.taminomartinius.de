@@ -32,10 +32,6 @@ export default class extends Vue {
       <label>{label}</label>
     ));
 
-    const yAxisLabels = [0, ~~(maxSum / 2), maxSum].map(label => (
-      <label>{label.toLocaleString()}</label>
-    ));
-
     const sections: DataPoint[] = [
       { color: 'color-open', title: 'Open Source', value: 'nothing' },
       { color: 'color-closed', title: 'Private', value: 'nothing' },
@@ -49,9 +45,6 @@ export default class extends Vue {
           </div>
           <div class="chart__axis chart__axis--x">
             {xAxisLabels}
-          </div>
-          <div class="chart__axis chart__axis--y">
-            {yAxisLabels}
           </div>
         </div>
         <Legend class="weekday-comparison__legend" sections={sections} slot="footer" />
