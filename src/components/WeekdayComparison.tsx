@@ -19,7 +19,13 @@ export default class extends Vue {
         { color: 'color-open', title: 'Open Source', value: this.weekdays.open[key].commitCount },
         { color: 'color-closed', title: 'Private', value: this.weekdays.closed[key].commitCount },
       ];
-      bars.push(<Bar sections={sections} type={BarType.VERTICAL} />);
+      bars.push(
+        <Bar
+          sections={sections}
+          type={BarType.VERTICAL}
+          style={{ height: `${(this.weekdays.sum[key].commitCount / maxSum * 75).toFixed(2)}%` }}
+        />,
+      );
     }
 
     const xAxisLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(label => (
