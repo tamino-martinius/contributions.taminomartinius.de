@@ -2,7 +2,7 @@
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import Card from '@/components/Card';
 import Legend from '@/components/Legend';
-import { Dict, Counts } from '@/types';
+import { Dict, Counts, DataPoint } from '@/types';
 
 @Component
 export default class extends Vue {
@@ -14,6 +14,12 @@ export default class extends Vue {
     const js = this.languages.JavaScript.commitCount / this.counts.commitCount * 100;
     const ts = this.languages.TypeScript.commitCount / this.counts.commitCount * 100;
     const html = this.languages.HTML.commitCount / this.counts.commitCount * 100;
+    const sections: DataPoint[] = [
+      { color: 'color-2', title: 'JavaScript', value: `${js.toFixed(2)} %` },
+      { color: 'color-4', title: 'HTML', value: `${html.toFixed(2)} %` },
+      { color: 'color-1', title: 'Ruby', value: `${ruby.toFixed(2)} %` },
+      { color: 'color-3', title: 'TypeScript', value: `${ts.toFixed(2)} %` },
+    ];
 
     return (
       <Card title="Tamino Martinius" class="about-me">
@@ -29,12 +35,7 @@ export default class extends Vue {
           Head of Development <a href="https://shyftplan.com">@shyftplan</a>
         </h4>
         <hr />
-        <div class="about-me__legend">
-          <Legend data={{ color: 'color-2', title: 'JavaScript', value: `${js.toFixed(2)} %` }} />
-          <Legend data={{ color: 'color-4', title: 'HTML', value: `${html.toFixed(2)} %` }} />
-          <Legend data={{ color: 'color-1', title: 'Ruby', value: `${ruby.toFixed(2)} %` }} />
-          <Legend data={{ color: 'color-3', title: 'TypeScript', value: `${ts.toFixed(2)} %` }} />
-        </div>
+        <Legend class="about-me__legend" sections={sections} />
       </Card>
     );
   }
