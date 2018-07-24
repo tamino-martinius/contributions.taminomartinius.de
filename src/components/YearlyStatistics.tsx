@@ -1,6 +1,7 @@
 // This is an alternative way to define components using decorators
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import Bar from '@/components/Bar';
+import ButtonGroup from '@/components/ButtonGroup';
 import Card from '@/components/Card';
 import Legend from '@/components/Legend';
 import { Counts, RepositoryStats, Dict, DataPoint } from '@/types';
@@ -13,6 +14,10 @@ export default class extends Vue {
 
   render() {
     const year = this.year;
+    const years: string[] = [];
+    for (let year = 2013; year <= new Date().getFullYear(); year += 1) {
+      years.push(year.toString());
+    }
     const keys = Object.keys(this.dates).filter(date => date.startsWith(year));
     const counts = keys.map(key => this.dates[key]);
     const sum = counts.reduce((sum, count) => sum + count.commitCount, 0);
@@ -44,6 +49,7 @@ export default class extends Vue {
 
     return (
       <Card title="Yearly Statistics" class="yearly-statistics">
+        <ButtonGroup labels={years} slot="title" />
         <h3>
           Year {year}
         </h3>
