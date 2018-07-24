@@ -9,6 +9,12 @@ export default class extends Vue {
 
   render() {
     const active = this.active || 0;
+  buttonClickHandler(index: number) {
+    this.active = index;
+    this.$emit('indexChanged', index);
+    this.$emit('labelChanged', (this.labels || [])[index]);
+    this.$emit('valueChanged', (this.values || [])[index]);
+  }
 
     const buttons = this.labels.map((label, i) => (
       <button class={`button-group__button${i === active ? ' button-group__button--active' : ''}`}>
