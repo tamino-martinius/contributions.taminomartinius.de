@@ -4,6 +4,7 @@ import Bar from '@/components/Bar';
 import ButtonGroup from '@/components/ButtonGroup';
 import Card from '@/components/Card';
 import Legend from '@/components/Legend';
+import Heatmap from '@/components/Heatmap';
 import { Counts, RepositoryStats, Dict, DataPoint } from '@/types';
 
 @Component
@@ -96,6 +97,7 @@ export default class extends Vue {
         <h3 class="yearly-statistics__highlights">
           Highlights
         </h3>
+        <Heatmap counts={counts} year={this.year} max={max} />
         <Legend class="yearly-statistics__legend" sections={sections} />
         <Bar sections={sections} />
       </Card>
