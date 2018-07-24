@@ -16,10 +16,6 @@ export default class extends Vue {
       { color: 'color-3', title: 'Changed Files', value: this.counts.changedFiles },
     ];
 
-    const legend = sections.map(data => (
-      <Legend data={data} />
-    ));
-
     return (
       <Card title="Statistics" class="statistics">
         <h3>
@@ -29,9 +25,7 @@ export default class extends Vue {
           In Total
         </h4>
         <hr />
-        <div class="statistics__legend">
-          {legend}
-        </div>
+        <Legend class="statistics__legend" sections={sections} />
         <Bar sections={sections} />
       </Card>
     );
