@@ -17,7 +17,10 @@ export default class extends Vue {
   }
 
     const buttons = this.labels.map((label, i) => (
-      <button class={`button-group__button${i === active ? ' button-group__button--active' : ''}`}>
+      <button
+        onClick={this.buttonClickHandler.bind(this, i)}
+        class={`button-group__button${i === this.active ? ' button-group__button--active' : ''}`}
+      >
         {label}
       </button>
     ));
