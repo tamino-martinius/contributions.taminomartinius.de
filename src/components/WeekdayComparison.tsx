@@ -37,7 +37,17 @@ export default class extends Vue {
 
     return (
       <Card title="Weekday Comparison" class="weekday-comparison">
-
+        <div class="chart__grid">
+          <div class="chart__canvas">
+            {bars}
+          </div>
+          <div class="chart__axis chart__axis--x">
+            {xAxisLabels}
+          </div>
+          <div class="chart__axis chart__axis--y">
+            {yAxisLabels}
+          </div>
+        </div>
         <Legend class="weekday-comparison__legend" sections={sections} slot="footer" />
       </Card>
     );
