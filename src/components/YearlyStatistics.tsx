@@ -55,9 +55,32 @@ export default class extends Vue {
     for (let year = 2013; year <= new Date().getFullYear(); year += 1) {
       years.push(year.toString());
     }
-    const keys = Object.keys(this.dates).filter(date => date.startsWith(this.year));
-    const counts = keys.map(key => this.dates[key]);
-    const totalCommits = counts.reduce((sum, count) => sum + count.commitCount, 0);
+
+    const startDate = new Date(this.year);
+    const date = startDate;
+    const endDate = new Date(parseInt(this.year, 10), 11, 31, 23, 59, 59);
+    const keys: (string | undefined)[] = [];
+    const today = new Date();
+    while (date <= endDate) {
+      if (date > today) {
+        keys.push(undefined);
+      } else {
+        keys.push(`${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`);
+      }
+      date.setDate(date.getDate() + 1);
+    }
+    const counts: (number | undefined)[] = [];
+    let totalCommits = 0;
+    const max = Object.values(this.dates).reduce((max, date) => Math.max(max, date.commitCount), 0);
+    for (const key of keys) {
+      if (key) {
+        const count = (this.dates[key] && this.dates[key].commitCount) || 0;
+        counts.push(count);
+        totalCommits += count;
+      } else {
+        counts.push(undefined);
+      }
+    }
     const sections = this.sections(totalCommits);
 
     return (
