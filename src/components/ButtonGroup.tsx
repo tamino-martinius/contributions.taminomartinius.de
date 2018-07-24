@@ -10,8 +10,8 @@ export default class extends Vue {
   buttonClickHandler(index: number) {
     this.active = index;
     this.$emit('indexChanged', index);
-    this.$emit('labelChanged', (this.labels || [])[index]);
-    this.$emit('valueChanged', (this.values || [])[index]);
+    this.$emit('labelChanged', this.labels[index]);
+    this.$emit('valueChanged', (this.values || this.labels)[index]);
   }
 
   render() {
