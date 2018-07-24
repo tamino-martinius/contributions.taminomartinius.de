@@ -204,6 +204,25 @@ a {
   text-align: center;
   position: absolute;
   overflow: hidden;
+  .legend {
+    display: inline-block;
+    >div {
+      display: inline-block;
+    }
+  }
+  .legend__value {
+    display: none;
+  }
+  .legend__color {
+    margin-top: 16px;
+    margin-left: 10px;
+  }
+  .legend__title {
+    padding-right: 10px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #627386;
+  }
 }
 
 .legend {
