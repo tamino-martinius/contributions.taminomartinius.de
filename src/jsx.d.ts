@@ -17,6 +17,7 @@ declare global {
       h3: any;
       h4: any;
       hr: any;
+      label: any;
       button: any;
       header: any;
       footer: any;
