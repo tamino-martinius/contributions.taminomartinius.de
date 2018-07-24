@@ -36,7 +36,7 @@ export default class extends Vue {
     }
     if (othersSum > 0) {
       sections.push({
-        color: `color-7}`,
+        color: 'color-7',
         title: 'All Others',
         value: othersSum,
       });
