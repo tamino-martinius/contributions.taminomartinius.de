@@ -184,7 +184,8 @@ a {
 }
 
 .legend {
-  @include clearfix();
+  display: grid;
+  padding-bottom: 15px;
 }
 
 .legend__title {
