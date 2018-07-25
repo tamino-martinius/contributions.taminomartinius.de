@@ -5,10 +5,10 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Daytime from '@/components/Daytime';
 import DaytimeComparison from '@/components/DaytimeComparison';
-import Chart, { ChartType } from '@/components/Chart';
 import AboutMe from '@/components/AboutMe';
 import Statistics from '@/components/Statistics';
 import ContributionComparison from '@/components/ContributionComparison';
+import Timeline from '@/components/Timeline';
 import WeekdayComparison from '@/components/WeekdayComparison';
 import YearlyStatistics from '@/components/YearlyStatistics';
 import Years from '@/components/Years';
@@ -54,11 +54,7 @@ export default class extends Vue {
             <YearlyStatistics dates={this.stats.dates.sum} repos={this.stats.repositories} />
           </Row>
           <Row>
-            <Chart
-              class="timeline"
-              title="Timeline"
-              graphs={[]}
-            />
+            <Timeline dates={this.stats.dates} />
           </Row>
           <Footer />
         </div>
