@@ -37,7 +37,6 @@ export default class extends Vue {
       points: closedValues.map((value, i) => ({ x: i, y: value })),
     };
     const graphs = [openGraph, closedGraph];
-    console.log(graphs);
 
     const xLabels = [
       'Sunday',
