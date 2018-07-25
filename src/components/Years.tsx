@@ -41,8 +41,8 @@ export default class extends Vue {
 
     return (
       <Chart
-        class="daytime"
-        title="Daytime"
+        class="years"
+        title="Years"
         graphs={graphs}
         xLabels={xLabels}
       />

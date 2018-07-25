@@ -50,8 +50,8 @@ export default class extends Vue {
 
     return (
       <Chart
-        class="daytime"
-        title="Daytime"
+        class="daytime-comparison"
+        title="Daytime Comparison"
         type={ChartType.COMPARE}
         graphs={graphs}
         xLabels={xLabels}
