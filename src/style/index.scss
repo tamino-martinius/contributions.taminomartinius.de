@@ -359,6 +359,11 @@ a {
   .legend__color {
     margin-bottom: 0;
   }
+  svg {
+    transform: translateX(-50%);
+    left: 50%;
+    position: absolute;
+  }
 }
 
 .contribution-comparison__path--hover {
