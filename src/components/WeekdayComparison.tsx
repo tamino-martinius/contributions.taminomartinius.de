@@ -23,7 +23,7 @@ export default class extends Vue {
         <Bar
           sections={sections}
           type={BarType.VERTICAL}
-          style={{ height: `${(this.weekdays.sum[key].commitCount / maxSum * 75).toFixed(2)}%` }}
+          style={{ height: `${(this.weekdays.sum[key].commitCount / maxSum * 125).toFixed(0)}px` }}
         />,
       );
     }
