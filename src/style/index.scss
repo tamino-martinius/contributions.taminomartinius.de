@@ -514,4 +514,14 @@ a {
 }
 
 .chart__canvas {
+  align-self: end;
+  svg {
+    overflow: visible;
+  }
+}
+
+.chart__graph {
+  fill: none;
+  stroke: var(--color);
+  stroke-width: 1.5;
 }
