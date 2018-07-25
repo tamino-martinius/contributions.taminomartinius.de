@@ -1,6 +1,6 @@
 // This is an alternative way to define components using decorators
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import Chart from '@/components/Chart';
+import Chart, { ChartType } from '@/components/Chart';
 import { Dict, Graph, WeekDayStats, CommitSplit } from '@/types';
 
 @Component
@@ -53,6 +53,7 @@ export default class extends Vue {
       <Chart
         class="daytime"
         title="Daytime"
+        type={ChartType.COMPARE}
         graphs={graphs}
         xLabels={xLabels}
       />
