@@ -525,3 +525,8 @@ a {
   stroke: var(--color);
   stroke-width: 1.5;
 }
+
+.chart__area {
+  fill: var(--color);
+  opacity: 0.07;
+}
