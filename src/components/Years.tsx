@@ -11,14 +11,12 @@ export default class extends Vue {
     const years = Array.from({ length: new Date().getFullYear() - 2013 + 1 }).map(
       (x, i) => 2013 + i,
     );
-    console.log(years);
-
     const graphs = years.map((year, i) => {
-      const sum = 0;
+      let sum = 0;
       const graph: Graph = {
         title: year.toString(),
         color: `color-${i + 1}`,
-        value: sum,
+        value: 0,
         values: [],
       };
       const date = new Date(year.toString());
@@ -26,9 +24,12 @@ export default class extends Vue {
       while (date < lastDate) {
         const key = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
         const count = this.dates[key];
-        graph.values.push(count ? count.commitCount : 0);
+        const value = count ? count.commitCount : 0;
+        graph.values.push(value);
+        sum += value;
         date.setDate(date.getDate() + 1);
       }
+      graph.value = sum;
 
       return graph;
     });
