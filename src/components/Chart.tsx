@@ -1,6 +1,6 @@
 // This is an alternative way to define components using decorators
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import { Graph, Point } from '@/types';
+import { Graph } from '@/types';
 import Card from '@/components/Card';
 import Legend from '@/components/Legend';
 import { scaleLinear, area, line, curveBasis } from 'd3';
@@ -24,40 +24,38 @@ export default class extends Vue {
   render() {
     const classes = ['chart', this.type || ChartType.DISTINCT];
 
-    const xMax = Math.max(...this.graphs.map(graph =>
-      Math.max(...graph.points.map(point => point.x)),
-    ));
+    const xMax = Math.max(...this.graphs.map(graph => graph.values.length));
     const yMax = Math.max(...this.graphs.map(graph =>
-      Math.max(...graph.points.map(point => point.y)),
+      Math.max(...graph.values),
     ));
 
     const xScale = scaleLinear().domain([0, xMax]).range([0, CHART_WIDTH]);
     const yScaleComplete = scaleLinear().domain([0, yMax]).range([CHART_HEIGHT, 0]);
     const yScaleTop = scaleLinear().domain([0, yMax]).range([CHART_HEIGHT / 2, 0]);
     const yScaleBottom = scaleLinear().domain([0, yMax]).range([CHART_HEIGHT / 2, CHART_HEIGHT]);
-    const createPath = (points: Point[], index: number) => {
+    const createPath = (values: number[], index: number) => {
       let yScale = yScaleComplete;
       if (this.type === ChartType.COMPARE) {
         yScale = index % 2 === 1 ? yScaleTop : yScaleBottom;
       }
-      return line<Point>().x(d => xScale(d.x)).y(d => yScale(d.y)).curve(curveBasis)(points);
+      return line<number>().x((d, i) => xScale(i)).y(d => yScale(d)).curve(curveBasis)(values);
     };
-    const createArea = (points: Point[], index: number) => {
+    const createArea = (values: number[], index: number) => {
       let yScale = yScaleComplete;
       if (this.type === ChartType.COMPARE) {
         yScale = index % 2 === 1 ? yScaleTop : yScaleBottom;
       }
-      return area<Point>()
-        .x(d => xScale(d.x))
+      return area<number>()
+        .x((d, i) => xScale(i))
         .y0(d => yScale(0))
-        .y1(d => yScale(d.y))
-        .curve(curveBasis)(points);
+        .y1(d => yScale(d))
+        .curve(curveBasis)(values);
     };
 
     const paths = this.graphs.map((graph, i) => (
       <path
         class="chart__graph"
-        d={createPath(graph.points, i)}
+        d={createPath(graph.values, i)}
         style={{ '--color': `var(--${graph.color})` }}
       />
     ));
@@ -67,7 +65,7 @@ export default class extends Vue {
       areas = this.graphs.map((graph, i) => (
         <path
           class="chart__area"
-          d={createArea(graph.points, i)}
+          d={createArea(graph.values, i)}
           style={{ '--color': `var(--${graph.color})` }}
         />
       ));

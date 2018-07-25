@@ -28,13 +28,13 @@ export default class extends Vue {
       title: 'Open Source',
       color: 'color-open',
       value: openValue,
-      points: openValues.map((value, i) => ({ x: i, y: value })),
+      values: openValues,
     };
     const closedGraph: Graph = {
       title: 'Private',
       color: 'color-closed',
       value: closedValue,
-      points: closedValues.map((value, i) => ({ x: i, y: value })),
+      values: closedValues,
     };
     const graphs = [openGraph, closedGraph];
 

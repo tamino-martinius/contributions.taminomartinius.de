@@ -11,6 +11,7 @@ import Statistics from '@/components/Statistics';
 import ContributionComparison from '@/components/ContributionComparison';
 import WeekdayComparison from '@/components/WeekdayComparison';
 import YearlyStatistics from '@/components/YearlyStatistics';
+import Years from '@/components/Years';
 import Row, { RowType } from '@/components/Row';
 import { StatsData } from '@/types';
 import '../style/index.scss';
@@ -43,27 +44,14 @@ export default class extends Vue {
             <DaytimeComparison weekDays={this.stats.weekDays} />
           </Row>
           <Row type={RowType.LAST_THIRD}>
-            <WeekdayComparison
-              slot="first"
-              weekdays={this.stats.weekDays}
-            />
-            <ContributionComparison
-              slot="last"
-              counts={this.stats.total}
-            />
+            <WeekdayComparison slot="first" weekdays={this.stats.weekDays} />
+            <ContributionComparison slot="last" counts={this.stats.total} />
           </Row>
           <Row>
-            <Chart
-              class="years"
-              title="Years"
-              graphs={[]}
-            />
+            <Years dates={this.stats.dates.sum} />
           </Row>
           <Row>
-            <YearlyStatistics
-              dates={this.stats.dates.sum}
-              repos={this.stats.repositories}
-            />
+            <YearlyStatistics dates={this.stats.dates.sum} repos={this.stats.repositories} />
           </Row>
           <Row>
             <Chart

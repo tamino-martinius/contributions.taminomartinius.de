@@ -22,10 +22,9 @@ export default class extends Vue {
       title: titles[i],
       color: `color-${i + 1}`,
       value: stats.commitCount,
-      points: hours.map(hour => ({
-        x: hour,
-        y: (stats.hours[hour.toString()] && stats.hours[hour.toString()].commitCount) || 0,
-      })),
+      values: hours.map(
+        hour => (stats.hours[hour.toString()] && stats.hours[hour.toString()].commitCount) || 0,
+      ),
     }));
 
     const xLabels = [
