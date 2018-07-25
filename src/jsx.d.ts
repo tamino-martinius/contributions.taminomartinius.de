@@ -21,6 +21,8 @@ declare global {
       button: any;
       header: any;
       footer: any;
+      svg: any;
+      path: any;
     }
   }
 }
