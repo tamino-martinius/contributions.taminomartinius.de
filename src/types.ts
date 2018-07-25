@@ -38,12 +38,10 @@ export interface DataPoint {
 }
 
 export interface Point {
-  x: number | Date;
+  x: number;
   y: number;
 }
 
-export interface Graph {
-  title: string;
-  values: Point[];
-  color: string;
+export interface Graph extends DataPoint {
+  points: Point[];
 }
