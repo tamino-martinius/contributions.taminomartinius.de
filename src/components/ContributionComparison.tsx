@@ -4,6 +4,13 @@ import Card from '@/components/Card';
 import Legend from '@/components/Legend';
 import { CommitSplit, DataPoint, Counts } from '@/types';
 
+const ANGLE_START = 0;
+const ANGLE_END = 360;
+const ANGLE_GAP = 1;
+const SVG_SIZE = 160;
+const STROKE_WIDTH = 3;
+const HOVER_WIDTH = 10 + STROKE_WIDTH;
+
 @Component
 export default class extends Vue {
   @Prop() counts!: CommitSplit<Counts>;
