@@ -4,6 +4,7 @@ import Data from '@/models/Data';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Daytime from '@/components/Daytime';
+import DaytimeComparison from '@/components/DaytimeComparison';
 import Chart, { ChartType } from '@/components/Chart';
 import AboutMe from '@/components/AboutMe';
 import Statistics from '@/components/Statistics';
@@ -39,12 +40,7 @@ export default class extends Vue {
             <Daytime weekDays={this.stats.weekDays.sum} />
           </Row>
           <Row>
-            <Chart
-              class="daytime-comparison"
-              title="Daytime Comparison"
-              graphs={[]}
-              type={ChartType.COMPARE}
-            />
+            <DaytimeComparison weekDays={this.stats.weekDays} />
           </Row>
           <Row type={RowType.LAST_THIRD}>
             <WeekdayComparison
