@@ -37,11 +37,6 @@ export interface DataPoint {
   color: string;
 }
 
-export interface Point {
-  x: number;
-  y: number;
-}
-
 export interface Graph extends DataPoint {
-  points: Point[];
+  values: number[];
 }
