@@ -3,13 +3,15 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 import Chart, { ChartType } from '@/components/Chart';
 import { Dict, Graph, Counts, CommitSplit } from '@/types';
 
+const GROUP_SIZE = 15;
+
 @Component
 export default class extends Vue {
   @Prop() dates!: CommitSplit<Dict<Counts>>;
 
   render() {
-    const openValues: number[] = [];
-    const closedValues: number[] = [];
+    let openValues: number[] = [];
+    let closedValues: number[] = [];
 
     const firstDate = new Date('2013');
     const lastDate = new Date();
@@ -22,6 +24,21 @@ export default class extends Vue {
       closedValues.push(closedCount ? closedCount.commitCount : 0);
       date.setDate(date.getDate() + 1);
     }
+
+    openValues = openValues.reduce<number[]>(
+      (arr, value, i) => {
+        arr[~~(i / GROUP_SIZE)] = (arr[~~(i / GROUP_SIZE)] || 0) + value;
+        return arr;
+      },
+      [],
+    );
+    closedValues = closedValues.reduce<number[]>(
+      (arr, value, i) => {
+        arr[~~(i / GROUP_SIZE)] = (arr[~~(i / GROUP_SIZE)] || 0) + value;
+        return arr;
+      },
+      [],
+    );
 
     const openValue = openValues.reduce((sum, value) => sum + value, 0);
     const closedValue = closedValues.reduce((sum, value) => sum + value, 0);

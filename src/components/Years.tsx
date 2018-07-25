@@ -3,6 +3,8 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 import Chart from '@/components/Chart';
 import { Dict, Graph, Counts } from '@/types';
 
+const GROUP_SIZE = 5;
+
 @Component
 export default class extends Vue {
   @Prop() dates!: Dict<Counts>;
@@ -30,6 +32,13 @@ export default class extends Vue {
         date.setDate(date.getDate() + 1);
       }
       graph.value = sum;
+      graph.values = graph.values.reduce<number[]>(
+        (arr, value, i) => {
+          arr[~~(i / GROUP_SIZE)] = (arr[~~(i / GROUP_SIZE)] || 0) + value;
+          return arr;
+        },
+        [],
+      );
 
       return graph;
     });
