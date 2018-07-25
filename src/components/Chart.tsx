@@ -3,7 +3,7 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 import { Graph, Point } from '@/types';
 import Card from '@/components/Card';
 import Legend from '@/components/Legend';
-import { scaleLinear, line, curveBasis } from 'd3';
+import { scaleLinear, area, line, curveBasis } from 'd3';
 
 export enum ChartType {
   DISTINCT = 'chart--distinct',
@@ -32,16 +32,39 @@ export default class extends Vue {
     ));
 
     const xScale = scaleLinear().domain([0, xMax]).range([0, CHART_WIDTH]);
-    const yScale = scaleLinear().domain([0, yMax]).range([CHART_HEIGHT, 0]);
-    const createPath = line<Point>()
-      .x(d => xScale(d.x))
-      .y(d => yScale(d.y))
-      .curve(curveBasis);
+    const yScaleComplete = scaleLinear().domain([0, yMax]).range([CHART_HEIGHT, 0]);
+    const yScaleTop = scaleLinear().domain([0, yMax]).range([CHART_HEIGHT / 2, 0]);
+    const yScaleBottom = scaleLinear().domain([0, yMax]).range([CHART_HEIGHT / 2, CHART_HEIGHT]);
+    const createPath = (points: Point[], index: number) => {
+      let yScale = yScaleComplete;
+      if (this.type === ChartType.COMPARE) {
+        yScale = index % 2 === 1 ? yScaleTop : yScaleBottom;
+      }
+      return line<Point>().x(d => xScale(d.x)).y(d => yScale(d.y)).curve(curveBasis)(points);
+    };
+    const createArea = (points: Point[], index: number) => {
+      let yScale = yScaleComplete;
+      if (this.type === ChartType.COMPARE) {
+        yScale = index % 2 === 1 ? yScaleTop : yScaleBottom;
+      }
+      return area<Point>()
+        .x(d => xScale(d.x))
+        .y0(d => yScale(0))
+        .y1(d => yScale(d.y))
+        .curve(curveBasis)(points);
+    };
 
-    const paths = this.graphs.map(graph => (
+    const paths = this.graphs.map((graph, i) => (
       <path
         class="chart__graph"
-        d={createPath(graph.points)}
+        d={createPath(graph.points, i)}
+        style={{ '--color': `var(--${graph.color})` }}
+      />
+    ));
+    const areas = this.type !== ChartType.COMPARE ? [] : this.graphs.map((graph, i) => (
+      <path
+        class="chart__area"
+        d={createArea(graph.points, i)}
         style={{ '--color': `var(--${graph.color})` }}
       />
     ));
@@ -60,6 +83,7 @@ export default class extends Vue {
               height={`${CHART_HEIGHT}px`}
             >
               {paths}
+              {areas}
             </svg>
           </div>
           <div class="chart__axis chart__axis--x">
