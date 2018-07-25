@@ -339,6 +339,46 @@ a {
 
 .contribution-comparison {
   height: 315px;
+  .legend {
+    display: block;
+    >div {
+      border-bottom: 1px solid #F2F3F5;
+      margin: 0 -20px;
+      padding: 10px 20px;
+      display: grid;
+      grid-template-columns: 1fr 20fr 3fr;
+    }
+  }
+  .legend__title {
+    color: #627386;
+  }
+  .legend__value {
+    text-align: right;
+    padding: 0;
+  }
+  .legend__color {
+    margin-bottom: 0;
+  }
+}
+
+.contribution-comparison__path--hover {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.contribution-comparison__path {
+  fill: none;
+  &:hover+.contribution-comparison__path--hover {
+    opacity: 0.07;
+  }
+}
+
+.contribution-comparison__path--open {
+  stroke: var(--color-open);
+}
+
+.contribution-comparison__path--closed {
+  stroke: var(--color-closed);
 }
 
 .years {
