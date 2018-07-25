@@ -41,15 +41,71 @@ export default class extends Vue {
   render() {
     const valueOpen = this.counts.open.commitCount / this.counts.sum.commitCount;
     const valueClosed = this.counts.closed.commitCount / this.counts.sum.commitCount;
+    const angle = valueOpen * 360;
 
     const sections: DataPoint[] = [
-      { color: 'color-open', title: 'Open Source', value: `${(valueOpen * 100).toFixed(2)}%` },
-      { color: 'color-closed', title: 'Private', value: `${(valueClosed * 100).toFixed(2)}%` },
+      { color: 'color-open', title: 'Open Source', value: `${(valueOpen * 100).toFixed(0)}%` },
+      { color: 'color-closed', title: 'Private', value: `${(valueClosed * 100).toFixed(0)}%` },
     ];
+
+    const classPath = 'contribution-comparison__path';
+    const classOpen = 'contribution-comparison__path--open';
+    const classClosed = 'contribution-comparison__path--closed';
+    const classHover = 'contribution-comparison__path--hover';
 
     return (
       <Card title="Contribution Comparison" class="contribution-comparison">
         <Legend sections={sections} />
+        <svg
+          viewbox={`0 0 ${SVG_SIZE} ${SVG_SIZE}`}
+          width={`${SVG_SIZE}px`}
+          height={`${SVG_SIZE}px`}
+        >
+          <path
+            class={[classPath, classOpen]}
+            style={{ strokeWidth: `${STROKE_WIDTH}px` }}
+            d={this.describeArc(
+              SVG_SIZE / 2,
+              SVG_SIZE / 2,
+              SVG_SIZE / 2 - STROKE_WIDTH / 2,
+              ANGLE_START + ANGLE_GAP,
+              angle - ANGLE_GAP,
+            )}
+          />
+          <path
+            class={[classPath, classOpen, classHover]}
+            style={{ strokeWidth: `${HOVER_WIDTH}px` }}
+            d={this.describeArc(
+              SVG_SIZE / 2,
+              SVG_SIZE / 2,
+              SVG_SIZE / 2 - HOVER_WIDTH / 2,
+              ANGLE_START + ANGLE_GAP,
+              angle - ANGLE_GAP,
+            )}
+          />
+          <path
+            class={[classPath, classClosed]}
+            style={{ strokeWidth: `${STROKE_WIDTH}px` }}
+            d={this.describeArc(
+              SVG_SIZE / 2,
+              SVG_SIZE / 2,
+              SVG_SIZE / 2 - STROKE_WIDTH / 2,
+              angle + ANGLE_GAP,
+              ANGLE_END - ANGLE_GAP,
+            )}
+          />
+          <path
+            class={[classPath, classClosed, classHover]}
+            style={{ strokeWidth: `${HOVER_WIDTH}px` }}
+            d={this.describeArc(
+              SVG_SIZE / 2,
+              SVG_SIZE / 2,
+              SVG_SIZE / 2 - HOVER_WIDTH / 2,
+              angle + ANGLE_GAP,
+              ANGLE_END - ANGLE_GAP,
+            )}
+          />
+        </svg>
       </Card>
     );
   }
