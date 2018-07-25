@@ -496,10 +496,10 @@ a {
   grid-area: xAxis;
   padding-top: 5px;
   border-top: 1px solid #F2F4F6;
+  display: flex;
   label {
     text-align: center;
-    width: 72px;
-    display: inline-block;
+    flex-grow: 1;
   }
 }
 
