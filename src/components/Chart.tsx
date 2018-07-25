@@ -61,13 +61,23 @@ export default class extends Vue {
         style={{ '--color': `var(--${graph.color})` }}
       />
     ));
-    const areas = this.type !== ChartType.COMPARE ? [] : this.graphs.map((graph, i) => (
-      <path
-        class="chart__area"
-        d={createArea(graph.points, i)}
-        style={{ '--color': `var(--${graph.color})` }}
-      />
-    ));
+    let areas: JSX.Element[] = [];
+    let divider: JSX.Element | undefined;
+    if (this.type === ChartType.COMPARE) {
+      areas = this.graphs.map((graph, i) => (
+        <path
+          class="chart__area"
+          d={createArea(graph.points, i)}
+          style={{ '--color': `var(--${graph.color})` }}
+        />
+      ));
+      divider = (
+        <path
+          class="chart__divider"
+          d={`M0,${~~(CHART_HEIGHT / 2)}L${CHART_WIDTH},${~~(CHART_HEIGHT / 2)}`}
+        />
+      );
+    }
 
     const xAxisLabels = this.xLabels.map(label => (
       <label>{label}</label>
@@ -84,6 +94,7 @@ export default class extends Vue {
             >
               {paths}
               {areas}
+              {divider}
             </svg>
           </div>
           <div class="chart__axis chart__axis--x">
