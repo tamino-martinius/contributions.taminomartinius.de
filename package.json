@@ -1,8 +1,7 @@
 {
-  "name": "template-webpack-typescript-vue",
-  "version": "1.0.0",
+  "name": "contributions-taminomartinius-de",
   "private": true,
-  "description": "A Template to generate websites based on TypeScript and VueJs",
+  "description": "Display all GitHub Contributions of tamino-martinius",
   "main": "dist/index.js",
   "scripts": {
     "build": "webpack",
@@ -23,12 +22,6 @@
     "vuejs",
     "webpack",
     "webpack4"
-  ],
-  "contributors": [
-    {
-      "name": "Daniel Rosenwasser",
-      "url": "https://github.com/DanielRosenwasser"
-    }
   ],
   "author": {
     "name": "Tamino Martinius",
