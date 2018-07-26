@@ -38,7 +38,6 @@ export default class extends Vue {
             count === undefined ? 'color-empty' : this.colors[count.toString()]
             })`,
         }}
-        title={count}
       />
     ));
 
