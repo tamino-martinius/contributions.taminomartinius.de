@@ -372,7 +372,7 @@ a {
 .contribution-comparison__path {
   fill: none;
   &:hover+.contribution-comparison__path--hover {
-    opacity: 0.07;
+    opacity: 0.08;
   }
 }
 
@@ -548,7 +548,7 @@ a {
 
 .chart__area {
   fill: var(--color);
-  opacity: 0.07;
+  opacity: 0.08;
 }
 
 .chart--lines .chart__area {
