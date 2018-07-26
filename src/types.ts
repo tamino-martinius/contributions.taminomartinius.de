@@ -33,7 +33,7 @@ export interface RepositoryStats extends Counts {
 
 export interface DataPoint {
   title: string;
-  value: number | string;
+  value: number;
   color: string;
 }
 

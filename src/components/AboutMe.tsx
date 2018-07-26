@@ -15,10 +15,10 @@ export default class extends Vue {
     const ts = this.languages.TypeScript.commitCount / this.counts.commitCount * 100;
     const html = this.languages.HTML.commitCount / this.counts.commitCount * 100;
     const sections: DataPoint[] = [
-      { color: 'color-2', title: 'JavaScript', value: `${js.toFixed(2)} %` },
-      { color: 'color-4', title: 'HTML', value: `${html.toFixed(2)} %` },
-      { color: 'color-1', title: 'Ruby', value: `${ruby.toFixed(2)} %` },
-      { color: 'color-3', title: 'TypeScript', value: `${ts.toFixed(2)} %` },
+      { color: 'color-2', title: 'JavaScript', value: js },
+      { color: 'color-4', title: 'HTML', value: html },
+      { color: 'color-1', title: 'Ruby', value: ruby },
+      { color: 'color-3', title: 'TypeScript', value: ts },
     ];
 
     return (
