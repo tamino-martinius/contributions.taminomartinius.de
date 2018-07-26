@@ -14,7 +14,7 @@ export default class extends Vue {
             </a>
           </div>
           <div class="footer__right">
-            <a href="">
+            <a href="https://taminomartinius.de/#legal">
               Legal
             </a>
           </div>
