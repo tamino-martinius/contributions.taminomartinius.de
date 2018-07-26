@@ -518,6 +518,26 @@ a {
   svg {
     overflow: visible;
   }
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 20px;
+    height: calc(100% - 25px);
+    width: 50px;
+  }
+  &.chart--faded {
+    &:before {
+      left: 20px;
+      background: linear-gradient(to right, #fff 0%, #fff 40%, #fff0 100%);
+    }
+    &:after {
+      right: 20px;
+      background: linear-gradient(to left, #fff 0%, #fff 40%, #fff0 100%);
+    }
+  }
 }
 
 .chart__graph {
@@ -531,7 +551,7 @@ a {
   opacity: 0.07;
 }
 
-.chart--distinct .chart__area {
+.chart--lines .chart__area {
   opacity: 0;
 }
 

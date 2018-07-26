@@ -127,7 +127,7 @@ export default class extends Vue {
       <Card class={classes.join(' ')} title={this.title}>
         {typeToggle}
         <div class="chart__grid">
-          <div class="chart__canvas">
+          <div class="chart__canvas chart--faded">
             <svg
               viewbox={`0 0 ${CHART_WIDTH} ${CHART_HEIGHT}`}
               width={`${CHART_WIDTH}px`}
