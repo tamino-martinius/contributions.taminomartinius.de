@@ -67,21 +67,26 @@ export default class extends Vue {
         ;
     };
 
-    const paths = this.graphs.map((graph, i) => (
-      <path
-        class="chart__graph"
-        d={createPath(graph.values, i)}
-        style={{ '--color': `var(--${graph.color})` }}
-      />
-    ));
-    const areas = this.graphs.map((graph, i) => (
-      <path
-        class="chart__area"
-        d={createArea(graph.values, i)}
-        style={{ '--color': `var(--${graph.color})` }}
-      />
-    ));
+    const graphs: JSX.Element[] = [];
+    for (let i = 0; i < this.graphs.length; i += 1) {
+      const graph = this.graphs[i];
+      graphs.push(
+        <path
+          class="chart__area"
+          d={createArea(graph.values, i)}
+          style={{ '--color': `var(--${graph.color})` }}
+        />,
+        <path
+          class="chart__graph"
+          d={createPath(graph.values, i)}
+          style={{ '--color': `var(--${graph.color})` }}
+        />,
+      );
+    }
+
     let divider: JSX.Element | undefined;
+    let typeToggle: JSX.Element | undefined;
+
     if (type === ChartType.COMPARE) {
       divider = (
         <path
@@ -89,20 +94,20 @@ export default class extends Vue {
           d={`M0,${~~(CHART_HEIGHT / 2)}L${CHART_WIDTH},${~~(CHART_HEIGHT / 2)}`}
         />
       );
+    } else {
+      typeToggle = (
+        <ButtonGroup
+          labels={['Distinct', 'Stacked']}
+          values={[ChartType.DISTINCT, ChartType.STACKED]}
+          slot="title"
+          onValueChanged={this.typeChangeHandler}
+        />
+      );
     }
 
     const xAxisLabels = this.xLabels.map(label => (
       <label>{label}</label>
     ));
-
-    const typeToggle = type === ChartType.COMPARE ? undefined : (
-      <ButtonGroup
-        labels={['Distinct', 'Stacked']}
-        values={[ChartType.DISTINCT, ChartType.STACKED]}
-        slot="title"
-        onValueChanged={this.typeChangeHandler}
-      />
-    );
 
     return (
       <Card class={classes.join(' ')} title={this.title}>
@@ -114,8 +119,7 @@ export default class extends Vue {
               width={`${CHART_WIDTH}px`}
               height={`${CHART_HEIGHT}px`}
             >
-              {paths}
-              {areas}
+              {graphs}
               {divider}
             </svg>
           </div>
