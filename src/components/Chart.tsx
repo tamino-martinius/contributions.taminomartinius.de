@@ -39,13 +39,21 @@ export default class extends Vue {
     const yScaleComplete = scaleLinear().domain([0, yMax]).range([CHART_HEIGHT, 0]);
     const yScaleTop = scaleLinear().domain([0, yMax]).range([CHART_HEIGHT / 2, 0]);
     const yScaleBottom = scaleLinear().domain([0, yMax]).range([CHART_HEIGHT / 2, CHART_HEIGHT]);
+
+    const y0 = Array.from({ length: xMax }).map(() => 0);
+
     const createPath = (values: number[], index: number) => {
       let yScale = yScaleComplete;
       if (type === ChartType.COMPARE) {
         yScale = index % 2 === 1 ? yScaleTop : yScaleBottom;
       }
-      return line<number>().x((d, i) => xScale(i)).y(d => yScale(d)).curve(curveBasis)(values);
+      return line<number>()
+        .x((d, i) => xScale(i))
+        .y((d, i) => yScale(y0[i] + d))
+        .curve(curveBasis)(values)
+        ;
     };
+
     const createArea = (values: number[], index: number) => {
       let yScale = yScaleComplete;
       if (type === ChartType.COMPARE) {
@@ -53,9 +61,10 @@ export default class extends Vue {
       }
       return area<number>()
         .x((d, i) => xScale(i))
-        .y0((d, i) => yScale(0))
-        .y1(d => yScale(d))
-        .curve(curveBasis)(values);
+        .y0((d, i) => yScale(y0[i]))
+        .y1((d, i) => yScale(y0[i] + d))
+        .curve(curveBasis)(values)
+        ;
     };
 
     const paths = this.graphs.map((graph, i) => (
