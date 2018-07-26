@@ -49,7 +49,7 @@ export default class extends Vue {
       Math.max(...graph.values),
     ));
 
-    const xScale = scaleLinear().domain([0, xMax]).range([0, CHART_WIDTH]);
+    const xScale = scaleLinear().domain([0, xMax - 1]).range([0, CHART_WIDTH]);
     const yScaleComplete = scaleLinear().domain([0, yMax]).range([CHART_HEIGHT, 0]);
     const yScaleTop = scaleLinear().domain([0, yMax]).range([CHART_HEIGHT / 2, 0]);
     const yScaleBottom = scaleLinear().domain([0, yMax]).range([CHART_HEIGHT / 2, CHART_HEIGHT]);
