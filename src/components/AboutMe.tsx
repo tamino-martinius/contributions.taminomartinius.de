@@ -32,7 +32,10 @@ export default class extends Vue {
           I speak code
         </h3>
         <h4>
-          Head of Development <a href="https://shyftplan.com">@shyftplan</a>
+          Head of Development
+          <a href="https://shyftplan.com/en/?utm_source=tamino&utm_campaign=contributions">
+            &nbsp;@shyftplan
+          </a>
         </h4>
         <hr />
         <Legend class="about-me__legend" sections={sections} columns="1fr 1fr" />
