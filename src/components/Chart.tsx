@@ -7,7 +7,7 @@ import Legend from '@/components/Legend';
 import { scaleLinear, area, line, curveBasis, values } from 'd3';
 
 export enum ChartType {
-  DISTINCT = 'chart--distinct',
+  LINES = 'chart--lines',
   STACKED = 'chart--stacked',
   COMPARE = 'chart--compare',
 }
@@ -111,8 +111,8 @@ export default class extends Vue {
     } else {
       typeToggle = (
         <ButtonGroup
-          labels={['Distinct', 'Stacked']}
-          values={[ChartType.DISTINCT, ChartType.STACKED]}
+          labels={['Lines', 'Stacked']}
+          values={[ChartType.LINES, ChartType.STACKED]}
           slot="title"
           onValueChanged={this.typeChangeHandler}
         />
