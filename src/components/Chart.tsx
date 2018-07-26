@@ -20,14 +20,15 @@ export default class extends Vue {
   @Prop() graphs!: Graph[];
   @Prop() title!: string;
   @Prop() xLabels!: string[];
-  @Prop() type!: ChartType;
+  @Prop() type!: ChartType | undefined;
 
   typeChangeHandler(type: ChartType) {
     console.log(type);
   }
 
   render() {
-    const classes = ['chart', this.type || ChartType.DISTINCT];
+    const type = this.type || ChartType.STACKED;
+    const classes = ['chart', type];
 
     const xMax = Math.max(...this.graphs.map(graph => graph.values.length));
     const yMax = Math.max(...this.graphs.map(graph =>
@@ -40,19 +41,19 @@ export default class extends Vue {
     const yScaleBottom = scaleLinear().domain([0, yMax]).range([CHART_HEIGHT / 2, CHART_HEIGHT]);
     const createPath = (values: number[], index: number) => {
       let yScale = yScaleComplete;
-      if (this.type === ChartType.COMPARE) {
+      if (type === ChartType.COMPARE) {
         yScale = index % 2 === 1 ? yScaleTop : yScaleBottom;
       }
       return line<number>().x((d, i) => xScale(i)).y(d => yScale(d)).curve(curveBasis)(values);
     };
     const createArea = (values: number[], index: number) => {
       let yScale = yScaleComplete;
-      if (this.type === ChartType.COMPARE) {
+      if (type === ChartType.COMPARE) {
         yScale = index % 2 === 1 ? yScaleTop : yScaleBottom;
       }
       return area<number>()
         .x((d, i) => xScale(i))
-        .y0(d => yScale(0))
+        .y0((d, i) => yScale(0))
         .y1(d => yScale(d))
         .curve(curveBasis)(values);
     };
@@ -64,16 +65,15 @@ export default class extends Vue {
         style={{ '--color': `var(--${graph.color})` }}
       />
     ));
-    let areas: JSX.Element[] = [];
+    const areas = this.graphs.map((graph, i) => (
+      <path
+        class="chart__area"
+        d={createArea(graph.values, i)}
+        style={{ '--color': `var(--${graph.color})` }}
+      />
+    ));
     let divider: JSX.Element | undefined;
-    if (this.type === ChartType.COMPARE) {
-      areas = this.graphs.map((graph, i) => (
-        <path
-          class="chart__area"
-          d={createArea(graph.values, i)}
-          style={{ '--color': `var(--${graph.color})` }}
-        />
-      ));
+    if (type === ChartType.COMPARE) {
       divider = (
         <path
           class="chart__divider"
