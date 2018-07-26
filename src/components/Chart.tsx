@@ -21,6 +21,10 @@ export default class extends Vue {
   @Prop() xLabels!: string[];
   @Prop() type!: ChartType;
 
+  typeChangeHandler(type: ChartType) {
+    console.log(type);
+  }
+
   render() {
     const classes = ['chart', this.type || ChartType.DISTINCT];
 
