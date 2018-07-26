@@ -3,7 +3,7 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 import Chart, { ChartType } from '@/components/Chart';
 import { Dict, Graph, Counts, CommitSplit } from '@/types';
 
-const GROUP_SIZE = 15;
+const GROUP_SIZE = 24;
 
 @Component
 export default class extends Vue {
