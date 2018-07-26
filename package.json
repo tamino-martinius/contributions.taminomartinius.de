@@ -8,7 +8,7 @@
     "build:production": "npm run build --production",
     "start": "webpack-dev-server --hot --inline --open -d",
     "watch": "npm run build -- --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "scripts/deploy.sh"
   },
   "keywords": [
     "example",
