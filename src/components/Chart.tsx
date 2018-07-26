@@ -2,6 +2,7 @@
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import { Graph } from '@/types';
 import Card from '@/components/Card';
+import ButtonGroup from '@/components/ButtonGroup';
 import Legend from '@/components/Legend';
 import { scaleLinear, area, line, curveBasis } from 'd3';
 
@@ -85,8 +86,18 @@ export default class extends Vue {
       <label>{label}</label>
     ));
 
+    const typeToggle = type === ChartType.COMPARE ? undefined : (
+      <ButtonGroup
+        labels={['Distinct', 'Stacked']}
+        values={[ChartType.DISTINCT, ChartType.STACKED]}
+        slot="title"
+        onValueChanged={this.typeChangeHandler}
+      />
+    );
+
     return (
       <Card class={classes.join(' ')} title={this.title}>
+        {typeToggle}
         <div class="chart__grid">
           <div class="chart__canvas">
             <svg
