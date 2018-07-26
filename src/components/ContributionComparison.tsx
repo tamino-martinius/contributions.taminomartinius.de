@@ -44,8 +44,8 @@ export default class extends Vue {
     const angle = valueOpen * 360;
 
     const sections: DataPoint[] = [
-      { color: 'color-open', title: 'Open Source', value: `${(valueOpen * 100).toFixed(0)}%` },
-      { color: 'color-closed', title: 'Private', value: `${(valueClosed * 100).toFixed(0)}%` },
+      { color: 'color-open', title: 'Open Source', value: valueOpen },
+      { color: 'color-closed', title: 'Private', value: valueClosed },
     ];
 
     const classPath = 'contribution-comparison__path';

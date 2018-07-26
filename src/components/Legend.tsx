@@ -18,7 +18,7 @@ export default class extends Vue {
           {data.title}
         </div>
         <div class="legend__value">
-          {data.value.toLocaleString()}
+          {data.value < 1 ? `${(data.value * 100).toFixed(0)} %` : data.value.toLocaleString()}
         </div>
       </div>
     ));

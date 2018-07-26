@@ -33,8 +33,8 @@ export interface RepositoryStats extends Counts {
 
 export interface DataPoint {
   title: string;
-  value: number;
   color: string;
+  value: number;
 }
 
 export interface Graph extends DataPoint {

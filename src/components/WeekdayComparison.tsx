@@ -33,8 +33,8 @@ export default class extends Vue {
     ));
 
     const sections: DataPoint[] = [
-      { color: 'color-open', title: 'Open Source', value: 'nothing' },
-      { color: 'color-closed', title: 'Private', value: 'nothing' },
+      { color: 'color-open', title: 'Open Source', value: 0 },
+      { color: 'color-closed', title: 'Private', value: 0 },
     ];
 
     return (

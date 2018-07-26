@@ -10,10 +10,10 @@ export default class extends Vue {
   @Prop() counts!: Counts;
 
   render() {
-    const ruby = this.languages.Ruby.commitCount / this.counts.commitCount * 100;
-    const js = this.languages.JavaScript.commitCount / this.counts.commitCount * 100;
-    const ts = this.languages.TypeScript.commitCount / this.counts.commitCount * 100;
-    const html = this.languages.HTML.commitCount / this.counts.commitCount * 100;
+    const ruby = this.languages.Ruby.commitCount / this.counts.commitCount;
+    const js = this.languages.JavaScript.commitCount / this.counts.commitCount;
+    const ts = this.languages.TypeScript.commitCount / this.counts.commitCount;
+    const html = this.languages.HTML.commitCount / this.counts.commitCount;
     const sections: DataPoint[] = [
       { color: 'color-2', title: 'JavaScript', value: js },
       { color: 'color-4', title: 'HTML', value: html },
