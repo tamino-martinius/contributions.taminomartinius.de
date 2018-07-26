@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+export AWS_BUCKET_NAME="lambda---get-all-github-contributions"
+export AWS_REGION="eu-central-1"
+export AWS_PROFILE="nextcode"
+export AWS_CLOUDFRONT_ID="E9JZC3QMHLMQM"
