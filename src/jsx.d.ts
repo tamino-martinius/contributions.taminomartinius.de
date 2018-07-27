@@ -23,6 +23,9 @@ declare global {
       footer: any;
       svg: any;
       path: any;
+      circle: any;
+      rect: any;
+      mask: any;
     }
   }
 }
