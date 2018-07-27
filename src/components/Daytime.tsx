@@ -1,4 +1,3 @@
-// This is an alternative way to define components using decorators
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import Chart from '@/components/Chart';
 import { Dict, Graph, WeekDayStats } from '@/types';

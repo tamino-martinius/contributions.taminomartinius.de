@@ -1,4 +1,3 @@
-// This is an alternative way to define components using decorators
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import Bar from '@/components/Bar';
 import Card from '@/components/Card';
