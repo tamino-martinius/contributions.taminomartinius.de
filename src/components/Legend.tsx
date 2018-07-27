@@ -1,6 +1,7 @@
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import { DataPoint } from '@/types';
 export { DataPoint } from '@/types';
+import CountTo from '@/components/CountTo';
 
 @Component
 export default class extends Vue {
@@ -17,7 +18,10 @@ export default class extends Vue {
           {data.title}
         </div>
         <div class="legend__value">
-          {data.value < 1 ? `${(data.value * 100).toFixed(0)} %` : data.value.toLocaleString()}
+          <CountTo
+            endVal={data.value < 1 ? data.value * 100 : data.value}
+            suffix={data.value < 1 ? ' %' : ''}
+          />
         </div>
       </div>
     ));
