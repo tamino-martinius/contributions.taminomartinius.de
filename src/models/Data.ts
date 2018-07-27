@@ -4,6 +4,17 @@ import {
 
 const GITHUB_USER_LOGIN = 'tamino-martinius';
 
+const waitFor = (duration: number): Promise<number> => {
+  return new Promise((resolve, reject) => {
+    const timeout: number = window.setTimeout(
+      () => {
+        resolve(timeout);
+      },
+      duration,
+    );
+  });
+};
+
 declare const DEBUG_MODE: boolean;
 export class Data {
   constructor() {
