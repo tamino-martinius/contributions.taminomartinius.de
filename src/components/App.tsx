@@ -1,6 +1,7 @@
 import { Vue, Component } from 'vue-property-decorator';
 import Data from '@/models/Data';
 import Footer from '@/components/Footer';
+import Loading from '@/components/Loading';
 import Header from '@/components/Header';
 import Daytime from '@/components/Daytime';
 import DaytimeComparison from '@/components/DaytimeComparison';
@@ -60,13 +61,7 @@ export default class extends Vue {
       );
     }
     return (
-      <div class="app">
-        <Header />
-        <div>
-          loading ...
-        </div>
-        <Footer />
-      </div>
+      <Loading />
     );
   }
 }
