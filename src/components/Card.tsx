@@ -9,9 +9,12 @@ export default class Card extends Vue {
 
   @Prop() title!: string;
   isVisible = false;
+  isHandled = false;
 
   async show() {
+    this.isHandled = true;
     const waitDuration = MIN_SHOW_DISTANCE_DURATION + Card.lastShow - Date.now();
+    console.log(waitDuration);
     if (waitDuration > 0) {
       Card.lastShow = Date.now() + waitDuration;
       await Util.waitFor(waitDuration);
@@ -21,8 +24,17 @@ export default class Card extends Vue {
     this.isVisible = true;
   }
 
+  scrollHandler() {
+    if (!this.isHandled && Util.isInViewport(this.$el)) this.show();
+  }
+
   mounted() {
-    if (Util.isInViewport(this.$el)) this.show();
+    this.scrollHandler();
+    window.addEventListener('scroll', this.scrollHandler);
+  }
+
+  destroyed() {
+    window.removeEventListener('scroll', this.scrollHandler);
   }
 
   render() {
