@@ -37,7 +37,7 @@ export default class extends Vue {
           </a>
         </h4>
         <hr />
-        <Legend class="about-me__legend" sections={sections} columns="1fr 1fr" />
+        <Legend decimals={2} class="about-me__legend" sections={sections} columns="1fr 1fr" />
       </Card>
     );
   }
