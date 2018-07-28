@@ -7,6 +7,7 @@ import CountTo from '@/components/CountTo';
 export default class extends Vue {
   @Prop() sections!: DataPoint[];
   @Prop() columns!: string;
+  @Prop() decimals!: number;
 
   render() {
     const gridTemplateColumns = this.columns || this.sections.map(() => '1fr').join(' ');
@@ -19,6 +20,7 @@ export default class extends Vue {
         </div>
         <div class="legend__value">
           <CountTo
+            decimals={this.decimals}
             endVal={data.value < 1 ? data.value * 100 : data.value}
             suffix={data.value < 1 ? ' %' : ''}
           />
