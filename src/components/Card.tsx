@@ -23,17 +23,19 @@ export default class Card extends Vue {
     this.isVisible = true;
   }
 
-  scrollHandler() {
+  checkShowHandler() {
     if (!this.isHandled && Util.isInViewport(this.$el)) this.show();
   }
 
   mounted() {
-    this.scrollHandler();
-    window.addEventListener('scroll', this.scrollHandler);
+    this.checkShowHandler();
+    window.addEventListener('scroll', this.checkShowHandler);
+    window.addEventListener('resize', this.checkShowHandler);
   }
 
   destroyed() {
-    window.removeEventListener('scroll', this.scrollHandler);
+    window.removeEventListener('scroll', this.checkShowHandler);
+    window.removeEventListener('resize', this.checkShowHandler);
   }
 
   render() {
