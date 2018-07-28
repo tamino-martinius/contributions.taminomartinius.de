@@ -17,6 +17,7 @@ import { StatsData } from '@/types';
 import '../style/index.scss';
 
 const data = new Data();
+const MIN_SCREEN_SIZE = 920;
 
 @Component
 export default class extends Vue {
@@ -24,6 +25,28 @@ export default class extends Vue {
 
   created() {
     data.getStats().then(stats => this.stats = stats);
+  }
+
+  setViewport() {
+    const metaViewport = document.getElementById('vp');
+    console.log(metaViewport);
+
+    if (metaViewport) {
+      if (screen.width < MIN_SCREEN_SIZE) {
+        metaViewport.setAttribute('content', `user-scalable=no, width=${MIN_SCREEN_SIZE}`);
+      } else {
+        metaViewport.setAttribute('content', 'width=device-width, initial-scale=1');
+      }
+    }
+  }
+
+  mounted() {
+    this.setViewport();
+    window.addEventListener('resize', this.setViewport);
+  }
+
+  destroyed() {
+    window.removeEventListener('resize', this.setViewport);
   }
 
   render() {
