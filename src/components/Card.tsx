@@ -1,7 +1,7 @@
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import Util from '@/models/Util';
 
-const MIN_SHOW_DISTANCE_DURATION = 100;
+const MIN_SHOW_DISTANCE_DURATION = 30;
 
 @Component
 export default class Card extends Vue {
