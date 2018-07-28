@@ -27,11 +27,13 @@ export default class extends Vue {
   }
 
   render() {
+    let content: JSX.Element | undefined = undefined;
+
     if (this.stats) {
       console.log(this.stats);
 
-      return (
-        <div class="app">
+      content = (
+        <div class="app__content">
           <Header />
           <Row type={RowType.FIRST_THIRD}>
             <AboutMe slot="first" languages={this.stats.languages} counts={this.stats.total.sum} />
@@ -61,7 +63,10 @@ export default class extends Vue {
       );
     }
     return (
-      <Loading />
+      <div class={['app', this.stats ? 'app--loaded' : '']}>
+        {content}
+        <Loading />
+      </div>
     );
   }
 }

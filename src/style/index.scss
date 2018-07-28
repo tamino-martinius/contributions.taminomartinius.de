@@ -117,6 +117,20 @@ hr {
   margin: 17px 0 16px 0;
 }
 
+.app__content {
+  transform: scale(0.9);
+  transform-origin: 50vw 50vh;
+  opacity: 0;
+  animation: appContent .8s ease forwards;
+}
+
+@keyframes appContent {
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 .header {
   line-height: 50px;
   border-bottom: 1px solid var(--color-border-dark);
