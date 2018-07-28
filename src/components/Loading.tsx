@@ -2,6 +2,7 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 
 @Component
 export default class extends Vue {
+  @Prop() hidden!: boolean;
   opacity = 0;
 
   mounted() {
@@ -18,7 +19,7 @@ export default class extends Vue {
       s83-134 41-148c-28-9.3-41.7 7-41 49.2V119
     `;
     return (
-      <div class="loading" style={{ opacity: this.opacity }}>
+      <div class="loading" style={{ opacity: this.hidden ? 0 : this.opacity }}>
         <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
           <circle class="loading__center" cx="100" cy="100" r="7" />
           <rect class="loading__rect" x="65" y="65" width="70" height="70" rx="6" />

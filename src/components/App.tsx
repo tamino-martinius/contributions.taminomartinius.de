@@ -65,7 +65,7 @@ export default class extends Vue {
     return (
       <div class={['app', this.stats ? 'app--loaded' : '']}>
         {content}
-        <Loading />
+        <Loading hidden={!!this.stats} />
       </div>
     );
   }

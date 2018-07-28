@@ -581,8 +581,12 @@ a {
   text-align: center;
   transform: translate(-50%, -50%);
   position: absolute;
-  opacity: 1 !important;
   transition: opacity 0.2s;
+}
+
+.app--loaded .loading {
+  transform: translate(-50%, -50%) scale(2);
+  transition: opacity 0.5s, transform 1s;
 }
 
 .loading svg {
