@@ -21,6 +21,7 @@ export default class extends Vue {
         <div class="legend__value">
           <CountTo
             decimals={this.decimals}
+            duration={Math.random() * 1000 + 500}
             endVal={data.value < 1 ? data.value * 100 : data.value}
             suffix={data.value < 1 ? ' %' : ''}
           />
