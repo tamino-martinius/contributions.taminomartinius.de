@@ -14,7 +14,6 @@ export default class Card extends Vue {
   async show() {
     this.isHandled = true;
     const waitDuration = MIN_SHOW_DISTANCE_DURATION + Card.lastShow - Date.now();
-    console.log(waitDuration);
     if (waitDuration > 0) {
       Card.lastShow = Date.now() + waitDuration;
       await Util.waitFor(waitDuration);

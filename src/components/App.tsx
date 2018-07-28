@@ -30,8 +30,6 @@ export default class extends Vue {
     let content: JSX.Element | undefined = undefined;
 
     if (this.stats) {
-      console.log(this.stats);
-
       content = (
         <div class="app__content">
           <Header />
