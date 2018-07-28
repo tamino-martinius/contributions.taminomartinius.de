@@ -22,7 +22,7 @@ export default class Card extends Vue {
   }
 
   mounted() {
-    this.show();
+    if (Util.isInViewport(this.$el)) this.show();
   }
 
   render() {
