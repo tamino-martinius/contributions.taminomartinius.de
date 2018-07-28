@@ -1,6 +1,7 @@
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import Bar from '@/components/Bar';
 import Card from '@/components/Card';
+import CountTo from '@/components/CountTo';
 import Legend from '@/components/Legend';
 import { Counts, DataPoint } from '@/types';
 
@@ -18,7 +19,8 @@ export default class extends Vue {
     return (
       <Card title="Statistics" class="statistics">
         <h3>
-          {this.counts.commitCount.toLocaleString()} Commits
+          <CountTo endVal={this.counts.commitCount} />
+          Commits
         </h3>
         <h4>
           In Total
