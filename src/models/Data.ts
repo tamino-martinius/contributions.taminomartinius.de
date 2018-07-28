@@ -1,20 +1,10 @@
 import {
   StatsData,
 } from '@/types';
+import Util from '@/models/Util';
 
 const GITHUB_USER_LOGIN = 'tamino-martinius';
 const MIN_WAIT_DURATION = 3000;
-
-const waitFor = (duration: number): Promise<number> => {
-  return new Promise((resolve, reject) => {
-    const timeout: number = window.setTimeout(
-      () => {
-        resolve(timeout);
-      },
-      duration,
-    );
-  });
-};
 
 declare const DEBUG_MODE: boolean;
 export class Data {
@@ -28,7 +18,7 @@ export class Data {
     const data: StatsData = await response.json();
     const duration = Date.now() - startTime;
     if (duration < MIN_WAIT_DURATION) {
-      await waitFor(MIN_WAIT_DURATION - duration);
+      await Util.waitFor(MIN_WAIT_DURATION - duration);
     }
     return data;
   }
