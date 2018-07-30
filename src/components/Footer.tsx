@@ -7,9 +7,13 @@ export default class extends Vue {
       <footer class="footer">
         <div class="footer__content">
           <div class="footer__left">
-            Made with ❤ by
             <a href="https://taminomartinius.de">
-              &nbsp;Tamino Martinius
+              Made with ❤ by Tamino Martinius
+            </a>
+          </div>
+          <div class="footer__center">
+            <a href="https://github.com/tamino-martinius/contributions.taminomartinius.de">
+              Open Source - Code available at GitHub
             </a>
           </div>
           <div class="footer__right">

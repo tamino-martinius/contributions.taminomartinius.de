@@ -151,13 +151,17 @@ hr {
 
 .footer__content {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   max-width: var(--size-container);
   margin: 0 auto;
 }
 
 .footer__left {
   text-align: left;
+}
+
+.footer__center {
+  text-align: center;
 }
 
 .footer__right {
