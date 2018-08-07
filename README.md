@@ -2,6 +2,8 @@
 
 [Visit Website](https://contributions.taminomartinius.de)
 
+![Preview](public/preview.gif?raw=true)
+
 ## Requirement
 
 You need to create a json file including statistics about your commit. I created another [another GitHub project](https://github.com/tamino-martinius/lambda-get-all-github-contributions) to fetch them with an AWS lambda function (can also be fetched locally using `sam local`.
