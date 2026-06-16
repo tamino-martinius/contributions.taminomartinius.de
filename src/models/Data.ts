@@ -683,6 +683,24 @@ export class Data {
   get npmPackages(): PackageStats[] {
     return this.#npmAccountStats?.packages ?? [];
   }
+
+  // Latest date covered by the synced data. Date keys are zero-padded
+  // `YYYY-MM-DD`, so lexicographic comparison is already chronological.
+  // Combines both sources by taking the oldest of their latest dates, so the
+  // value never overstates how fresh the least up-to-date source is.
+  get latestDataDate(): Date | null {
+    const maxKey = (keys: string[]): string | null =>
+      keys.length === 0 ? null : keys.reduce((a, b) => (a > b ? a : b));
+
+    const githubLatest = maxKey(Object.keys(this.#githubCommitsPerDate));
+    const npmLatest = maxKey([...Object.keys(this.#npmDownloadsPerDate), ...Object.keys(this.#npmVersionsPerDate)]);
+
+    const candidates = [githubLatest, npmLatest].filter((key): key is string => key !== null);
+    if (candidates.length === 0) return null;
+    const oldestLatest = candidates.reduce((a, b) => (a < b ? a : b));
+
+    return new Date(`${oldestLatest}T00:00:00`);
+  }
 }
 
 export default Data;
