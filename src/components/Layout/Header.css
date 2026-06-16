@@ -15,6 +15,17 @@
   margin: 0;
 }
 
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header__updated {
+  font-size: 12px;
+  color: var(--color-foreground-light);
+}
+
 .header__tabs {
   display: flex;
   position: relative;

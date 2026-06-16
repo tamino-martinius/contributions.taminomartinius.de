@@ -30,6 +30,12 @@ import { NpmVersionHeatmapCard } from './Card/npm/NpmVersionHeatmapCard/NpmVersi
 
 const MIN_SCREEN_SIZE = 920;
 
+const DATA_AS_OF_FORMATTER = new Intl.DateTimeFormat('en-US', {
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric',
+});
+
 interface AppProps {
   style?: React.CSSProperties;
 }
@@ -128,9 +134,15 @@ export default function App({ style }: AppProps) {
     );
   }, [isLoading]);
 
+  const dataAsOf = useMemo(() => {
+    if (isLoading) return undefined;
+    const date = dataRef.current.latestDataDate;
+    return date ? DATA_AS_OF_FORMATTER.format(date) : undefined;
+  }, [isLoading]);
+
   const content = isLoading ? null : (
     <div className="app__content">
-      <Header activeTab={activeTab} onTabChange={setActiveTab} />
+      <Header activeTab={activeTab} onTabChange={setActiveTab} dataAsOf={dataAsOf} />
       {activeTab === 'github' ? githubContent : npmContent}
       <Footer />
     </div>
