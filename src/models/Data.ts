@@ -13,10 +13,11 @@ import type {
 } from '@/types/GitHubStats';
 import type { AccountStats as NpmAccountStats, PackageStats } from '@/types/NpmStats';
 import { splitDateKey, splitHourKey } from '@/util/recordKey';
+import { waitRemainder } from '@/util/timing';
 
 const GITHUB_ACCOUNTS = ['tamino-martinius', 'tamino-cookieai'];
 const NPM_ACCOUNT = 'tamino-martinius';
-const MIN_WAIT_DURATION = 1_650;
+export const MIN_WAIT_DURATION = 1_650;
 
 const accountUrls = GITHUB_ACCOUNTS.map(
   (account) => `https://raw.githubusercontent.com/${account}/github-stats/${account}/data/stats.json`,
@@ -241,14 +242,7 @@ export class Data implements MetricsData {
     this.#npmAccountStats = npmAccountStats;
     this.#calculateGithubAccountStats();
     this.#npm = aggregateNpmStats(npmAccountStats);
-    const duration = Date.now() - startTime;
-    if (duration < MIN_WAIT_DURATION) {
-      await new Promise((resolve) => {
-        setTimeout(() => {
-          resolve(true);
-        }, MIN_WAIT_DURATION - duration);
-      });
-    }
+    await waitRemainder(startTime, MIN_WAIT_DURATION);
   }
 
   get hasNpmData(): boolean {
