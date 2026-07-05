@@ -8,14 +8,14 @@ import {
   VISIBILITY_TITLES,
   WEEKDAY_TITLES_LONG,
 } from '@/constants';
-import type Data from '@/models/Data';
+import type { MetricsData } from '@/models/MetricsData';
 import type { Graph } from '@/types/ComponentStats';
 import { changeTypeCommitKey, visibilityChangedFilesKey, visibilityCommitKey } from '@/util/recordKey';
 import './GithubWeekdayChartCard.css';
 import { ButtonGroup } from '@/components/shared/ButtonGroup';
 
 interface GithubWeekdayChartCardProps {
-  data: Data;
+  data: MetricsData;
 }
 
 const MODES = ['Change Type', 'Changed Files', 'Commits'] as const;

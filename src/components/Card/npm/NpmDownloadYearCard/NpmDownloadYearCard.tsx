@@ -1,7 +1,7 @@
 import { type FC, memo } from 'react';
 import { Chart } from '@/components/shared/Chart';
 import { MONTH_TITLES_SHORT, MONTHS } from '@/constants';
-import type Data from '@/models/Data';
+import type { MetricsData } from '@/models/MetricsData';
 import type { Graph, MonthYearKey } from '@/types/ComponentStats';
 import { getMonthYearKeysForYear } from '@/util/recordKey';
 import './NpmDownloadYearCard.css';
@@ -9,7 +9,7 @@ import './NpmDownloadYearCard.css';
 const MAX_DISPLAYED_YEARS = 7;
 
 interface NpmDownloadYearCardProps {
-  data: Data;
+  data: MetricsData;
 }
 
 export const NpmDownloadYearCard: FC<NpmDownloadYearCardProps> = memo(({ data }) => {

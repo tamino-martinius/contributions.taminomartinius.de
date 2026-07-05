@@ -3,13 +3,13 @@ import { Bar, BarType } from '@/components/shared/Bar';
 import { Card } from '@/components/shared/Card';
 import { Legend } from '@/components/shared/Legend';
 import { VISIBILITIES, VISIBILITY_TITLES, WEEKDAY_TITLES_SHORT, WEEKDAYS } from '@/constants';
-import type Data from '@/models/Data';
+import type { MetricsData } from '@/models/MetricsData';
 import type { DataPoint } from '@/types/ComponentStats';
 import { visibilityCommitKey } from '@/util/recordKey';
 import './GithubWeekdayComparisonCard.css';
 
 interface GithubWeekdayComparisonCardProps {
-  data: Data;
+  data: MetricsData;
 }
 
 export const GithubWeekdayComparisonCard: FC<GithubWeekdayComparisonCardProps> = memo(({ data }) => {

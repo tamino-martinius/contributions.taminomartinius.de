@@ -1,13 +1,13 @@
 import { type FC, useState } from 'react';
 import { ButtonGroup } from '@/components/shared/ButtonGroup';
 import { Chart, ChartType } from '@/components/shared/Chart';
-import type Data from '@/models/Data';
+import type { MetricsData } from '@/models/MetricsData';
 import type { MonthYearKey } from '@/types/ComponentStats';
 import { getMonthYearKeysForYear } from '@/util/recordKey';
 import './NpmOrgTimelineCard.css';
 
 interface NpmOrgTimelineCardProps {
-  data: Data;
+  data: MetricsData;
 }
 
 const MAX_ORGS = 5;

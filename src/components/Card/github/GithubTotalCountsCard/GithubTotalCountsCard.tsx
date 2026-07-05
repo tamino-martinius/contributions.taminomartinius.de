@@ -5,10 +5,10 @@ import { Legend } from '@/components/shared/Legend';
 import type { DataPoint } from '@/types/ComponentStats';
 import './GithubTotalCountsCard.css';
 import { type FC, memo } from 'react';
-import type Data from '@/models/Data';
+import type { MetricsData } from '@/models/MetricsData';
 
 interface GithubTotalCountsCardProps {
-  data: Data;
+  data: MetricsData;
 }
 
 export const GithubTotalCountsCard: FC<GithubTotalCountsCardProps> = memo(({ data }) => {

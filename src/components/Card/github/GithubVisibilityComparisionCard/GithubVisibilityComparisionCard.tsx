@@ -1,13 +1,13 @@
 import { type FC, memo } from 'react';
 import { PieChartComparisonCard } from '@/components/shared/PieChartComparisonCard';
 import { VISIBILITIES, VISIBILITY_TITLES } from '@/constants';
-import type Data from '@/models/Data';
+import type { MetricsData } from '@/models/MetricsData';
 import type { DataPoint } from '@/types/ComponentStats';
 import { visibilityCommitKey } from '@/util/recordKey';
 import './GithubVisibilityComparisionCard.css';
 
 interface GithubVisibilityComparisionCardProps {
-  data: Data;
+  data: MetricsData;
 }
 
 export const GithubVisibilityComparisionCard: FC<GithubVisibilityComparisionCardProps> = memo(({ data }) => {

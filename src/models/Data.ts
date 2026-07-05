@@ -1,3 +1,4 @@
+import type { MetricsData } from '@/models/MetricsData';
 import type {
   MonthYearKey,
   NpmOrganizationStats,
@@ -38,7 +39,7 @@ export const EMPTY_COMMIT_STATS: Readonly<PrivatePublicCommitStats> = Object.fre
   privateChangedFiles: 0,
 });
 
-export class Data {
+export class Data implements MetricsData {
   // GitHub data
   #githubAccountStats: AccountStats | null = null;
   #githubCommitsPerLanguage: Record<string, number> = {};
@@ -528,6 +529,10 @@ export class Data {
         }, MIN_WAIT_DURATION - duration);
       });
     }
+  }
+
+  get hasNpmData(): boolean {
+    return true;
   }
 
   // GitHub getters

@@ -5,12 +5,12 @@ import { Card } from '@/components/shared/Card';
 import { CountTo } from '@/components/shared/CountTo';
 import { Dropdown } from '@/components/shared/Dropdown';
 import { Legend } from '@/components/shared/Legend';
-import type Data from '@/models/Data';
+import type { MetricsData } from '@/models/MetricsData';
 import type { DataPoint } from '@/types/ComponentStats';
 import './NpmOrgDetailCard.css';
 
 interface NpmOrgDetailCardProps {
-  data: Data;
+  data: MetricsData;
 }
 
 const MAX_DISPLAYED_PACKAGES = 5;

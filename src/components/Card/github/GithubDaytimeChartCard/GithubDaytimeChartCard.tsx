@@ -3,11 +3,11 @@ import { Chart } from '@/components/shared/Chart';
 import type { Graph } from '@/types/ComponentStats';
 import './GithubDaytimeChartCard.css';
 import { HOUR_TITLES, HOURS, WEEKDAY_TITLES_LONG, WEEKDAYS } from '@/constants';
-import type Data from '@/models/Data';
+import type { MetricsData } from '@/models/MetricsData';
 import { joinHourKey } from '@/util/recordKey';
 
 interface GithubDaytimeChartCardProps {
-  data: Data;
+  data: MetricsData;
 }
 
 export const GithubDaytimeChartCard: FC<GithubDaytimeChartCardProps> = memo(({ data }) => {

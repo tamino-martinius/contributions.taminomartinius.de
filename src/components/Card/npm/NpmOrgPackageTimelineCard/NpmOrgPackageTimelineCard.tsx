@@ -2,14 +2,14 @@ import { type FC, useMemo, useState } from 'react';
 import { ButtonGroup } from '@/components/shared/ButtonGroup';
 import { Chart, ChartType } from '@/components/shared/Chart';
 import { Dropdown } from '@/components/shared/Dropdown';
-import type Data from '@/models/Data';
+import type { MetricsData } from '@/models/MetricsData';
 import type { MonthYearKey } from '@/types/ComponentStats';
 import type { DateKey } from '@/types/GitHubStats';
 import { getMonthYearKeysForYear } from '@/util/recordKey';
 import './NpmOrgPackageTimelineCard.css';
 
 interface NpmOrgPackageTimelineCardProps {
-  data: Data;
+  data: MetricsData;
 }
 
 const MAX_PACKAGES = 8;

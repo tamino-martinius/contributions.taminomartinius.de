@@ -1,7 +1,7 @@
 import { type FC, useState } from 'react';
 import { Chart, ChartType } from '@/components/shared/Chart';
 import { CHANGE_TYPE_TITLES, CHANGE_TYPES, VISIBILITIES, VISIBILITY_TITLES } from '@/constants';
-import type Data from '@/models/Data';
+import type { MetricsData } from '@/models/MetricsData';
 import {
   changeTypeCommitKey,
   getMonthYearKeysForYear,
@@ -12,7 +12,7 @@ import './GithubTimelineCard.css';
 import { ButtonGroup } from '@/components/shared/ButtonGroup';
 
 interface GithubTimelineCardProps {
-  data: Data;
+  data: MetricsData;
 }
 
 const MODES = ['Change Type', 'Changed Files', 'Commits'] as const;
