@@ -38,6 +38,7 @@ const DATA_AS_OF_FORMATTER = new Intl.DateTimeFormat('en-US', {
 
 interface AppProps {
   style?: React.CSSProperties;
+  liveUser?: string;
 }
 
 const syncViewport = () => {
@@ -57,7 +58,8 @@ const syncViewport = () => {
   return () => window.removeEventListener('resize', setViewport);
 };
 
-export default function App({ style }: AppProps) {
+export default function App({ style, liveUser }: AppProps) {
+  void liveUser;
   const dataRef = useRef(new Data());
   const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<MetricsTab>('github');

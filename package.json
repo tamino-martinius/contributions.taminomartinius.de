@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && cp dist/index.html dist/404.html",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "lint": "biome check src",
