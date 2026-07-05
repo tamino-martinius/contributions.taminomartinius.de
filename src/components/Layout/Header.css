@@ -15,6 +15,18 @@
   margin: 0;
 }
 
+.header__title {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.header__live-user {
+  font-size: 1.1rem;
+  opacity: 0.7;
+  align-self: center;
+}
+
 .header__right {
   display: flex;
   align-items: center;

@@ -7,15 +7,18 @@ interface HeaderProps {
   activeTab: MetricsTab;
   onTabChange: (tab: MetricsTab) => void;
   dataAsOf?: string;
+  showNpmTab?: boolean;
+  liveUser?: string;
 }
 
-export const Header: FC<HeaderProps> = memo(({ activeTab, onTabChange, dataAsOf }) => {
+export const Header: FC<HeaderProps> = memo(({ activeTab, onTabChange, dataAsOf, showNpmTab = true, liveUser }) => {
   const tabsRef = useRef<HTMLElement>(null);
   const githubRef = useRef<HTMLButtonElement>(null);
   const npmRef = useRef<HTMLButtonElement>(null);
   const [barStyle, setBarStyle] = useState<React.CSSProperties>({});
 
   useEffect(() => {
+    if (activeTab === 'npm' && !showNpmTab) return;
     const activeRef = activeTab === 'github' ? githubRef : npmRef;
     const btn = activeRef.current;
     const nav = tabsRef.current;
@@ -28,12 +31,15 @@ export const Header: FC<HeaderProps> = memo(({ activeTab, onTabChange, dataAsOf 
       width: `${btnRect.width}px`,
       transform: `translateX(${btnRect.left - navRect.left}px)`,
     });
-  }, [activeTab]);
+  }, [activeTab, showNpmTab]);
 
   return (
     <header className="header">
       <div className="header__content">
-        <h1>Metrics</h1>
+        <div className="header__title">
+          <h1>Metrics</h1>
+          {liveUser ? <span className="header__live-user">~{liveUser}</span> : null}
+        </div>
         <div className="header__right">
           {dataAsOf ? <span className="header__updated">Updated {dataAsOf}</span> : null}
           <nav className="header__tabs" ref={tabsRef}>
@@ -45,14 +51,16 @@ export const Header: FC<HeaderProps> = memo(({ activeTab, onTabChange, dataAsOf 
             >
               GitHub
             </button>
-            <button
-              type="button"
-              ref={npmRef}
-              className={`header__tab${activeTab === 'npm' ? ' header__tab--active' : ''}`}
-              onClick={() => onTabChange('npm')}
-            >
-              npm
-            </button>
+            {showNpmTab ? (
+              <button
+                type="button"
+                ref={npmRef}
+                className={`header__tab${activeTab === 'npm' ? ' header__tab--active' : ''}`}
+                onClick={() => onTabChange('npm')}
+              >
+                npm
+              </button>
+            ) : null}
             <div className="header__bar" style={barStyle} />
           </nav>
         </div>

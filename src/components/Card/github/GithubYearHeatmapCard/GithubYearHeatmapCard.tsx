@@ -12,11 +12,12 @@ import { getDateKeysForYear } from '@/util/recordKey';
 
 interface GithubYearHeatmapCardProps {
   data: MetricsData;
+  countLabel?: string;
 }
 
 const MAX_DISPLAYED_REPOS = 6;
 
-export const GithubYearHeatmapCard: FC<GithubYearHeatmapCardProps> = ({ data }) => {
+export const GithubYearHeatmapCard: FC<GithubYearHeatmapCardProps> = ({ data, countLabel = 'Commits' }) => {
   const {
     githubCommitsPerDate: commitsPerDate,
     githubCommitsPerYearAndRepository: commitsPerYearAndRepository,
@@ -65,7 +66,7 @@ export const GithubYearHeatmapCard: FC<GithubYearHeatmapCardProps> = ({ data }) 
     >
       <h3>Year {year}</h3>
       <h4>
-        <CountTo duration={500} inline endVal={commitsPerYear[year]?.commitCount ?? 0} /> Commits
+        <CountTo duration={500} inline endVal={commitsPerYear[year]?.commitCount ?? 0} /> {countLabel}
       </h4>
       <hr />
       <h3 className="github-year-heatmap-card__highlights">Highlights</h3>
