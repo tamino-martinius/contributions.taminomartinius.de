@@ -10,9 +10,10 @@ import './GithubWeekdayComparisonCard.css';
 
 interface GithubWeekdayComparisonCardProps {
   data: MetricsData;
+  legendLabel?: string;
 }
 
-export const GithubWeekdayComparisonCard: FC<GithubWeekdayComparisonCardProps> = memo(({ data }) => {
+export const GithubWeekdayComparisonCard: FC<GithubWeekdayComparisonCardProps> = memo(({ data, legendLabel }) => {
   const { githubCommitStatsPerWeekday: commitStatsPerWeekday } = data;
   const maxSum = Math.max(...Object.values(commitStatsPerWeekday).map((counts) => counts.commitCount));
 
@@ -33,11 +34,13 @@ export const GithubWeekdayComparisonCard: FC<GithubWeekdayComparisonCardProps> =
 
   const xAxisLabels = WEEKDAY_TITLES_SHORT.map((label, i) => <span key={i}>{label}</span>);
 
-  const sections: DataPoint[] = VISIBILITIES.map((visibility, i) => ({
-    color: `color-${visibility}`,
-    title: VISIBILITY_TITLES[i],
-    value: 0,
-  }));
+  const sections: DataPoint[] = legendLabel
+    ? [{ color: 'color-public', title: legendLabel, value: 0 }]
+    : VISIBILITIES.map((visibility, i) => ({
+        color: `color-${visibility}`,
+        title: VISIBILITY_TITLES[i],
+        value: 0,
+      }));
 
   return (
     <Card

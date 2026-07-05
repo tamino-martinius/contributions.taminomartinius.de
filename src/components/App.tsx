@@ -106,7 +106,7 @@ export default function App({ style, liveUser }: AppProps) {
           </Row>
           <Row
             type={RowType.LAST_THIRD}
-            first={<GithubWeekdayComparisonCard data={data} />}
+            first={<GithubWeekdayComparisonCard data={data} legendLabel="Contributions" />}
             last={<GithubFollowersCard data={data} />}
           />
           <Row>
