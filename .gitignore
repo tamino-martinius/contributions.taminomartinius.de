@@ -5,3 +5,6 @@ dist
 .next
 .playwright-mcp
 .vscode
+
+# Superpowers working docs (specs/plans) — local only
+docs/superpowers/
