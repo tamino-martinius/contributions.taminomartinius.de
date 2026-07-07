@@ -1,11 +1,11 @@
 import type { FC } from 'react';
 import { Chart, ChartType } from '@/components/shared/Chart';
-import type Data from '@/models/Data';
+import type { MetricsData } from '@/models/MetricsData';
 import { getMonthYearKeysForYear } from '@/util/recordKey';
 import './NpmDownloadTimelineCard.css';
 
 interface NpmDownloadTimelineCardProps {
-  data: Data;
+  data: MetricsData;
 }
 
 const MAX_PACKAGES = 7;

@@ -1,11 +1,11 @@
 import { type FC, memo } from 'react';
 import { PieChartComparisonCard } from '@/components/shared/PieChartComparisonCard';
-import type Data from '@/models/Data';
+import type { MetricsData } from '@/models/MetricsData';
 import type { DataPoint } from '@/types/ComponentStats';
 import './GithubFollowersCard.css';
 
 interface GithubFollowersCardProps {
-  data: Data;
+  data: MetricsData;
 }
 
 export const GithubFollowersCard: FC<GithubFollowersCardProps> = memo(({ data }) => {

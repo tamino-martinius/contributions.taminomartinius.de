@@ -3,12 +3,12 @@ import { Bar } from '@/components/shared/Bar';
 import { ButtonGroup } from '@/components/shared/ButtonGroup';
 import { Card } from '@/components/shared/Card';
 import { CountTo } from '@/components/shared/CountTo';
-import type Data from '@/models/Data';
+import type { MetricsData } from '@/models/MetricsData';
 import type { PublicRepositoryDetails } from '@/types/GitHubStats';
 import './GithubPopularReposCard.css';
 
 interface GithubPopularReposCardProps {
-  data: Data;
+  data: MetricsData;
 }
 
 const MAX_DISPLAYED_REPOS = 6;

@@ -5,10 +5,10 @@ import { Legend } from '@/components/shared/Legend';
 import type { DataPoint } from '@/types/ComponentStats';
 import './NpmTotalCountsCard.css';
 import { type FC, memo } from 'react';
-import type Data from '@/models/Data';
+import type { MetricsData } from '@/models/MetricsData';
 
 interface NpmTotalCountsCardProps {
-  data: Data;
+  data: MetricsData;
 }
 
 export const NpmTotalCountsCard: FC<NpmTotalCountsCardProps> = memo(({ data }) => {

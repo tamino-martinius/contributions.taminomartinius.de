@@ -3,11 +3,11 @@ import { Chart } from '@/components/shared/Chart';
 import type { Graph } from '@/types/ComponentStats';
 import './NpmPublishDaytimeCard.css';
 import { HOUR_TITLES, HOURS, WEEKDAY_TITLES_LONG, WEEKDAYS } from '@/constants';
-import type Data from '@/models/Data';
+import type { MetricsData } from '@/models/MetricsData';
 import { joinHourKey } from '@/util/recordKey';
 
 interface NpmPublishDaytimeCardProps {
-  data: Data;
+  data: MetricsData;
 }
 
 export const NpmPublishDaytimeCard: FC<NpmPublishDaytimeCardProps> = memo(({ data }) => {

@@ -4,11 +4,11 @@ import { Card } from '@/components/shared/Card';
 import { CountTo } from '@/components/shared/CountTo';
 import { Heatmap } from '@/components/shared/Heatmap';
 import './NpmDownloadHeatmapCard.css';
-import type Data from '@/models/Data';
+import type { MetricsData } from '@/models/MetricsData';
 import { getDateKeysForYear } from '@/util/recordKey';
 
 interface NpmDownloadHeatmapCardProps {
-  data: Data;
+  data: MetricsData;
 }
 
 export const NpmDownloadHeatmapCard: FC<NpmDownloadHeatmapCardProps> = ({ data }) => {

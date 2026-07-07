@@ -11,3 +11,13 @@
     opacity: 1;
   }
 }
+
+.app__error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 16px;
+  text-align: center;
+}

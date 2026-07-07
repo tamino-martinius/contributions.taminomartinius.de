@@ -4,10 +4,10 @@ import { Legend } from '@/components/shared/Legend';
 import type { DataPoint } from '@/types/ComponentStats';
 import { GithubBio } from './GithubBio';
 import './GithubUserCard.css';
-import type Data from '@/models/Data';
+import type { MetricsData } from '@/models/MetricsData';
 
 interface GithubUserCardProps {
-  data: Data;
+  data: MetricsData;
 }
 
 export const GithubUserCard: FC<GithubUserCardProps> = memo(({ data }) => {

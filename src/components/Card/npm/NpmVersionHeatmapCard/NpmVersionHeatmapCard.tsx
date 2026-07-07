@@ -7,11 +7,11 @@ import { Heatmap } from '@/components/shared/Heatmap';
 import { Legend } from '@/components/shared/Legend';
 import type { DataPoint } from '@/types/ComponentStats';
 import './NpmVersionHeatmapCard.css';
-import type Data from '@/models/Data';
+import type { MetricsData } from '@/models/MetricsData';
 import { getDateKeysForYear } from '@/util/recordKey';
 
 interface NpmVersionHeatmapCardProps {
-  data: Data;
+  data: MetricsData;
 }
 
 const MAX_DISPLAYED_ORGS = 6;

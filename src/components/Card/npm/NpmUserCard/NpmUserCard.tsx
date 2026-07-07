@@ -3,10 +3,10 @@ import { Card } from '@/components/shared/Card';
 import { Legend } from '@/components/shared/Legend';
 import type { DataPoint } from '@/types/ComponentStats';
 import './NpmUserCard.css';
-import type Data from '@/models/Data';
+import type { MetricsData } from '@/models/MetricsData';
 
 interface NpmUserCardProps {
-  data: Data;
+  data: MetricsData;
 }
 
 const MAX_DISPLAYED_ORGANIZATIONS = 4;

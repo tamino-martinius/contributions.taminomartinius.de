@@ -3,16 +3,17 @@ import { Bar, BarType } from '@/components/shared/Bar';
 import { Card } from '@/components/shared/Card';
 import { Legend } from '@/components/shared/Legend';
 import { VISIBILITIES, VISIBILITY_TITLES, WEEKDAY_TITLES_SHORT, WEEKDAYS } from '@/constants';
-import type Data from '@/models/Data';
+import type { MetricsData } from '@/models/MetricsData';
 import type { DataPoint } from '@/types/ComponentStats';
 import { visibilityCommitKey } from '@/util/recordKey';
 import './GithubWeekdayComparisonCard.css';
 
 interface GithubWeekdayComparisonCardProps {
-  data: Data;
+  data: MetricsData;
+  legendLabel?: string;
 }
 
-export const GithubWeekdayComparisonCard: FC<GithubWeekdayComparisonCardProps> = memo(({ data }) => {
+export const GithubWeekdayComparisonCard: FC<GithubWeekdayComparisonCardProps> = memo(({ data, legendLabel }) => {
   const { githubCommitStatsPerWeekday: commitStatsPerWeekday } = data;
   const maxSum = Math.max(...Object.values(commitStatsPerWeekday).map((counts) => counts.commitCount));
 
@@ -33,11 +34,13 @@ export const GithubWeekdayComparisonCard: FC<GithubWeekdayComparisonCardProps> =
 
   const xAxisLabels = WEEKDAY_TITLES_SHORT.map((label, i) => <span key={i}>{label}</span>);
 
-  const sections: DataPoint[] = VISIBILITIES.map((visibility, i) => ({
-    color: `color-${visibility}`,
-    title: VISIBILITY_TITLES[i],
-    value: 0,
-  }));
+  const sections: DataPoint[] = legendLabel
+    ? [{ color: 'color-public', title: legendLabel, value: 0 }]
+    : VISIBILITIES.map((visibility, i) => ({
+        color: `color-${visibility}`,
+        title: VISIBILITY_TITLES[i],
+        value: 0,
+      }));
 
   return (
     <Card
