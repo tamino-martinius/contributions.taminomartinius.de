@@ -1,4 +1,4 @@
-// Vendored from node-metrics-api packages/metrics-api-client — replace with the npm package once it is public.
+// Vendored from node-metrics-api packages/metrics-api-client (tracks v0.0.3) — replace with the npm package once it is public.
 
 import type { AccountStats as NpmAccountStats } from '@/types/NpmStats';
 
@@ -12,9 +12,19 @@ export interface ContributionDay {
   level: ContributionLevel;
 }
 
+export interface GithubByType {
+  commits: number;
+  pullRequests: number;
+  reviews: number;
+  issues: number;
+}
+
 export interface GithubContributions {
   total: Record<string, number>;
   contributions: ContributionDay[];
+  byType?: GithubByType;
+  privateLastYear?: number;
+  lifetimeTotal?: number;
 }
 
 export interface GithubOrganization {
@@ -32,6 +42,8 @@ export interface GithubProfile {
   followerCount: number;
   followingCount: number;
   organizations: GithubOrganization[];
+  accountCreatedAt?: string;
+  location?: string | null;
 }
 
 export interface GithubRepo {
@@ -42,6 +54,17 @@ export interface GithubRepo {
   stargazerCount: number;
   forkCount: number;
   isFork: boolean;
+  defaultBranchCommits?: number | null;
+  createdAt?: string;
+  pushedAt?: string;
+}
+
+/** Combined GitHub payload returned by `GET /github/:user` (metrics-api-server >= 0.0.3). */
+export interface GithubUser {
+  profile: GithubProfile;
+  repos: GithubRepo[];
+  contributions: GithubContributions;
+  warnings?: string[];
 }
 
 export type MetricsApiErrorKind = 'bad-request' | 'not-found' | 'upstream' | 'network';
@@ -72,11 +95,13 @@ export class MetricsApiClient {
     this.#fetch = options.fetch ?? globalThis.fetch.bind(globalThis);
   }
 
-  async #get<T>(path: string): Promise<T> {
-    const url = `${this.#baseUrl}${path}`;
+  async #get<T>(path: string, params: Record<string, string> = {}, token?: string): Promise<T> {
+    const query = new URLSearchParams(params).toString();
+    const url = `${this.#baseUrl}${path}${query ? `?${query}` : ''}`;
+    const init = token ? { headers: { authorization: `Bearer ${token}` } } : undefined;
     let response: Response;
     try {
-      response = await this.#fetch(url);
+      response = await this.#fetch(url, init);
     } catch (error) {
       throw new MetricsApiError('network', 0, `request failed: ${String(error)}`);
     }
@@ -89,19 +114,21 @@ export class MetricsApiClient {
     return response.json() as Promise<T>;
   }
 
-  githubContributions(user: string): Promise<GithubContributions> {
-    return this.#get(`/github/${encodeURIComponent(user)}/contributions`);
+  github(
+    user: string,
+    options: { years?: 'all' | 'last' | number[]; token?: string; lifetime?: boolean } = {},
+  ): Promise<GithubUser> {
+    const params: Record<string, string> = {};
+    if (options.years && options.years !== 'all') {
+      params.y = Array.isArray(options.years) ? options.years.join(',') : options.years;
+    }
+    if (options.lifetime) params.lifetime = '1';
+    return this.#get(`/github/${encodeURIComponent(user)}`, params, options.token);
   }
 
-  githubProfile(user: string): Promise<GithubProfile> {
-    return this.#get(`/github/${encodeURIComponent(user)}/profile`);
-  }
-
-  githubRepos(user: string): Promise<GithubRepo[]> {
-    return this.#get(`/github/${encodeURIComponent(user)}/repos`);
-  }
-
-  npmStats(user: string): Promise<NpmAccountStats> {
-    return this.#get(`/npm/${encodeURIComponent(user)}`);
+  npmStats(user: string, options: { months?: number } = {}): Promise<NpmAccountStats> {
+    const params: Record<string, string> = {};
+    if (options.months !== undefined) params.months = String(options.months);
+    return this.#get(`/npm/${encodeURIComponent(user)}`, params);
   }
 }

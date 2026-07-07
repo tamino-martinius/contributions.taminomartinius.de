@@ -10,7 +10,7 @@ import type { AccountStats as NpmAccountStats } from '@/types/NpmStats';
 import { splitDateKey } from '@/util/recordKey';
 import { waitRemainder } from '@/util/timing';
 
-export type LiveApi = Pick<MetricsApiClient, 'githubContributions' | 'githubProfile' | 'githubRepos' | 'npmStats'>;
+export type LiveApi = Pick<MetricsApiClient, 'github' | 'npmStats'>;
 
 /** Live-mode implementation of MetricsData backed by a hosted metrics-api-server.
  *  Semantics: counts are GitHub *contributions* (not commits); everything is public;
@@ -44,13 +44,11 @@ export class LiveData implements MetricsData {
 
   async fetchData(): Promise<void> {
     const startTime = Date.now();
-    const [contributions, profile, repos, npmStats] = await Promise.all([
-      this.#client.githubContributions(this.#username),
-      this.#client.githubProfile(this.#username),
-      this.#client.githubRepos(this.#username),
+    const [github, npmStats] = await Promise.all([
+      this.#client.github(this.#username),
       this.#client.npmStats(this.#username.toLowerCase()).catch(() => null),
     ]);
-    this.#applyGithub(contributions, profile, repos);
+    this.#applyGithub(github.contributions, github.profile, github.repos);
     if (npmStats && npmStats.packages.length > 0) {
       this.#npmAccountStats = npmStats;
       this.#npm = aggregateNpmStats(npmStats);

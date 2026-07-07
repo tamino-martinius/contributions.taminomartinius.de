@@ -44,9 +44,7 @@ const NPM: NpmAccountStats = {
 };
 
 const client = (npm: NpmAccountStats | null) => ({
-  githubContributions: async () => CONTRIBUTIONS,
-  githubProfile: async () => PROFILE,
-  githubRepos: async () => REPOS,
+  github: async () => ({ profile: PROFILE, repos: REPOS, contributions: CONTRIBUTIONS }),
   npmStats: async () => {
     if (!npm) throw new Error('no npm');
     return npm;
